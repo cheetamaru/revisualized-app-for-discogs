@@ -1,10 +1,27 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
+import { apiClient } from "@/service/api/ApiClient";
 
 export default function Home() {
+  // useEffect(() => {
+
+  // }, [])
+  const [res, setRes] = useState()
+
+  const fetchData = async () => {
+    const response = await apiClient.database().getRelease('249504')
+    setRes(response)
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+      <div>
+      <button onClick={fetchData}>Fetch Data</button>
+      {res && <pre>{JSON.stringify(res, null, 2)}</pre>}
+    </div>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>

@@ -9,7 +9,9 @@ const createClient = () => {
     return client;
 }
 
-export const apiClient = createClient()
+const apiClient = createClient()
+
+export default apiClient;
 
 // export const apiClient = new DiscogsClient({
 //     auth: {

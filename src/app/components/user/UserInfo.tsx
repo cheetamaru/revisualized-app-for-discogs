@@ -1,5 +1,5 @@
 import { DiscogsUser } from "@/app/types/DiscogsUser";
-import { Avatar, Button, Card, Layout, Space, Statistic } from "antd";
+import { Avatar, Button, Card, Divider, Layout, Space, Statistic } from "antd";
 import Sider from "antd/es/layout/Sider";
 import Image from "next/image";
 import DiscogsLogo from "../discogs/DiscogsLogo";
@@ -40,6 +40,7 @@ const UserInfo = ({user}: Props) => {
                     <Layout>
                         <Space style={{padding: 10}}>
                             <Statistic title="Collection" value={user.num_collection} />
+                            <Divider type="vertical"/>
                             <Statistic title="Wantlist" value={user.num_wantlist} />
                         </Space>
      

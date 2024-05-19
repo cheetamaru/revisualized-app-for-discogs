@@ -1,3 +1,3 @@
-import { DiscogsWantlist } from "./DiscogsWantlist";
+import { WantlistEntryResponse } from "@lionralfs/discogs-client";
 
-export type DiscogsWantlistEntry = DiscogsWantlist[0]
+export type DiscogsWantlistEntry = WantlistEntryResponse

@@ -1,3 +1,3 @@
-import { getUser } from "@/utils/requests/getUser";
+import type { GetProfileResponse } from "@lionralfs/discogs-client";
 
-export type DiscogsUser = Awaited<ReturnType<typeof getUser>>;
+export type DiscogsUser = GetProfileResponse

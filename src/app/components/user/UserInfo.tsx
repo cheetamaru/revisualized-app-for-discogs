@@ -2,6 +2,7 @@ import { DiscogsUser } from "@/app/types/DiscogsUser";
 import { Avatar, Button, Card, Layout, Space, Statistic } from "antd";
 import Sider from "antd/es/layout/Sider";
 import Image from "next/image";
+import DiscogsLogo from "../discogs/DiscogsLogo";
 
 type Props = {
     user: DiscogsUser
@@ -41,7 +42,14 @@ const UserInfo = ({user}: Props) => {
                             <Statistic title="Collection" value={user.num_collection} />
                             <Statistic title="Wantlist" value={user.num_wantlist} />
                         </Space>
-                        <Button type="link" href={user?.uri} target="_blank">Go to Discogs Profile</Button>
+     
+                        <Button
+                            type="link"
+                            href={user?.uri} 
+                            target="_blank"
+                            icon={<DiscogsLogo />}
+                            style={{textAlign: "left"}}
+                        >Go to Profile</Button>
                     </Layout>
                 </Layout>
             </Card>

@@ -6,6 +6,11 @@ It is my pet-project dedicated to enhancing the visual appeal and user experienc
 Domain of the revisualization is __only__ other users' collections and wantlists. Not inner collections and all remaining functionality. Basically it is just a cool gallery of the music collection you have that is easy to show to your friends.
 
 ## Goals:
-- [ ] Create new visuals
+- [ ] Create new visuals for wantlist
+- [ ] Create new visuals for collection
 - [ ] Provide responsive layout
 - [ ] Create some service with link shortenings that can store your layout settings before sending it to your friends
+
+## TODO:
+- [ ] Error handling when there is no permission to view wantlist/collection
+- [ ] Error handling when rate limit is exceeded

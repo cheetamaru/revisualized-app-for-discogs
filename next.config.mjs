@@ -6,6 +6,10 @@ const nextConfig = {
             protocol: 'https',
             hostname: process.env.DISCOGS_IMAGE_HOSTNAME,
           },
+          {
+            protocol: "https",
+            hostname: process.env.DISCOGS_GRAVATAR_HOSTNAME,
+          }
         ]
     }
 };

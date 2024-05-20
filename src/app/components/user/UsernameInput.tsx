@@ -29,6 +29,8 @@ const UsernameInput = () => {
           value={username}
           onChange={handleInput}
           onPressEnter={handleRedirect}
+          autoComplete="on"
+          name="username-input"
         />
         <Button type="primary" onClick={handleRedirect}>Submit</Button>
       </Space.Compact>

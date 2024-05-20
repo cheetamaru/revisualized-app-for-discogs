@@ -14,3 +14,4 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 ## TODO:
 - [ ] Error handling when there is no permission to view wantlist/collection
 - [ ] Error handling when rate limit is exceeded
+- [ ] Generate background profile banner by username

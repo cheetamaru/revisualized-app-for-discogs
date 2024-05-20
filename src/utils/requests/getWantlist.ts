@@ -4,7 +4,7 @@ import { cache } from 'react'
 type PaginationParams = { page: number; per_page: number; }
 
 export const getWantlist = cache(async (username: string, params?: PaginationParams) => {
-    const user = await apiClient.user().wantlist().getReleases(username, params);
+    const user = await apiClient.user().wantlist().getReleases(username, { page: 1, per_page: 10, ...params });
 
     console.log("rateLimit", user.rateLimit)
 

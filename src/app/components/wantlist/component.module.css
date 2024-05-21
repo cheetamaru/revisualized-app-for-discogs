@@ -1,0 +1,13 @@
+.cover_container {
+    display: grid;
+    grid-template-columns: repeat(9, 28px);
+    grid-template-rows: 1fr;
+}
+
+.cover_format {
+    grid-column: 1 / 3;
+}
+
+.cover {
+    grid-column: 3 / 10
+}

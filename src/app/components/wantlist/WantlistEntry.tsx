@@ -27,10 +27,10 @@ const WantlistEntry = ({entry}: Props) => {
   return (
     <div>
       <Card
-          style={{width: 364}}
+          style={{width: 256}}
           cover={
             <WantlistEntryCover
-              size={300}
+              size={200}
               format={format}
               src={basicInfo.cover_image}
               title={enrtyTitle}

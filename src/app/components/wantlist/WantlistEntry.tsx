@@ -27,7 +27,7 @@ const WantlistEntry = ({entry}: Props) => {
   return (
     <div>
       <Card
-          style={{width: 300, height: 400}}
+          style={{width: 364}}
           cover={
             <WantlistEntryCover
               size={300}
@@ -36,26 +36,29 @@ const WantlistEntry = ({entry}: Props) => {
               title={enrtyTitle}
             />
           }
+          styles={{body: {paddingBottom: 10, paddingTop: 10}}}
         >
           <Flex vertical justify="space-between">
             <div>
-              <Title level={4} copyable={{text: infoForCopy}} ellipsis>{enrtyTitle}</Title>
-              <div>
+            <div>
                 <Text title={entryArtist} ellipsis>
-                    <Text strong>Artist: </Text>
                     {entryArtist}
                   </Text>
               </div>
-              <div>
+              <Title level={4} copyable={{text: infoForCopy}} ellipsis title={enrtyTitle}
+              style={{marginBottom: 0}}
+              >{enrtyTitle}</Title>
+
+              {/* <div>
                 <Text strong>Year: </Text> 
                 <Text ellipsis>{basicInfo.year}</Text>
-              </div>
-              <div>
-                <Text ellipsis>
+              </div> */}
+              {/* <div>
+                <Text ellipsis title={mainLabel}>
                   <Text strong>Main Label: </Text>
                   {mainLabel}
                 </Text>
-              </div>
+              </div> */}
             </div>
             <Divider style={{margin: "10px 0"}} />
             <Flex justify="space-between" align="center">

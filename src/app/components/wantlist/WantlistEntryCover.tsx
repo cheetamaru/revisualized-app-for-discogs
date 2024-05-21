@@ -16,10 +16,12 @@ const WantlistEntryCover = ({src, size, title}: Props) => {
 
   return (
     <>
-        <div style={{height: coverSize, backgroundColor: "#808080", borderRadius: "8px 8px 0 0"}}>
+        <div style={{height: coverSize, backgroundColor: "#dedede", borderRadius: "8px 8px 0 0"}}>
             <img height={formatSize} src={vinyl} alt="format" />
             <Image width={coverSize} height={coverSize} alt={title} src={src}
                 style={{position: 'absolute', right: '-1px', borderRadius: 0, borderTopRightRadius: "8px"}}
+                placeholder="blur"
+                blurDataURL="/image_placeholder.jpg"
             />
         </div>
           

@@ -20,7 +20,7 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
                 {JSON.stringify(wantlist, null, 2)}
             </pre> */}
             <Flex justify="center">
-                <Flex wrap gap={10} style={{padding: 10, width: "1200px"}} justify="center">
+                <Flex wrap gap={10} style={{padding: 10}} justify="center">
                     {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
                 </Flex>
             </Flex>

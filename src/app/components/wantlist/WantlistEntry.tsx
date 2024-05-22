@@ -22,30 +22,40 @@ const WantlistEntry = ({entry}: Props) => {
   const entryArtist = basicInfo.artists[0].name
   const infoForCopy = `${enrtyTitle} — ${entryArtist}`
   const format = basicInfo.formats[0].name
+  const qunatity = basicInfo.formats[0].qty
+  const descriptions = basicInfo.formats[0].descriptions
   const mainLabel = basicInfo.labels[0].name
+
+  const cardWidth = 240
 
   return (
     <div>
       <Card
-          style={{width: 256}}
+          style={{width: cardWidth}}
+          bordered={false}
           cover={
             <WantlistEntryCover
-              size={200}
+              width={cardWidth}
               format={format}
               src={basicInfo.cover_image}
               title={enrtyTitle}
+              qunatity={qunatity}
+              descriptions={descriptions}
             />
           }
-          styles={{body: {paddingBottom: 10, paddingTop: 10}}}
+          styles={{body: {padding: 10}}}
         >
           <Flex vertical justify="space-between">
             <div>
-            <div>
+              <Flex justify="space-between">
+                <div style={{width: '80%'}}>
                 <Text title={entryArtist} ellipsis>
                     {entryArtist}
                   </Text>
-              </div>
-              <Title level={4} copyable={{text: infoForCopy}} ellipsis title={enrtyTitle}
+                </div>
+                <div><Text type="secondary" italic>{basicInfo.year}</Text></div>
+              </Flex>
+              <Title level={5} copyable={{text: infoForCopy, tooltips: ['', `Copied: ${infoForCopy}`]}} ellipsis title={enrtyTitle}
               style={{marginBottom: 0}}
               >{enrtyTitle}</Title>
 
@@ -60,7 +70,7 @@ const WantlistEntry = ({entry}: Props) => {
                 </Text>
               </div> */}
             </div>
-            <Divider style={{margin: "10px 0"}} />
+            <Divider style={{margin: "6px 0"}} />
             <Flex justify="space-between" align="center">
               <div>Rating: {entry.rating}</div>
               <Button
@@ -71,7 +81,7 @@ const WantlistEntry = ({entry}: Props) => {
                             style={{ alignSelf: "flex-end", display: "flex", alignItems: "baseline"}}
                             iconPosition="end"
                             
-                        >Go to Entry</Button>
+                        >More</Button>
             </Flex>
           </Flex>
       </Card>

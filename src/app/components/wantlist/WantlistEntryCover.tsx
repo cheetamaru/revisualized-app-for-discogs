@@ -38,8 +38,8 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
             {qunatity > 1 && <div className={style.cover_quantity}><Text italic strong>x{qunatity}</Text></div>}
             <img height={coverSize} src={formatImg} alt="format" className={style.cover_format} />
             <Image width={coverSize} height={coverSize} alt={title} src={src}
-                style={{borderRadius: 0, borderTopRightRadius: "8px",
-                gridColumn: coverGridColumn}}
+                style={{borderRadius: 0, borderTopRightRadius: "8px"
+            }}
                 placeholder="blur"
                 blurDataURL="/image_placeholder.jpg"
                 className={style.cover}

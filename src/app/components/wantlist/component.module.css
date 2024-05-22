@@ -9,7 +9,8 @@
 }
 
 .cover {
-    grid-row: 1
+    position: absolute;
+    right: 0;
 }
 
 .cover_quantity {

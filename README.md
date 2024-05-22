@@ -16,3 +16,5 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Error handling when rate limit is exceeded
 - [ ] Generate background profile banner by username
 - [ ] In wantlist entry icon that describes type of vinyl etc
+- [ ] Create issue about wantlist images
+- [ ] Create issue about rating in wantlist

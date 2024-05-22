@@ -4,6 +4,7 @@ import { getWantlistOnServer } from "./utils/getWantlistOnServer";
 import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
 import UsernameInput from "@/app/components/user/UsernameInput";
 import { Button, Flex } from "antd";
+import style from "./page.module.css"
 
 const WantlistPage = async ({params}: { params: { username: string } }) => {
     const { username } = params;
@@ -19,11 +20,11 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
             {/* <pre>
                 {JSON.stringify(wantlist, null, 2)}
             </pre> */}
-            <Flex justify="center">
-                <Flex wrap gap={10} style={{padding: 10}} justify="center">
+            <Flex justify="center" style={{padding: "0 5px"}}>
+                <div className={style.items_container} style={{width: '900px'}}>
                     {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
-                </Flex>
-            </Flex>
+                </div>
+            </Flex>  
         </>
     )
 }

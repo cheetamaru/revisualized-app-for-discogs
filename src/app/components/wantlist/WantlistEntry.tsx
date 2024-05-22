@@ -26,12 +26,11 @@ const WantlistEntry = ({entry}: Props) => {
   const descriptions = basicInfo.formats[0].descriptions
   const mainLabel = basicInfo.labels[0].name
 
-  const cardWidth = 240
+  const cardWidth = 210
 
   return (
     <div>
       <Card
-          style={{width: cardWidth}}
           bordered={false}
           cover={
             <WantlistEntryCover
@@ -48,7 +47,7 @@ const WantlistEntry = ({entry}: Props) => {
           <Flex vertical justify="space-between">
             <div>
               <Flex justify="space-between">
-                <div style={{width: '80%'}}>
+                <div style={{width: '70%'}}>
                 <Text title={entryArtist} ellipsis>
                     {entryArtist}
                   </Text>

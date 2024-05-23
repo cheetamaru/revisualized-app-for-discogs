@@ -11,6 +11,25 @@ type Props = {
     descriptions: string[];
 }
 
+const cassetteSrc = "/format/cassette.webp"
+const vinylSrc ="/format/vinyl.webp"
+const cdSrc = "/format/cd.webp"
+
+const formatSrcMapper = new Map([
+    ["Vinyl", vinylSrc],
+    ["Cassette", cassetteSrc],
+    ["CD", cdSrc],
+    ["CDr", cdSrc],
+])
+
+const getFormatSrc = (format: string) => {
+    if (formatSrcMapper.has(format)) {
+        return formatSrcMapper.get(format)
+    }
+
+    return;
+}
+
 const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}: Props) => {
     // const coverSize = Math.ceil(Number(size)/10 * 8)
     // const formatSize = coverSize
@@ -22,11 +41,7 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
     const coverSize = Math.ceil(width/columns * coverParts)
     const coverGridColumn = `${columns - coverParts + 1} / ${columns}`
 
-    const cassete = "https://t4.ftcdn.net/jpg/02/29/43/35/360_F_229433573_ZIGWdQvJmqBG66DbyAaxmRJzW2uYhzf6.jpg"
-    const vinyl = "https://deepgrooves.eu/wp-content/uploads/2020/08/Black-8722-1.png"
-    const cd = "https://www.freepnglogos.com/uploads/compact-disc-png-logo/compact-disk-png-image-logo-4.png"
-
-    const formatImg = format === "Vinyl" ? vinyl : cd
+    const formatImg = getFormatSrc(format) || "";
 
   return (
     <>
@@ -36,7 +51,7 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
             } className={style.cover_container}>
             <div className={style.cover_desc}><strong>{descriptions[0]}</strong></div>
             {qunatity > 1 && <div className={style.cover_quantity}><Text italic strong>x{qunatity}</Text></div>}
-            <img height={coverSize} src={formatImg} alt="format" className={style.cover_format} />
+            <Image height={coverSize} width={coverSize} src={formatImg} alt="format" className={style.cover_format} />
             <Image width={coverSize} height={coverSize} alt={title} src={src}
                 style={{borderRadius: 0, borderTopRightRadius: "8px"
             }}

@@ -8,7 +8,7 @@ type Props = {
 const DiscogsLogo = ({size}: Props) => {
     const internalSize = size || 14
 
-    const src = process.env.DISCOGS_LOGO_SRC
+    const src = process.env.NEXT_PUBLIC_DISCOGS_LOGO_SRC
 
     if (!src) {
         throw new Error("Discogs logo not found!")

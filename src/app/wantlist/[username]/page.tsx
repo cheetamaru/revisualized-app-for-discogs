@@ -7,6 +7,7 @@ import { Button, Flex, Layout, Space } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import UserAvatar from "@/app/components/user/UserAvatar";
+import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
 
 const WantlistPage = async ({params}: { params: { username: string } }) => {
     const { username } = params;
@@ -18,12 +19,7 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
         <>
             <Layout>
                 <Header style={{display: "flex", justifyContent: "center"}}>
-                    <Space align="center">
-                        <UserAvatar size={40} user={user} />
-                        <div style={{width: 400}}>
-                            <UsernameInput initialValue={username}  />
-                        </div>
-                    </Space>
+                    <CollectionPageHeader user={user}/>
                 </Header>
                 <Layout style={{ width: "100%", alignSelf: 'center'}}>
                     <Content>

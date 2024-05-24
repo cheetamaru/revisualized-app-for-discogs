@@ -18,3 +18,13 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] In wantlist entry icon that describes type of vinyl etc
 - [ ] Create issue about wantlist images
 - [ ] Create issue about rating in wantlist
+- [ ] Sort options on List Page
+- [ ] Different list layouts
+- [ ] List pagination, different per_page options
+- [ ] Color coded genres and styles, maybe background of cards
+- [ ] Card reverse side
+- [ ] Fallback image on card
+- [ ] Dark/Light Theme
+- [ ] Something interesting on home page
+- [ ] In username input create a reset suffix
+- [ ] Cover Image error fallback

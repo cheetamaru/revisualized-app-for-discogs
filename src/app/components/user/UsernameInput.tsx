@@ -58,6 +58,8 @@ const UsernameInput = ({ initialValue, url }: Props) => {
               icon={<DiscogsLogo size={14} />}
               style={{
                 transition: "all 0.2s",
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
               }}
               iconPosition="end"
             >
@@ -69,7 +71,9 @@ const UsernameInput = ({ initialValue, url }: Props) => {
             <Button
               onClick={handleRedirect}
               style={{
-                transition: "all 0.2s"
+                transition: "all 0.2s",
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
               }}
             >
                 <strong>Search</strong>

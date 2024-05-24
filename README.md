@@ -28,3 +28,5 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Something interesting on home page
 - [ ] In username input create a reset suffix
 - [ ] Cover Image error fallback
+- [ ] Format image fallback
+- [ ] Card description filter

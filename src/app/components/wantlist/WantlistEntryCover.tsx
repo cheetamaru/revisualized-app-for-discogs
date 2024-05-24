@@ -42,7 +42,6 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
     const coverGridColumn = `${columns - coverParts + 1} / ${columns}`
 
     const formatImg = getFormatSrc(format) || "";
-
   return (
     <>
         <div style={
@@ -51,14 +50,26 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
             } className={style.cover_container}>
             <div className={style.cover_desc}><strong>{descriptions[0]}</strong></div>
             {qunatity > 1 && <div className={style.cover_quantity}><Text italic strong>x{qunatity}</Text></div>}
+
             <Image height={coverSize} width={coverSize} src={formatImg} alt="format" className={style.cover_format} />
-            <Image width={coverSize} height={coverSize} alt={title} src={src}
-                style={{borderRadius: 0, borderTopRightRadius: "8px"
-            }}
-                placeholder="blur"
-                blurDataURL="/image_placeholder.jpg"
-                className={style.cover}
-            />
+
+            { src
+                ?
+                <Image width={coverSize} height={coverSize} alt={title} src={src}
+                    style={{
+                        borderRadius: 0,
+                        borderTopRightRadius: "8px"
+                    }}
+                    placeholder="blur"
+                    blurDataURL="/image_placeholder.jpg"
+                    className={style.cover}
+                />
+                :
+                <Image src="/image_placeholder.jpg" width={coverSize} height={coverSize} alt="no image" 
+                    style={{opacity: 0.7}}
+                />
+             }
+
         </div>
           
     </>

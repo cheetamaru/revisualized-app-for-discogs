@@ -3,8 +3,12 @@ import { Button, Input, Space } from "antd";
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from "react";
 
-const UsernameInput = () => {
-  const [username, setUsername] = useState("")
+type Props = {
+  initialValue?: string;
+}
+
+const UsernameInput = ({ initialValue }: Props) => {
+  const [username, setUsername] = useState(initialValue || "")
   const router = useRouter()
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {

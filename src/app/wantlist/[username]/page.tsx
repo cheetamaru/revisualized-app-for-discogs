@@ -17,7 +17,7 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
 
     return (
         <>
-            <Layout>
+            <Layout style={{minHeight: "100vh"}}>
                 <Header style={{display: "flex", justifyContent: "center"}}>
                     <CollectionPageHeader user={user}/>
                 </Header>
@@ -27,8 +27,7 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
                             <UserInfo user={user}/>
                             <Button>Show in Marketplace</Button>
                         </div> */}
-                        {/* <div style={{height: 50}}><input /> </div> */}
-                        <Flex justify="center" style={{padding: "15px 14%"}}>
+                        <Flex justify="center" className={style.container}>
                             <div className={style.items_container} style={{width: '100%'}}>
                                 {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
                             </div>

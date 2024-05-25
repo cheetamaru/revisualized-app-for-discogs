@@ -1,15 +1,18 @@
 "use client"
-import { Button, Input, Space } from "antd";
+import { Button, Input, InputRef, Space } from "antd";
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import DiscogsLogo from "../discogs/DiscogsLogo";
+import { RedoOutlined, SearchOutlined } from '@ant-design/icons';
 
 type Props = {
   initialValue?: string;
   url?: string;
+  isResetable?: boolean;
 }
 
-const UsernameInput = ({ initialValue, url }: Props) => {
+const UsernameInput = ({ initialValue, url, isResetable }: Props) => {
+  const inputRef = useRef<InputRef>(null);
   const [username, setUsername] = useState(initialValue || "")
   const router = useRouter()
 
@@ -27,10 +30,18 @@ const UsernameInput = ({ initialValue, url }: Props) => {
     router.push("/wantlist/" + username)
   }
 
+  const handleReset = () => {
+    setUsername(initialValue || "")
+    setTimeout(() => {
+      inputRef.current?.blur()
+    })
+  }
+
   return (
     <>
       <Space.Compact style={{ width: '100%' }}>
         <Input
+          ref={inputRef}
           placeholder="Enter username"
           value={username}
           onChange={handleInput}
@@ -48,6 +59,15 @@ const UsernameInput = ({ initialValue, url }: Props) => {
           }}
           autoComplete="on"
           name="username-input"
+          suffix={
+            username === initialValue
+              ||
+                isResetable &&
+                <Button onClick={handleReset} icon={<RedoOutlined />} type="text" size="small" style={{
+                    color: 'white', paddingRight: 6,
+                  }}
+                />
+          }
         />
         {
           username === initialValue
@@ -60,6 +80,8 @@ const UsernameInput = ({ initialValue, url }: Props) => {
                 transition: "all 0.2s",
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
+                width: 150,
+                height: 32,
               }}
               iconPosition="end"
             >
@@ -74,7 +96,11 @@ const UsernameInput = ({ initialValue, url }: Props) => {
                 transition: "all 0.2s",
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
+                width: 150,
+                height: 32,
               }}
+              icon={<SearchOutlined />}
+              iconPosition="end"
             >
                 <strong>Search</strong>
             </Button>

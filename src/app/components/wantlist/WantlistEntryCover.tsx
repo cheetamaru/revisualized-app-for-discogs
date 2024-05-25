@@ -66,7 +66,8 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
                 />
                 :
                 <Image src="/image_placeholder.jpg" width={coverSize} height={coverSize} alt="no image" 
-                    style={{opacity: 0.7}}
+                    style={{opacity: 0.9}}
+                    className={style.cover}
                 />
              }
 

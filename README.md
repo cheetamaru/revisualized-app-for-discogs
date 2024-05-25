@@ -30,3 +30,6 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Cover Image error fallback
 - [ ] Format image fallback
 - [ ] Card description filter
+- [ ] Create custom loading page for wantlist
+- [ ] Make caching with unstable_cache
+- [ ] Make better card design

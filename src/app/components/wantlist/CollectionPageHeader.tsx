@@ -12,7 +12,7 @@ const CollectionPageHeader = ({ user }: Props) => {
     <Space align="center">
         <UserAvatar size={40} user={user} />
         <div style={{width: 350}}>
-            <UsernameInput initialValue={user.username} url={user.uri} />
+            <UsernameInput initialValue={user.username} url={user.uri} isResetable />
         </div>
     </Space>
   )

@@ -14,7 +14,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 ## TODO:
 - [ ] Error handling when there is no permission to view wantlist/collection
 - [ ] Error handling when rate limit is exceeded
-- [ ] Generate background profile banner by username
+- [ ] Generate background profile banner by username (?)
 - [ ] In wantlist entry icon that describes type of vinyl etc
 - [ ] Create issue about wantlist images
 - [ ] Create issue about rating in wantlist
@@ -26,13 +26,15 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Fallback image on card
 - [ ] Dark/Light Theme
 - [ ] Something interesting on home page
-- [ ] In username input create a reset suffix
+- [x] In username input create a reset suffix
 - [ ] Cover Image error fallback
 - [ ] Format image fallback
 - [ ] Card description filter
 - [ ] Create custom loading page for wantlist
-- [ ] Make caching with unstable_cache
+- [x] Make caching with unstable_cache
 - [ ] Make better card design
 - [ ] Make a user card by click on the avatar
 - [ ] Try to make width of a lone grid ajustable
 - [ ] Change cover size if its not a square (in cassettes)
+- [ ] Apply ddd principle to the project
+

@@ -1,6 +1,4 @@
 import UserInfo from "@/app/components/user/UserInfo";
-import { getUserOnServer } from "./utils/getUserOnServer";
-import { getWantlistOnServer } from "./utils/getWantlistOnServer";
 import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
 import UsernameInput from "@/app/components/user/UsernameInput";
 import { Button, Flex, Layout, Space } from "antd";
@@ -10,6 +8,7 @@ import UserAvatar from "@/app/components/user/UserAvatar";
 import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
 import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
 import { getWantlist } from "@/utils/requests/getWantlist";
+import { getUser } from "@/utils/requests/getUser";
 
 type Props = {
     params: { username: string }; 
@@ -25,7 +24,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
 
     const { username } = params;
 
-    const user = await getUserOnServer(username);
+    const user = await getUser(username);
     const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage  })
 
     return (

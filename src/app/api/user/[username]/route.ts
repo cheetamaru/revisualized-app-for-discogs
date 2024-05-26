@@ -7,6 +7,9 @@ type Params = {
   username: string
 }
 
+/**
+ * @deprecated
+ */
 export async function GET(request: NextRequest, {params}: { params: Params }) {
     const username = params.username
     

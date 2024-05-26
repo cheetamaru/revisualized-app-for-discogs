@@ -42,20 +42,44 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
     const coverGridColumn = `${columns - coverParts + 1} / ${columns}`
 
     const formatImg = getFormatSrc(format) || "";
+
+    const allowedDescription = descriptions[0].length <= 3 ? descriptions[0] : undefined
   return (
     <>
         <div style={
             {height: coverSize, backgroundColor: "#dedede", borderRadius: "8px 8px 0 0", display: "grid",
             gridTemplateColumns: `repeat(9, ${onePart}px)`}
             } className={style.cover_container}>
-            <div className={style.cover_desc}><strong>{descriptions[0]}</strong></div>
-            {qunatity > 1 && <div className={style.cover_quantity}><Text italic strong>x{qunatity}</Text></div>}
+            { formatImg && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
+            { formatImg && qunatity > 1 && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{qunatity}</Text></div>}
 
-            <Image height={coverSize} width={coverSize} src={formatImg} alt="format" className={style.cover_format} />
+            {
+                formatImg
+                    ?
+                        <Image height={coverSize} width={coverSize} src={formatImg} alt="format" className={style.cover_format} />
+                    :
+                        <div
+                            style={{
+                                height: coverSize,
+                                width: coverSize,
+                                writingMode: "vertical-lr",
+                                textOrientation: "upright",
+                                wordWrap: "break-word",
+                                overflowWrap: "break-word",
+                                textAlign: "center",
+                                paddingLeft: 6,
+                            }}
+                            className={style.cover_format}
+                        >
+                            {format}
+                        </div>
+           
+            }
 
             { src
                 ?
                 <Image width={coverSize} height={coverSize} alt={title} src={src}
+                    key={src + allowedDescription}
                     style={{
                         borderRadius: 0,
                         borderTopRightRadius: "8px"

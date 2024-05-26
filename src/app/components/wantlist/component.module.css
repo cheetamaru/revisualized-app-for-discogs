@@ -14,8 +14,7 @@
 }
 
 .cover_quantity {
-    position: relative;
-    bottom: 24px;
+    position: absolute;
     left: 8px;
 }
 

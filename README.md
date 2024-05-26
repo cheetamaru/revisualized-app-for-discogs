@@ -20,7 +20,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Create issue about rating in wantlist
 - [ ] Sort options on List Page
 - [ ] Different list layouts
-- [ ] List pagination, different per_page options
+- [x] List pagination, different per_page options
 - [ ] Color coded genres and styles, maybe background of cards
 - [ ] Card reverse side
 - [ ] Fallback image on card
@@ -33,3 +33,6 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Create custom loading page for wantlist
 - [ ] Make caching with unstable_cache
 - [ ] Make better card design
+- [ ] Make a user card by click on the avatar
+- [ ] Try to make width of a lone grid ajustable
+- [ ] Change cover size if its not a square (in cassettes)

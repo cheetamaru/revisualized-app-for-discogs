@@ -4,8 +4,8 @@ import { cache } from 'react'
 type PaginationParams = { page: number; per_page: number; }
 
 type Params = PaginationParams & {
-    sort: string;
-    sort_order: string;
+    sort?: string;
+    sort_order?: string;
 }
 
 export const getWantlist = cache(async (username: string, params?: Params) => {

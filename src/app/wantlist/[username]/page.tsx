@@ -8,12 +8,25 @@ import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import UserAvatar from "@/app/components/user/UserAvatar";
 import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
+import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
+import { getWantlist } from "@/utils/requests/getWantlist";
 
-const WantlistPage = async ({params}: { params: { username: string } }) => {
+type Props = {
+    params: { username: string }; 
+    searchParams?: {
+        page?: string;
+        per_page?: string;
+    }
+}
+  
+const WantlistPage = async ({params, searchParams}: Props) => {
+    const currentPage = Number(searchParams?.page) || 1;
+    const perPage = Number(searchParams?.per_page) || 20;
+
     const { username } = params;
 
     const user = await getUserOnServer(username);
-    const wantlist = await getWantlistOnServer(username)
+    const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage  })
 
     return (
         <>
@@ -33,6 +46,9 @@ const WantlistPage = async ({params}: { params: { username: string } }) => {
                             </div>
                         </Flex>
                     </Content>
+                    <CollectionPagination totalPages={wantlist?.pagination.items} pageSize={wantlist.pagination.per_page}
+                        style={{textAlign: 'center', paddingBottom: 15}}
+                    />
                 </Layout>
 
             </Layout>

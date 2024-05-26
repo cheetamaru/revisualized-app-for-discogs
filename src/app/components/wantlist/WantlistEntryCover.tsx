@@ -43,7 +43,7 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
 
     const formatImg = getFormatSrc(format) || "";
 
-    const allowedDescription = descriptions[0].length <= 3 ? descriptions[0] : undefined
+    const allowedDescription = descriptions[0]?.length <= 3 ? descriptions[0] : undefined
   return (
     <>
         <div style={

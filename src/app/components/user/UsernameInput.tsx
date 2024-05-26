@@ -9,9 +9,10 @@ type Props = {
   initialValue?: string;
   url?: string;
   isResetable?: boolean;
+  forbidGoToDiscogs?: boolean;
 }
 
-const UsernameInput = ({ initialValue, url, isResetable }: Props) => {
+const UsernameInput = ({ initialValue, url, isResetable, forbidGoToDiscogs }: Props) => {
   const inputRef = useRef<InputRef>(null);
   const [username, setUsername] = useState(initialValue || "")
   const router = useRouter()
@@ -70,7 +71,7 @@ const UsernameInput = ({ initialValue, url, isResetable }: Props) => {
           }
         />
         {
-          username === initialValue
+          username === initialValue && !forbidGoToDiscogs
             ?
             <Button
               href={url}

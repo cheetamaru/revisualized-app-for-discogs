@@ -12,10 +12,11 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Create some service with link shortenings that can store your layout settings before sending it to your friends
 
 ## TODO:
-- [ ] Error handling when there is no permission to view wantlist/collection
+- [ ] Error handling when there is no permission to view wantlist/collection (example: abc)
+- [ ] Error handling when there is no such user
 - [ ] Error handling when rate limit is exceeded
 - [ ] Generate background profile banner by username (?)
-- [ ] In wantlist entry icon that describes type of vinyl etc
+- [x] In wantlist some info that describes type of vinyl etc
 - [ ] Create issue about wantlist images
 - [ ] Create issue about rating in wantlist
 - [ ] Sort options on List Page
@@ -23,12 +24,12 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] List pagination, different per_page options
 - [ ] Color coded genres and styles, maybe background of cards
 - [ ] Card reverse side
-- [ ] Fallback image on card
+- [x] Fallback image on card
 - [ ] Dark/Light Theme
 - [ ] Something interesting on home page
 - [x] In username input create a reset suffix
 - [ ] Cover Image error fallback
-- [ ] Format image fallback
+- [x] Format image fallback
 - [ ] Card description filter
 - [ ] Create custom loading page for wantlist
 - [x] Make caching with unstable_cache
@@ -37,4 +38,9 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Try to make width of a lone grid ajustable
 - [ ] Change cover size if its not a square (in cassettes)
 - [ ] Apply ddd principle to the project
+- [ ] Stylize error page
+
+## Bugs
+- [ ] On error page on userinput change blur occurs for some reason
+
 

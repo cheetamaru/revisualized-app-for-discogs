@@ -13,7 +13,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 
 ## TODO:
 - [ ] Error handling when there is no permission to view wantlist/collection (example: abc)
-- [ ] Error handling when there is no such user
+- [x] Error handling when there is no such user
 - [ ] Error handling when rate limit is exceeded
 - [ ] Generate background profile banner by username (?)
 - [x] In wantlist some info that describes type of vinyl etc
@@ -30,12 +30,12 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] In username input create a reset suffix
 - [ ] Cover Image error fallback
 - [x] Format image fallback
-- [ ] Card description filter
+- [x] Card description filter
 - [ ] Create custom loading page for wantlist
 - [x] Make caching with unstable_cache
 - [ ] Make better card design
 - [ ] Make a user card by click on the avatar
-- [ ] Try to make width of a lone grid ajustable
+- [ ] Try to make width of a lone grid adjustable
 - [ ] Change cover size if its not a square (in cassettes)
 - [ ] Apply ddd principle to the project
 - [ ] Stylize error page

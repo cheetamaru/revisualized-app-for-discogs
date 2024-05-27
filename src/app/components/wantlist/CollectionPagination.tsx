@@ -6,14 +6,14 @@ import React from 'react'
 
 type Props = {
     totalPages?: number;
-    pageSize?: number;
     style?: React.CSSProperties;
 }
 
-const CollectionPagination = ({ totalPages, pageSize, style }: Props) => {
+const CollectionPagination = ({ totalPages, style }: Props) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const currentPage = Number(searchParams.get('page')) || 1;
+    const pageSize = Number(searchParams.get('per_page')) || 20;
     const { replace } = useRouter();
     
     const createPageURL = (pageNumber: number | string, pageSize: number | string) => {

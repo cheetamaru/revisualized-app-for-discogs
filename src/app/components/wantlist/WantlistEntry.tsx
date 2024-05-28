@@ -54,8 +54,14 @@ const WantlistEntry = ({entry}: Props) => {
                 </div>
                 <div><Text type="secondary" italic>{basicInfo.year}</Text></div>
               </Flex>
-              <Title level={5} copyable={{text: infoForCopy, tooltips: ['', `Copied: ${infoForCopy}`]}} ellipsis title={enrtyTitle}
-              style={{marginBottom: 0}}
+              <Title level={5} copyable={{
+                text: infoForCopy,
+                tooltips: ['', `Copied: ${infoForCopy}`]
+              }} ellipsis title={enrtyTitle}
+              style={{
+                marginBottom: 0,
+                overflow: "hidden"
+              }}
               >{enrtyTitle}</Title>
 
               {/* <div>

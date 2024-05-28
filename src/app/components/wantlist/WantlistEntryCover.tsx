@@ -44,14 +44,18 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
     const formatImg = getFormatSrc(format) || "";
 
     const allowedDescription = descriptions[0]?.length <= 3 ? descriptions[0] : undefined
+
+    const isDescriptionShown = Boolean(formatImg) || format === "File"
+    const isQuantityShown = Boolean(formatImg && qunatity > 1)
+
   return (
     <>
         <div style={
             {height: coverSize, backgroundColor: "#dedede", borderRadius: "8px 8px 0 0", display: "grid",
             gridTemplateColumns: `repeat(9, ${onePart}px)`}
             } className={style.cover_container}>
-            { formatImg && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
-            { formatImg && qunatity > 1 && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{qunatity}</Text></div>}
+            { isDescriptionShown && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
+            { isQuantityShown && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{qunatity}</Text></div>}
 
             {
                 formatImg
@@ -90,7 +94,11 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
                 />
                 :
                 <Image src="/image_placeholder.jpg" width={coverSize} height={coverSize} alt="no image" 
-                    style={{opacity: 0.9}}
+                    style={{
+                        opacity: 0.9,
+                        borderRadius: 0,
+                        borderTopRightRadius: "8px"
+                    }}
                     className={style.cover}
                 />
              }

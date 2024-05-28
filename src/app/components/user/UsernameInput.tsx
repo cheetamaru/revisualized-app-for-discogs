@@ -61,13 +61,15 @@ const UsernameInput = ({ initialValue, url, isResetable, forbidGoToDiscogs }: Pr
           autoComplete="on"
           name="username-input"
           suffix={
-            username === initialValue
+            <>
+              {username === initialValue
               ||
                 isResetable &&
                 <Button onClick={handleReset} icon={<RedoOutlined />} type="text" size="small" style={{
                     color: 'white', paddingRight: 6,
                   }}
-                />
+                />}
+            </>
           }
         />
         {

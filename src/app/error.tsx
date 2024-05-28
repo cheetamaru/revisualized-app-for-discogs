@@ -7,7 +7,6 @@ import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import { CloseCircleFilled } from '@ant-design/icons'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
  
 export default function Error({
   error,
@@ -25,7 +24,7 @@ export default function Error({
     <div className={style.error_page}>
       <Flex justify='center' align='center' vertical style={{height: '100vh'}}>
       <CloseCircleFilled style={{color: "#ff5555", fontSize: 50, paddingBottom: 20}} />
-      <Title level={3} style={{color: "white"}}>{error.message}</Title>
+      <Title level={3} style={{color: "white", maxWidth: 340}}>{error.message}</Title>
         <div>
           <Text style={{color: "white"}}>You can try again with a different search</Text>
         </div>
@@ -33,7 +32,6 @@ export default function Error({
           <UsernameInput initialValue={result} forbidGoToDiscogs/>
         </div>
       </Flex>
-
     </div>
   )
 }

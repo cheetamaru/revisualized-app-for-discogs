@@ -35,13 +35,13 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] Make caching with unstable_cache
 - [ ] Make better card design
 - [ ] Make a user card by click on the avatar
-- [ ] Try to make width of a lone grid adjustable
+- [x] Try to make width of a lone grid adjustable
 - [ ] Change cover size if its not a square (in cassettes)
 - [ ] Apply ddd principle to the project
 - [ ] Stylize error page
 
 ## Bugs
-- [ ] On error page on userinput change blur occurs for some reason
+- [x] On error page on userinput change blur occurs for some reason
 - [ ] Fix error display in the Server Components on prod
 - [ ] loading.tsx doesn't trigger when wantlist's page is changed https://github.com/vercel/next.js/issues/53543
 

@@ -52,7 +52,7 @@ const WantlistEntry = ({entry}: Props) => {
                     {entryArtist}
                   </Text>
                 </div>
-                <div><Text type="secondary" italic>{basicInfo.year}</Text></div>
+                { Boolean(basicInfo.year) && <div><Text type="secondary" italic>{basicInfo.year}</Text></div>}
               </Flex>
               <Title level={5} copyable={{
                 text: infoForCopy,

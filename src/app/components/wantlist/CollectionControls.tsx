@@ -30,7 +30,11 @@ const sortOptions = [
     }
 ]
 
-const CollectionControls = () => {
+type Props = {
+    total?: number;
+}
+
+const CollectionControls = ({ total }: Props) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
@@ -58,7 +62,10 @@ const CollectionControls = () => {
 
   return (
     <>
-        <Flex justify="center" style={{paddingTop: 10}}>
+        <Flex justify="center" align="baseline" gap={30} style={{paddingTop: 10}}>
+            <div>
+                Total: {total}
+            </div>
             <div>
                 <Space>
                     <span>Sort: </span>

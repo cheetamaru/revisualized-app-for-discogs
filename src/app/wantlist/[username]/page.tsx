@@ -62,14 +62,20 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                     key: "wantlist",
                                     children: <>
                                         <CollectionControls />
-                        {isTiles && <Flex justify="center" className={style.container}>
-                            <div className={style.items_container} style={{width: '100%'}}>
-                                {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
-                            </div>
-                        </Flex>}
-                        {
-                            isTable && <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
-                        }
+                                        {isTiles && 
+                                            <Flex justify="center" className={style.container}>
+                                                <div className={style.items_container} style={{width: '100%'}}>
+                                                    {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
+                                                </div>
+                                            </Flex>
+                                        }
+                                        {
+                                            isTable &&
+                                            <Flex justify="center" className={style.container}>
+                                                <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
+                                            </Flex>
+                                                
+                                        }
                                     </>,
                                 },
                                 // {

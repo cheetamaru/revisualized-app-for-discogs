@@ -5,13 +5,10 @@ import Text from 'antd/es/typography/Text'
 import React from 'react'
 import WantlistEntryCover from './WantlistEntryCover'
 import DiscogsLogo from '../discogs/DiscogsLogo'
+import { getEntrySrc } from '@/utils/discogsLinks/getEntrySrc'
 
 type Props = {
     entry: DiscogsWantlistEntry
-}
-
-const getEntrySrc = (id: string | number) => {
-  return "https://www.discogs.com/release/" + id
 }
 
 const WantlistEntry = ({entry}: Props) => {

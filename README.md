@@ -20,7 +20,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Create issue about wantlist images
 - [ ] Create issue about rating in wantlist
 - [ ] Sort options on List Page
-- [ ] Different list layouts
+- [x] Different list layouts
 - [x] List pagination, different per_page options
 - [ ] Color coded genres and styles, maybe background of cards
 - [ ] Card reverse side
@@ -39,6 +39,10 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Change cover size if its not a square (in cassettes)
 - [ ] Apply ddd principle to the project
 - [ ] Stylize error page
+- [ ] Make better table with image design
+- [ ] Make better table without image design
+- [ ] Create responsive table design
+- [ ] Create a color palette
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

@@ -10,6 +10,7 @@ import CollectionPagination from "@/app/components/wantlist/CollectionPagination
 import { getWantlist } from "@/utils/requests/getWantlist";
 import { getUser } from "@/utils/requests/getUser";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
+import CollectionTable from "@/app/components/wantlist/CollectionTable";
 
 type Props = {
     params: { username: string }; 
@@ -18,6 +19,7 @@ type Props = {
         per_page?: string;
         sort?: string;
         sort_order?: string;
+        layout?: string;
     }
 }
   
@@ -26,11 +28,18 @@ const WantlistPage = async ({params, searchParams}: Props) => {
     const perPage = Number(searchParams?.per_page) || 20;
     const sort = searchParams?.sort || "rating";
     const sort_order = searchParams?.sort_order || "desc";
+    const layout = searchParams?.layout || "tiles";
 
     const { username } = params;
 
     const user = await getUser(username);
-    const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage, sort, sort_order })    
+    const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage, sort, sort_order })
+
+    const isTiles = layout === "tiles";
+    const isTableFull = layout === "table_full";
+    const isTableMin = layout === "table_min"
+
+    const isTable = isTableFull || isTableMin;
 
     return (
         <>
@@ -46,11 +55,15 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                             <Button>Show in Marketplace</Button>
                         </div> */}
                         <CollectionControls />
-                        <Flex justify="center" className={style.container}>
+                        {isTiles && <Flex justify="center" className={style.container}>
                             <div className={style.items_container} style={{width: '100%'}}>
                                 {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
                             </div>
-                        </Flex>
+                        </Flex>}
+                        {
+                            isTable && <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
+                        }
+                        
                     </Content>
                     <CollectionPagination totalPages={wantlist?.pagination.items}
                         style={{textAlign: 'center', paddingBottom: 15}}

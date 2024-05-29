@@ -45,7 +45,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                             <UserInfo user={user}/>
                             <Button>Show in Marketplace</Button>
                         </div> */}
-                        <CollectionControls total={wantlist?.pagination.items} />
+                        <CollectionControls />
                         <Flex justify="center" className={style.container}>
                             <div className={style.items_container} style={{width: '100%'}}>
                                 {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}

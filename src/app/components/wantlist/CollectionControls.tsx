@@ -1,6 +1,6 @@
 "use client"
-import { Flex, Select, Space } from "antd";
-import { FallOutlined, RiseOutlined } from "@ant-design/icons";
+import { Button, Flex, Select, Space } from "antd";
+import { AppstoreOutlined, BarsOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const sortVariants = {
@@ -30,11 +30,7 @@ const sortOptions = [
     }
 ]
 
-type Props = {
-    total?: number;
-}
-
-const CollectionControls = ({ total }: Props) => {
+const CollectionControls = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
@@ -51,6 +47,14 @@ const CollectionControls = ({ total }: Props) => {
        }
     }
 
+    const changeLayout = (layoutName: string) => {
+        const params = new URLSearchParams(searchParams);
+
+        params.set('layout', layoutName);
+  
+        replace(`${pathname}?${params.toString()}`);
+    }
+
     const createPageURL = ({sort, sort_order}: { sort: string; sort_order: string; }) => {
       const params = new URLSearchParams(searchParams);
 
@@ -64,9 +68,6 @@ const CollectionControls = ({ total }: Props) => {
     <>
         <Flex justify="center" align="baseline" gap={30} style={{paddingTop: 10}}>
             <div>
-                Total: {total}
-            </div>
-            <div>
                 <Space>
                     <span>Sort: </span>
                     <Select
@@ -77,6 +78,28 @@ const CollectionControls = ({ total }: Props) => {
                         placeholder="Select sorting"
                         value={sortValue}
                         onChange={handleSelect}
+                    />
+                </Space>
+            </div>
+            <div>
+                <Space size={2}>
+                    <Button
+                        icon={<AppstoreOutlined />}
+                        type="text"
+                        size="small"
+                        onClick={() => changeLayout("tiles")}
+                    />
+                    <Button
+                        icon={<BarsOutlined />}
+                        type="text"
+                        size="middle"
+                        onClick={() => changeLayout("table_full")}
+                    />
+                    <Button
+                        icon={<MenuOutlined />}
+                        type="text"
+                        size="small"
+                        onClick={() => changeLayout("table_min")}
                     />
                 </Space>
             </div>

@@ -1,5 +1,5 @@
 "use client"
-import { Button, Flex, Select, Space } from "antd";
+import { Button, Flex, Select, Space, Tooltip } from "antd";
 import { AppstoreOutlined, BarsOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -37,6 +37,7 @@ const CollectionControls = () => {
 
     const sort = searchParams.get('sort') || "rating";
     const sort_order = searchParams.get('sort_order') || "desc";
+    const layout = searchParams.get('layout') || "tiles";
 
     const sortValue = sort + "_" + sort_order;
 
@@ -83,24 +84,39 @@ const CollectionControls = () => {
             </div>
             <div>
                 <Space size={2}>
-                    <Button
-                        icon={<AppstoreOutlined />}
-                        type="text"
-                        size="small"
-                        onClick={() => changeLayout("tiles")}
-                    />
-                    <Button
-                        icon={<BarsOutlined />}
-                        type="text"
-                        size="middle"
-                        onClick={() => changeLayout("table_full")}
-                    />
-                    <Button
-                        icon={<MenuOutlined />}
-                        type="text"
-                        size="small"
-                        onClick={() => changeLayout("table_min")}
-                    />
+                    <Tooltip title="Tiles layout">
+                        <Button
+                            icon={<AppstoreOutlined />}
+                            type="text"
+                            size="small"
+                            style={{
+                                background: layout == "tiles" ? "lightgray" : undefined
+                            }}
+                            onClick={() => changeLayout("tiles")}
+                        />
+                    </Tooltip>
+                    <Tooltip title="Table with image layout">
+                        <Button
+                            icon={<BarsOutlined />}
+                            type="text"
+                            size="small"
+                            style={{
+                                background: layout == "table_full" ? "lightgray" : undefined
+                            }}
+                            onClick={() => changeLayout("table_full")}
+                        />
+                    </Tooltip>
+                    <Tooltip title="Table without image layout">
+                        <Button
+                            icon={<MenuOutlined />}
+                            type="text"
+                            size="small"
+                            style={{
+                                background: layout == "table_min" ? "lightgray" : undefined
+                            }}
+                            onClick={() => changeLayout("table_min")}
+                        />
+                    </Tooltip>
                 </Space>
             </div>
         </Flex>

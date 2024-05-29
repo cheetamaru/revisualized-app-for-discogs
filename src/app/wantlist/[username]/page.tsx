@@ -1,7 +1,7 @@
 import UserInfo from "@/app/components/user/UserInfo";
 import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
 import UsernameInput from "@/app/components/user/UsernameInput";
-import { Button, Flex, Layout } from "antd";
+import { Button, Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import UserAvatar from "@/app/components/user/UserAvatar";
@@ -50,11 +50,18 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                 
                 <Layout style={{ width: "100%", alignSelf: 'center'}}>
                     <Content>
-                        {/* <div>
-                            <UserInfo user={user}/>
-                            <Button>Show in Marketplace</Button>
-                        </div> */}
-                        <CollectionControls />
+                        <Tabs
+                            centered
+                            size="small"
+                            tabBarStyle={{
+                                marginBottom: 2
+                            }}
+                            items={[
+                                {
+                                    label: `Wantlist — ${user.num_wantlist} items`,
+                                    key: "wantlist",
+                                    children: <>
+                                        <CollectionControls />
                         {isTiles && <Flex justify="center" className={style.container}>
                             <div className={style.items_container} style={{width: '100%'}}>
                                 {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
@@ -63,6 +70,30 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                         {
                             isTable && <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
                         }
+                                    </>,
+                                },
+                                // {
+                                //     label: `Collection — ${user.num_collection} items`,
+                                //     key: "collection",
+                                //     children: "Empty"
+                                // }
+                            ]}
+                        />
+                        {/* <div>
+                            <UserInfo user={user}/>
+                            <Button>Show in Marketplace</Button>
+                        </div> */}
+
+
+                        {/* <CollectionControls />
+                        {isTiles && <Flex justify="center" className={style.container}>
+                            <div className={style.items_container} style={{width: '100%'}}>
+                                {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
+                            </div>
+                        </Flex>}
+                        {
+                            isTable && <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
+                        } */}
                         
                     </Content>
                     <CollectionPagination totalPages={wantlist?.pagination.items}

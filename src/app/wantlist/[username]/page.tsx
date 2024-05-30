@@ -10,7 +10,8 @@ import CollectionPagination from "@/app/components/wantlist/CollectionPagination
 import { getWantlist } from "@/utils/requests/getWantlist";
 import { getUser } from "@/utils/requests/getUser";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
-import CollectionTable from "@/app/components/wantlist/CollectionTable";
+import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
+import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
 
 type Props = {
     params: { username: string }; 
@@ -70,11 +71,17 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                             </Flex>
                                         }
                                         {
-                                            isTable &&
+                                            isTableFull &&
                                             <Flex justify="center" className={style.container}>
-                                                <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
+                                                <CollectionTableFull data={wantlist?.wants} />
                                             </Flex>
                                                 
+                                        }
+                                        {
+                                            isTableMin &&
+                                            <Flex justify="center" className={style.container}>
+                                                <CollectionTableMin data={wantlist?.wants} />
+                                            </Flex>
                                         }
                                     </>,
                                 },

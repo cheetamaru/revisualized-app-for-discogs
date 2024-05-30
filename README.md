@@ -43,6 +43,8 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Make better table without image design
 - [ ] Create responsive table design
 - [ ] Create a color palette
+- [ ] Create copy button
+- [ ] Dicogs copyrights
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

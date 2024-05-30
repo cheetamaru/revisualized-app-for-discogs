@@ -72,14 +72,14 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                         }
                                         {
                                             isTableFull &&
-                                            <Flex justify="center" className={style.container}>
+                                            <Flex justify="center" style={{padding: '15px 10px'}}>
                                                 <CollectionTableFull data={wantlist?.wants} />
                                             </Flex>
                                                 
                                         }
                                         {
                                             isTableMin &&
-                                            <Flex justify="center" className={style.container}>
+                                            <Flex justify="center" style={{padding: '15px 10px'}}>
                                                 <CollectionTableMin data={wantlist?.wants} />
                                             </Flex>
                                         }

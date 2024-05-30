@@ -43,7 +43,8 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Make better table without image design
 - [ ] Create responsive table design
 - [ ] Create a color palette
-- [ ] Create copy button
+- [x] Create copy button
+- [ ] Make a tour of copy button after 3rd visit to the site
 - [ ] Dicogs copyrights
 
 ## Bugs

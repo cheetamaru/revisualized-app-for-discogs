@@ -1,6 +1,6 @@
 "use client"
-import { Button, Flex, Select, Space, Tooltip } from "antd";
-import { AppstoreOutlined, BarsOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
+import { Button, Flex, Select, Space, Tooltip, notification } from "antd";
+import { AppstoreOutlined, BarsOutlined, CopyOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const sortVariants = {
@@ -31,6 +31,7 @@ const sortOptions = [
 ]
 
 const CollectionControls = () => {
+    const [api, contextHolder] = notification.useNotification();
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
@@ -65,9 +66,23 @@ const CollectionControls = () => {
       replace(`${pathname}?${params.toString()}`);
     };
 
+    const handleCopy = () => {
+        const toCopy = pathname + "?" + searchParams
+
+        navigator.clipboard.writeText(toCopy);
+        api.info(
+            {
+                message: "Copied!",
+                description: toCopy,
+                placement: "bottom"
+            }
+        )
+    }
+
   return (
     <>
-        <Flex justify="center" align="baseline" gap={30} style={{paddingTop: 10}}>
+        {contextHolder}
+        <Flex justify="center" align="baseline" gap={20} style={{paddingTop: 10}}>
             <div>
                 <Space>
                     <span>Sort: </span>
@@ -118,6 +133,18 @@ const CollectionControls = () => {
                         />
                     </Tooltip>
                 </Space>
+            </div>
+            <div>
+                <Button
+                    ghost
+                    type="dashed"
+                    style={{
+                        color: "gray",
+                        borderColor: "lightgray",
+                    }}
+                    icon={<CopyOutlined />}
+                    onClick={handleCopy}
+                />
             </div>
         </Flex>
     </>

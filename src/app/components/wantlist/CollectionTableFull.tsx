@@ -14,7 +14,7 @@ const columns = [
     {
         key: "image",
         dataIndex: ["basic_information", "thumb"],
-        title: "",
+        title: "Cover",
         width: "60px",
         render: (src: string) => {
             return <>
@@ -25,7 +25,7 @@ const columns = [
     {
         key: "info",
         dataIndex: "basic_information",
-        title: "",
+        title: "Title — Artist",
         width: "auto",
         render: (info: DiscogsWantlistEntry["basic_information"]) => {
             return <>
@@ -37,10 +37,17 @@ const columns = [
                         }
                     }
                 >
-                    {info.title} ({info.year}) — {info.artists[0].name}
+                    {info.title} — {info.artists[0].name}
                 </Paragraph>
             </>
         }
+    },
+    {
+        key: "year",
+        width: "60px",
+        title: "Year",
+        dataIndex: ["basic_information", "year"],
+        render: (year: string) => <>{year || '-'}</>
     },
 ]
 
@@ -49,7 +56,7 @@ const CollectionTableFull = ({data}: Props) => {
     <Table
         dataSource={data}
         columns={columns}
-        showHeader={false}
+        // showHeader={false}
         pagination={false}
         tableLayout="fixed"
         size="small"

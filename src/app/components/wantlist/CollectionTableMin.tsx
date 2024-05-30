@@ -1,9 +1,7 @@
 "use client"
 import { DiscogsWantlistEntry } from '@/app/types/DiscogsWantlistEntry'
-import { getEntrySrc } from '@/utils/discogsLinks/getEntrySrc';
-import { Button, Table } from 'antd'
+import { Table } from 'antd'
 import Paragraph from "antd/es/typography/Paragraph";
-import DiscogsLogo from '../discogs/DiscogsLogo';
 
 type Props = {
     data: DiscogsWantlistEntry[]
@@ -14,6 +12,7 @@ const columns = [
         key: "format",
         width: "74px",
         dataIndex: "basic_information",
+        title: "Format",
         render: (info: DiscogsWantlistEntry["basic_information"]) => {
             return <>
                 <span>{info.formats[0].name}</span>
@@ -23,7 +22,7 @@ const columns = [
     {
         key: "info",
         dataIndex: "basic_information",
-        title: "",
+        title: "Title — Artist",
         render: (info: DiscogsWantlistEntry["basic_information"]) => {
             return <>
                 <Paragraph
@@ -34,12 +33,19 @@ const columns = [
                         }
                     }
                 >
-                    {info.title} ({info.year}) — {info.artists[0].name}
+                    {info.title} — {info.artists[0].name}
                 </Paragraph>
             </>
         }
     },
-
+    {
+        key: "year",
+        title: "Year",
+        width: "60px",
+        dataIndex: ["basic_information", "year"],
+        render: (year: string) => <>{year || '-'}</>
+    },
+    Table.EXPAND_COLUMN,
 ]
 
 const CollectionTableMin = ({data}: Props) => {
@@ -47,7 +53,7 @@ const CollectionTableMin = ({data}: Props) => {
     <Table
         dataSource={data}
         columns={columns}
-        showHeader={false}
+        // showHeader={false}
         pagination={false}
         tableLayout="fixed"
         size="small"
@@ -55,6 +61,10 @@ const CollectionTableMin = ({data}: Props) => {
         style={{
             maxWidth: 700
         }}
+        // expandable={{
+        //     expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.basic_information.id}</p>,
+        //     columnWidth: 40
+        // }}
     />
   )
 }

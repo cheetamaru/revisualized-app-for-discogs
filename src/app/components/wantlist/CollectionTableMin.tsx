@@ -13,6 +13,7 @@ const columns = [
         width: "74px",
         dataIndex: "basic_information",
         title: "Format",
+        align: "center",
         render: (info: DiscogsWantlistEntry["basic_information"]) => {
             return <>
                 <span>{info.formats[0].name}</span>
@@ -42,6 +43,7 @@ const columns = [
         key: "year",
         title: "Year",
         width: "60px",
+        align: "center",
         dataIndex: ["basic_information", "year"],
         render: (year: string) => <>{year || '-'}</>
     },

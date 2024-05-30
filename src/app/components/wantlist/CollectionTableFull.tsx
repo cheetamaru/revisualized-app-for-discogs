@@ -46,9 +46,11 @@ const columns = [
         key: "year",
         width: "60px",
         title: "Year",
+        align: "center",
         dataIndex: ["basic_information", "year"],
         render: (year: string) => <>{year || '-'}</>
     },
+    Table.EXPAND_COLUMN,
 ]
 
 const CollectionTableFull = ({data}: Props) => {

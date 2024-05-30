@@ -82,13 +82,13 @@ const CollectionControls = () => {
   return (
     <>
         {contextHolder}
-        <Flex justify="center" align="baseline" gap={20} style={{paddingTop: 10}}>
+        <Flex justify="center" align="baseline" gap={25} style={{paddingTop: 10}}>
             <div>
                 <Space>
                     <span>Sort: </span>
                     <Select
                         style={{
-                            width: 150,
+                            width: 130,
                         }}
                         options={sortOptions}
                         placeholder="Select sorting"
@@ -112,7 +112,7 @@ const CollectionControls = () => {
                     </Tooltip>
                     <Tooltip title="Table with image layout">
                         <Button
-                            icon={<BarsOutlined />}
+                            icon={<BarsOutlined style={{fontSize: 16}} />}
                             type="text"
                             size="small"
                             style={{

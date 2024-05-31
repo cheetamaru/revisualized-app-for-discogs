@@ -1,4 +1,4 @@
-import { DiscogsWantlistEntry } from '@/app/types/DiscogsWantlistEntry'
+import { DiscogsWantlistEntry } from '@/shared/types/discogs/wantlist/DiscogsWantlistEntry'
 import { Button, Card, Divider, Flex, Typography } from 'antd'
 import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'

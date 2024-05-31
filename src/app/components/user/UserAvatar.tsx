@@ -1,10 +1,10 @@
-import { DiscogsUser } from '@/app/types/DiscogsUser'
+import { DiscogsProfile } from '@/shared/types/discogs/profile/DiscogsProfile'
 import { Avatar } from 'antd'
 import Image from 'next/image'
 import React from 'react'
 
 type Props = {
-    user: DiscogsUser;
+    user: DiscogsProfile;
     size?: number;
 }
 

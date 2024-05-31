@@ -1,4 +1,4 @@
-import { DiscogsWantlistResponse } from "@/app/types/DiscogsWantlistResponse"
+import { DiscogsWantlistResponse } from "@/shared/types/discogs/DiscogsWantlistResponse"
 
 /**
  * @deprecated

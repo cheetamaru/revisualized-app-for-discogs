@@ -1,5 +1,5 @@
 "use client"
-import { DiscogsWantlistEntry } from '@/app/types/DiscogsWantlistEntry'
+import { DiscogsWantlistEntry } from '@/shared/types/discogs/wantlist/DiscogsWantlistEntry'
 import { Table } from 'antd'
 import Paragraph from "antd/es/typography/Paragraph";
 

@@ -1,4 +1,4 @@
-import { DiscogsUser } from "@/app/types/DiscogsUser";
+import { DiscogsProfile } from "@/shared/types/discogs/profile/DiscogsProfile";
 import { Button, Card, Divider, Flex, Layout, Space, Statistic } from "antd";
 import Sider from "antd/es/layout/Sider";
 import DiscogsLogo from "../discogs/DiscogsLogo";
@@ -6,7 +6,7 @@ import UserAvatar from "./UserAvatar";
 import Title from "antd/es/typography/Title";
 
 type Props = {
-    user: DiscogsUser
+    user: DiscogsProfile
 }
 
 const siderStyle: React.CSSProperties = {

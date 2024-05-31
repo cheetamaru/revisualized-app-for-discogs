@@ -1,4 +1,4 @@
-import apiClient from '@/service/api/apiClient'
+import apiClient from '@/shared/services/api/apiClient'
 import { unstable_cache } from 'next/cache';
 
 type PaginationParams = { page: number; per_page: number; }

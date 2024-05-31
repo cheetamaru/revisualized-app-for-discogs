@@ -1,5 +1,5 @@
 import { DiscogsUser } from '@/app/types/DiscogsUser';
-import apiClient from '@/service/api/apiClient'
+import apiClient from '@/shared/services/api/apiClient'
 import { unstable_cache } from 'next/cache';
  
 export const getUser = unstable_cache(async (username: string): Promise<DiscogsUser> => {

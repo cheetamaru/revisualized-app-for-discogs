@@ -1,19 +1,29 @@
 export const getConsumerKey = () => {
-    const key = process.env.DISCOGS_CONSUMER_KEY
+    const val = process.env.DISCOGS_CONSUMER_KEY
 
-    if (!key) {
+    if (!val) {
         throw new Error("DISCOGS_CONSUMER_KEY is not provided")
     }
 
-    return key
+    return val
 }
 
 export const getConsumerSecret = () => {
-    const secret = process.env.DISCOGS_CONSUMER_SECRET
+    const val = process.env.DISCOGS_CONSUMER_SECRET
 
-    if (!secret) {
+    if (!val) {
         throw new Error("DISCOGS_CONSUMER_KEY is not provided")
     }
 
-    return secret
+    return val
+}
+
+export const getPersonalToken = () => {
+    const val = process.env.DISCOGS_PERSONAL_TOKEN
+
+    if (!val) {
+        throw new Error("DISCOGS_PERSONAL_TOKEN is not provided")
+    }
+
+    return val
 }

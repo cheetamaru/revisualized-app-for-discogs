@@ -1,11 +1,11 @@
 import { DiscogsProfile } from '@/shared/types/discogs/profile/DiscogsProfile';
-import apiClient from '@/shared/services/api/apiClient'
 import { unstable_cache } from 'next/cache';
- 
-export const getUser = unstable_cache(async (username: string): Promise<DiscogsProfile> => {
-    const user = await apiClient.user().getProfile(username);
+import apiAdapter from '@/shared/adapters/api/apiAdapter';
 
-    return user.data
+export const getUser = unstable_cache(async (username: string): Promise<DiscogsProfile> => {
+    const profile = await apiAdapter.getUserProfile(username);
+
+    return profile
 }, ["get-user"], {
     revalidate: 86400,
 })

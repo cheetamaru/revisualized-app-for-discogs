@@ -1,4 +1,4 @@
-import apiClient from '@/shared/services/api/apiClient'
+import apiAdapter from '@/shared/adapters/api/apiAdapter';
 import { unstable_cache } from 'next/cache';
 
 type PaginationParams = { page: number; per_page: number; }
@@ -9,11 +9,9 @@ type Params = PaginationParams & {
 }
 
 export const getWantlist = unstable_cache(async (username: string, params?: Params) => {
-    const user = await apiClient.user().wantlist().getReleases(username, { sort: "rating", sort_order: "desc", ...params });
+    const wantlist = await apiAdapter.getWantlist(username, { sort: "rating", sort_order: "desc", ...params });
 
-    console.log("rateLimit", user.rateLimit)
-
-    return user.data
+    return wantlist
 }, ['get-wantlist'], {
     revalidate: 3600,
 })

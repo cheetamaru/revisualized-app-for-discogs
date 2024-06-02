@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar } from 'antd'
 import { UserProfile } from '../../types/UserProfile';
-import style from './style/avatar.module.css'
+import { avatarStyle } from './style/userAvatarStyles';
 
 type Props = {
     user: UserProfile;
@@ -12,7 +12,7 @@ const UserAvatar = ({ user, size = 100 }: Props) => {
     return (
         <Avatar
             size={size}
-            className={style.avatar}
+            style={avatarStyle}
             icon={
                 <Image
                     src={user.avatarUrl}

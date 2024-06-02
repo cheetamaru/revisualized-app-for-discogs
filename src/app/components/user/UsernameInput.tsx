@@ -2,8 +2,8 @@
 import { Button, Input, InputRef, Space } from "antd";
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useRef, useState } from "react";
-import DiscogsLogo from "../discogs/DiscogsLogo";
 import { RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import DiscogsLinkButton from "@/shared/components/discogs/DiscogsLinkButton";
 
 type Props = {
   initialValue?: string;
@@ -75,39 +75,33 @@ const UsernameInput = ({ initialValue, url, isResetable, forbidGoToDiscogs }: Pr
         {
           username === initialValue && !forbidGoToDiscogs
             ?
-            <Button
-              href={url}
-              target="_blank"
-              icon={<DiscogsLogo size={14} />}
-              style={{
-                transition: "all 0.2s",
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                width: 150,
-                height: 32,
-              }}
-              iconPosition="end"
-            >
-                <strong>Discogs</strong>
-            </Button>
-
-            : 
-            
-            <Button
-              onClick={handleRedirect}
-              style={{
-                transition: "all 0.2s",
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                width: 150,
-                height: 32,
-              }}
-              icon={<SearchOutlined />}
-              iconPosition="end"
-            >
-                <strong>Search</strong>
-            </Button>
-
+              <DiscogsLinkButton
+                type="default"
+                href={url}
+                style={{
+                  transition: "all 0.2s",
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                  width: 150,
+                  height: 32,
+                }}
+                label={<strong>Discogs</strong>}
+              />
+            :
+              <Button
+                onClick={handleRedirect}
+                style={{
+                  transition: "all 0.2s",
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                  width: 150,
+                  height: 32,
+                }}
+                icon={<SearchOutlined />}
+                iconPosition="end"
+              >
+                  <strong>Search</strong>
+              </Button>
         }
 
       </Space.Compact>

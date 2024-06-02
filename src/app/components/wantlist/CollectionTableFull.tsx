@@ -1,10 +1,8 @@
 "use client"
 
 import { DiscogsWantlistEntry } from "@/shared/types/discogs/wantlist/DiscogsWantlistEntry"
-import { getEntrySrc } from "@/utils/discogsLinks/getEntrySrc";
-import { Button, Table } from "antd"
+import { Table } from "antd"
 import Paragraph from "antd/es/typography/Paragraph";
-import DiscogsLogo from "../discogs/DiscogsLogo";
 
 type Props = {
     data: DiscogsWantlistEntry[]

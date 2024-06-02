@@ -11,7 +11,7 @@ const DiscogsLogo = ({size}: Props) => {
     const src = process.env.NEXT_PUBLIC_DISCOGS_LOGO_SRC
 
     if (!src) {
-        throw new Error("Discogs logo not found!")
+        throw new Error("Discogs logo src not found!")
     }
 
   return (

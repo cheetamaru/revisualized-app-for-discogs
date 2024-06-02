@@ -4,8 +4,8 @@ import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import React from 'react'
 import WantlistEntryCover from './WantlistEntryCover'
-import DiscogsLogo from '../discogs/DiscogsLogo'
 import { getEntrySrc } from '@/utils/discogsLinks/getEntrySrc'
+import DiscogsLinkButton from '@/shared/components/discogs/DiscogsLinkButton'
 
 type Props = {
     entry: DiscogsWantlistEntry
@@ -75,15 +75,10 @@ const WantlistEntry = ({entry}: Props) => {
             <Divider style={{margin: "6px 0"}} />
             <Flex justify="space-between" align="center">
               <div>Rating: {entry.rating}</div>
-              <Button
-                            type="link"
-                            href={getEntrySrc(basicInfo.id)} 
-                            target="_blank"
-                            icon={<DiscogsLogo size={14} />}
-                            style={{ alignSelf: "flex-end", display: "flex", alignItems: "baseline"}}
-                            iconPosition="end"
-                            
-                        >More</Button>
+              <DiscogsLinkButton
+                href={getEntrySrc(basicInfo.id)}
+                label="More"
+              />
             </Flex>
           </Flex>
       </Card>

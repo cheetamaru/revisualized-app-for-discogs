@@ -18,12 +18,13 @@ const stripRateLimitMethod = <
         Args extends unknown[],
         Response
     >(fn: (...args: Args) => DirtyResponse<Response>) => (...args: Args): CleanResponse<Response> => {
-        return fn(...args).then(({ data, rateLimit }) => {
+        return fn(...args)
+            .then(({ data, rateLimit }) => {
 
-            console.log("rateLimit", rateLimit)
+                console.log("rateLimit", rateLimit)
 
-            return data
-        })
+                return data
+            })
     }
 
 export const stripRateLimits = <T extends AbstractAdapter>(apiAdapter: T): StrippedRateLimit<T> => {

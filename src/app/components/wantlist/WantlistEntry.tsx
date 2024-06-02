@@ -5,7 +5,7 @@ import Text from 'antd/es/typography/Text'
 import React from 'react'
 import WantlistEntryCover from './WantlistEntryCover'
 import { getEntrySrc } from '@/utils/discogsLinks/getEntrySrc'
-import DiscogsLinkButton from '@/shared/components/discogs/DiscogsLinkButton'
+import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
 
 type Props = {
     entry: DiscogsWantlistEntry

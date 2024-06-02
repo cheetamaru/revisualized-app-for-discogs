@@ -1,7 +1,7 @@
 import { DiscogsProfile } from "@/shared/types/discogs/profile/DiscogsProfile";
 import { Button, Card, Divider, Flex, Layout, Space, Statistic } from "antd";
 import Sider from "antd/es/layout/Sider";
-import DiscogsLogo from "@/shared/components/discogs/DiscogsLogo";
+import DiscogsLogo from "@/shared/ui/components/discogs/DiscogsLogo";
 import UserAvatar from "./UserAvatar";
 import Title from "antd/es/typography/Title";
 

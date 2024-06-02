@@ -50,7 +50,8 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Format pictures in table images
 - [ ] Save layout settings when searching another person
 - [ ] Add a favicon
-- [ ] Research if it's possible to not create an apiClient on each requestc
+- [ ] Research if it's possible to not create an apiClient on each request
+- [ ] Research what is the deal with currency
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

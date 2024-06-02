@@ -3,7 +3,7 @@ import { Button, Input, InputRef, Space } from "antd";
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useRef, useState } from "react";
 import { RedoOutlined, SearchOutlined } from '@ant-design/icons';
-import DiscogsLinkButton from "@/shared/components/discogs/DiscogsLinkButton";
+import DiscogsLinkButton from "@/shared/ui/components/discogs/DiscogsLinkButton";
 
 type Props = {
   initialValue?: string;

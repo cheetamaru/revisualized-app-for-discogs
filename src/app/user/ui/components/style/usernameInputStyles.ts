@@ -21,3 +21,8 @@ export const buttonStyle: React.CSSProperties = {
   width: 150,
   height: 32,
 }
+
+export const resetButtonStyle: React.CSSProperties = {
+  color: 'white',
+  paddingRight: 6,
+}

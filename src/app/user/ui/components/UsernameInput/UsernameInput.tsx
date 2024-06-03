@@ -1,8 +1,7 @@
 "use client"
 import { Input, InputRef, Space } from "antd";
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import { ChangeEvent, useRef, useState } from "react";
-import { UserDomain } from "../../../domain/UserDomain";
 import { inputStyle, spaceStyle } from "../style/usernameInputStyles";
 import UsernameInputResetButton from "./UsernameInputResetButton";
 import UsernameInputActionButton from "./UsernameInputActionButton";
@@ -11,13 +10,12 @@ type Props = {
   initialValue?: string;
   userUrl?: string;
   isResetable?: boolean;
+  onSearch: (username: string) => void;
 }
 
-const { getUsernameInputPushPath } = UserDomain;
-
-const UsernameInput = ({ initialValue = "", userUrl, isResetable }: Props) => {
+const UsernameInput = ({ initialValue = "", userUrl, isResetable, onSearch }: Props) => {
   const inputRef = useRef<InputRef>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const [username, setUsername] = useState(initialValue);
 
@@ -34,7 +32,8 @@ const UsernameInput = ({ initialValue = "", userUrl, isResetable }: Props) => {
       return
     }
 
-    router.push(getUsernameInputPushPath(username))
+    onSearch(username);
+    // router.push(getUsernameInputPushPath(username))
   }
 
   const handleReset = () => {

@@ -1,7 +1,7 @@
+"use client"
 import DiscogsLinkButton from "@/shared/ui/components/discogs/DiscogsLinkButton";
-import { Button } from "antd";
-import { buttonStyle } from "../style/usernameInputStyles";
-import { SearchOutlined } from "@ant-design/icons";
+import { buttonStyle } from "../style/userSearcherStyles";
+import UserSearcherSearchButton from "./UserSearcherSearchButton";
 
 type Props = {
     isDiscogsLinkShowed: boolean;
@@ -9,7 +9,7 @@ type Props = {
     onRedirectClick: () => void;
 }
 
-const UsernameInputActionButton = ({
+const UserSearcherActionButton = ({
     isDiscogsLinkShowed,
     userUrl,
     onRedirectClick,
@@ -30,19 +30,12 @@ const UsernameInputActionButton = ({
                         }
                     />
                 :
-                    <Button
+                    <UserSearcherSearchButton
                         onClick={onRedirectClick}
-                        style={buttonStyle}
-                        icon={<SearchOutlined />}
-                        iconPosition="end"
-                    >
-                        <strong>
-                            Search
-                        </strong>
-                    </Button>
+                    />
         }
     </>
   )
 }
 
-export default UsernameInputActionButton
+export default UserSearcherActionButton;

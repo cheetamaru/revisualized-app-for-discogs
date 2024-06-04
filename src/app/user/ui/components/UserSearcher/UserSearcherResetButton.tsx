@@ -1,12 +1,13 @@
+"use client"
 import { RedoOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
-import { resetButtonStyle } from "../style/usernameInputStyles";
+import { resetButtonStyle } from "../style/userSearcherStyles";
 
 type Props = {
     onClick: () => void; 
 }
 
-const UsernameInputResetButton = ({ onClick }: Props) => {
+const UsernSearcherResetButton = ({ onClick }: Props) => {
   return (
     <Button
         type="text"
@@ -18,4 +19,4 @@ const UsernameInputResetButton = ({ onClick }: Props) => {
   )
 }
 
-export default UsernameInputResetButton
+export default UsernSearcherResetButton;

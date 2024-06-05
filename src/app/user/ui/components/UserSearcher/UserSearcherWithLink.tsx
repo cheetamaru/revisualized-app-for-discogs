@@ -3,7 +3,7 @@ import React from 'react'
 import UserSearcher, { UserSearcherProps } from './UserSearcher'
 import UserSearcherActionButton from './UserSearcherActionButton';
 
-type Props = Pick<UserSearcherProps, "initialValue" | "isResetable" | "onSearch"> & {
+type Props = Pick<UserSearcherProps, "initialValue" | "onSearch"> & {
     userUrl?: string;
   }
 
@@ -27,7 +27,6 @@ const getButtonNode = (userUrl: Props["userUrl"]) => {
 
 const UserSearcherWithLink = ({
     initialValue,
-    isResetable,
     userUrl,
     onSearch
 }: Props) => {
@@ -36,7 +35,7 @@ const UserSearcherWithLink = ({
   return (
     <UserSearcher
         initialValue={initialValue}
-        isResetable={isResetable}
+        isResetable
         onSearch={onSearch}
         buttonRender={buttonRender}
     />

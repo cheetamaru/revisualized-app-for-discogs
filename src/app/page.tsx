@@ -1,7 +1,7 @@
-import { Flex, Layout } from "antd";
-import UsernameInput from "./components/user/UsernameInput";
+import { Flex } from "antd";
 import style from "./page.module.css"
 import Title from "antd/es/typography/Title";
+import RoutedUserSearcher from "@/app/user/ui/components/UserSearcher/RoutedUserSearcher";
 
 const boxStyle: React.CSSProperties = {
   width: '100%',
@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           
           <div className={style.username_input}>
-            <UsernameInput />
+            <RoutedUserSearcher routerPathBeforeUsername="/wantlist/" />
           </div>
         </div>
       </Flex>

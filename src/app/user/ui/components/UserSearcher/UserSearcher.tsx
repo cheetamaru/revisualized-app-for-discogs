@@ -9,17 +9,20 @@ export type UserSearcherProps = {
   initialValue?: string;
   isResetable?: boolean;
   onSearch: (username: string) => void;
-  buttonNode?: (canBeReset: boolean, handleRedirect: () => void) => React.ReactNode;
+  buttonRender?: (canBeReset: boolean, handleRedirect: () => void) => React.ReactNode;
 }
 
-const UserSearcher = ({ initialValue = "", isResetable, onSearch, buttonNode }: UserSearcherProps) => {
+const UserSearcher = ({
+  initialValue = "",
+  isResetable,
+  onSearch,
+  buttonRender
+}: UserSearcherProps) => {
     const inputRef = useRef<InputRef>(null);
-  
     const [username, setUsername] = useState(initialValue);
 
     const canBeReset = username !== initialValue
-
-    const isResetButtonShowed = canBeReset && isResetable
+    const isResetButtonShowed = isResetable && canBeReset
   
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
       setUsername(event.target.value)
@@ -53,16 +56,18 @@ const UserSearcher = ({ initialValue = "", isResetable, onSearch, buttonNode }: 
             name="username-input"
             suffix={
               <>
-              {isResetButtonShowed &&
-                <UserSearcherResetButton
-                  onClick={handleReset}
-                />}
+                {
+                  isResetButtonShowed &&
+                    <UserSearcherResetButton
+                      onClick={handleReset}
+                    />
+                }
               </>
               
             }
           />
           {
-            buttonNode?.(canBeReset, handleRedirect) ??
+            buttonRender?.(canBeReset, handleRedirect) ??
               <UserSearcherSearchButton onClick={handleRedirect} />
           }
         </Space.Compact>

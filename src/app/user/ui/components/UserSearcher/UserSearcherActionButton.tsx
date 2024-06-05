@@ -4,38 +4,36 @@ import { buttonStyle } from "../style/userSearcherStyles";
 import UserSearcherSearchButton from "./UserSearcherSearchButton";
 
 type Props = {
-    isDiscogsLinkShowed: boolean;
+    isLinkShowed: boolean;
     userUrl?: string;
-    onRedirectClick: () => void;
+    onSearchClick: () => void;
 }
 
 const UserSearcherActionButton = ({
-    isDiscogsLinkShowed,
+    isLinkShowed,
     userUrl,
-    onRedirectClick,
+    onSearchClick,
 }: Props) => {
-  return (
-    <>
-        {
-            isDiscogsLinkShowed
-                ?
-                    <DiscogsLinkButton
-                        type="default"
-                        href={userUrl}
-                        style={buttonStyle}
-                        label={
-                        <strong>
-                            Discogs
-                        </strong>
-                        }
-                    />
-                :
-                    <UserSearcherSearchButton
-                        onClick={onRedirectClick}
-                    />
-        }
-    </>
-  )
+    if (!isLinkShowed) {
+        return (
+            <UserSearcherSearchButton
+                onClick={onSearchClick}
+            />
+        )
+    }
+
+    return (
+        <DiscogsLinkButton
+            type="default"
+            href={userUrl}
+            style={buttonStyle}
+            label={
+                <strong>
+                    Discogs
+                </strong>
+            }
+        />
+    )
 }
 
 export default UserSearcherActionButton;

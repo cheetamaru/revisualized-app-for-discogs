@@ -7,34 +7,40 @@ type Props = Pick<UserSearcherProps, "initialValue" | "isResetable" | "onSearch"
     userUrl?: string;
   }
 
-const UsWithLink = ({
+const getButtonNode = (userUrl: Props["userUrl"]) => {
+  const hasUrl = Boolean(userUrl);
+
+  const buttonRender: UserSearcherProps["buttonRender"] = (canBeReset, handleRedirect) => {
+      const isDiscogsLinkShowed = !canBeReset && hasUrl;
+      
+      return (
+          <UserSearcherActionButton
+              isLinkShowed={isDiscogsLinkShowed}
+              onSearchClick={handleRedirect}
+              userUrl={userUrl}
+          />
+      )
+  }
+
+  return buttonRender;
+}
+
+const UserSearcherWithLink = ({
     initialValue,
     isResetable,
     userUrl,
     onSearch
 }: Props) => {
-    const hasUrl = Boolean(userUrl);
-
-    const buttonNode: UserSearcherProps["buttonNode"] = (canBeReset: boolean, handleRedirect: () => void) => {
-        const isDiscogsLinkShowed = !canBeReset && hasUrl;
-        
-        return (
-            <UserSearcherActionButton
-                isDiscogsLinkShowed={isDiscogsLinkShowed}
-                onRedirectClick={handleRedirect}
-                userUrl={userUrl}
-            />
-        )
-    }
+  const buttonRender = getButtonNode(userUrl)
 
   return (
     <UserSearcher
         initialValue={initialValue}
         isResetable={isResetable}
         onSearch={onSearch}
-        buttonNode={buttonNode}
+        buttonRender={buttonRender}
     />
   )
 }
 
-export default UsWithLink
+export default UserSearcherWithLink;

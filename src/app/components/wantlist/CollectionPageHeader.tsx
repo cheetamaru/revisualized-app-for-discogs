@@ -1,11 +1,11 @@
-import { DiscogsProfile } from "@/shared/types/discogs/profile/DiscogsProfile";
 import { Space } from "antd";
-import UserAvatar from "../user/UserAvatar";
 import style from './component.module.css'
 import RoutedUserSearcherWithLink from "@/app/user/ui/components/UserSearcher/RoutedUserSearcherWithLink";
+import { UserProfile } from "@/app/user/types/UserProfile";
+import UserAvatar from "@/app/user/ui/components/UserAvatar";
 
 type Props = {
-    user: DiscogsProfile;
+    user: UserProfile;
 }
 
 const CollectionPageHeader = ({ user }: Props) => {

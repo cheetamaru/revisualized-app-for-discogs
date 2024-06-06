@@ -3,14 +3,13 @@ import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
 import { Button, Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
-import UserAvatar from "@/app/components/user/UserAvatar";
 import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
 import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
 import { getWantlist } from "@/utils/requests/getWantlist";
-import { getUser } from "@/utils/requests/getUser";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
 import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
+import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 
 type Props = {
     params: { username: string }; 
@@ -32,7 +31,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
 
     const { username } = params;
 
-    const user = await getUser(username);
+    const user = await userApiAdapter.getUserProfile(username);
     const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage, sort, sort_order })
 
     const isTiles = layout === "tiles";
@@ -58,7 +57,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                             }}
                             items={[
                                 {
-                                    label: `Wantlist — ${user.num_wantlist} items`,
+                                    label: `Wantlist — ${user.wantlistTotal} items`,
                                     key: "wantlist",
                                     children: <>
                                         <CollectionControls />

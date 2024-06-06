@@ -1,12 +1,12 @@
-import { DiscogsProfile } from "@/shared/types/discogs/profile/DiscogsProfile";
 import { Button, Card, Divider, Flex, Layout, Space, Statistic } from "antd";
 import Sider from "antd/es/layout/Sider";
 import DiscogsLogo from "@/shared/ui/components/discogs/DiscogsLogo";
-import UserAvatar from "./UserAvatar";
 import Title from "antd/es/typography/Title";
+import UserAvatar from "@/app/user/ui/components/UserAvatar";
+import { UserProfile } from "@/app/user/types/UserProfile";
 
 type Props = {
-    user: DiscogsProfile
+    user: UserProfile
 }
 
 const siderStyle: React.CSSProperties = {
@@ -24,7 +24,7 @@ const siderStyle: React.CSSProperties = {
 const UserInfo = ({user}: Props) => {
     const cardStyle = {
         width: 400,
-        backgroundImage: 'url('+user.banner_url+')' 
+        backgroundImage: 'url('+user.bannerUrl+')' 
      }
     return (
         <>
@@ -38,9 +38,9 @@ const UserInfo = ({user}: Props) => {
                     <Layout>
                         <Title level={4} style={{paddingLeft: 10, paddingTop: 10, marginBottom: 0}} ellipsis title={user?.username}>{ user?.username }</Title>
                         <Space style={{padding: 10}}>
-                            <Statistic title="Collection" value={user.num_collection} />
+                            <Statistic title="Collection" value={user.collectionTotal} />
                             <Divider type="vertical"/>
-                            <Statistic title="Wantlist" value={user.num_wantlist} />
+                            <Statistic title="Wantlist" value={user.wantlistTotal} />
                         </Space>
      
                         <Button

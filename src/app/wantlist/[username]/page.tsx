@@ -1,6 +1,5 @@
-import UserInfo from "@/app/components/user/UserInfo";
 import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
-import { Button, Flex, Layout, Tabs } from "antd";
+import { Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";

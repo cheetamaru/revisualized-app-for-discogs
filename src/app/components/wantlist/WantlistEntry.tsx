@@ -4,7 +4,7 @@ import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import React from 'react'
 import WantlistEntryCover from './WantlistEntryCover'
-import { getEntrySrc } from '@/utils/discogsLinks/getEntrySrc'
+import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
 
 type Props = {

@@ -1,4 +1,4 @@
-import { getConsumerKey, getConsumerSecret, getPersonalToken } from '@/utils/envHelpers/discogs';
+import { getConsumerKey, getConsumerSecret, getPersonalToken } from '@/shared/utils/envHelpers/discogs';
 import { DiscogsClient } from '@lionralfs/discogs-client';
 
 const createClient = () => {

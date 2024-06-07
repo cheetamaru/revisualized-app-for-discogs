@@ -1,6 +1,6 @@
-import { PaginationResponse } from "@lionralfs/discogs-client";
 import { DiscogsWantlistEntry } from "./DiscogsWantlistEntry";
+import { DiscogsPaginationResponse } from "../pagination/DiscogsPaginationResponse";
 
-export type DiscogsWantlistResponse = PaginationResponse & {
+export type DiscogsWantlistResponse = DiscogsPaginationResponse & {
     wants: DiscogsWantlistEntry[];
 }

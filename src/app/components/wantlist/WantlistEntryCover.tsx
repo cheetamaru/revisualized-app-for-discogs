@@ -1,14 +1,13 @@
 import Image from "next/image";
 import style from "./component.module.css"
 import Text from 'antd/es/typography/Text'
+import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
 
 type Props = {
     src: string;
     width: number;
-    format: string;
+    format: MusicEntryFormat;
     title: string;
-    qunatity: number;
-    descriptions: string[];
 }
 
 const cassetteSrc = "/format/cassette.webp"
@@ -30,9 +29,11 @@ const getFormatSrc = (format: string) => {
     return;
 }
 
-const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}: Props) => {
+const WantlistEntryCover = ({src, width, title, format}: Props) => {
     // const coverSize = Math.ceil(Number(size)/10 * 8)
     // const formatSize = coverSize
+
+    const { name: formatName, quantity, descriptions } = format;
 
     const columns = 10;
     const coverParts = 7;
@@ -41,12 +42,12 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
     const coverSize = Math.ceil(width/columns * coverParts)
     const coverGridColumn = `${columns - coverParts + 1} / ${columns}`
 
-    const formatImg = getFormatSrc(format) || "";
+    const formatImg = getFormatSrc(formatName) || "";
 
     const allowedDescription = descriptions[0]?.length <= 3 ? descriptions[0] : undefined
 
-    const isDescriptionShown = Boolean(formatImg) || format === "File"
-    const isQuantityShown = Boolean(formatImg && qunatity > 1)
+    const isDescriptionShown = Boolean(formatImg) || formatName === "File"
+    const isQuantityShown = Boolean(formatImg && quantity > 1)
 
   return (
     <>
@@ -55,7 +56,7 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
             gridTemplateColumns: `repeat(9, ${onePart}px)`}
             } className={style.cover_container}>
             { isDescriptionShown && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
-            { isQuantityShown && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{qunatity}</Text></div>}
+            { isQuantityShown && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{quantity}</Text></div>}
 
             {
                 formatImg
@@ -75,7 +76,7 @@ const WantlistEntryCover = ({src, width, title, format, qunatity, descriptions}:
                             }}
                             className={style.cover_format}
                         >
-                            {format}
+                            {formatName}
                         </div>
            
             }

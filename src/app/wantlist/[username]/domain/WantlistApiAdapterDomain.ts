@@ -28,6 +28,7 @@ const transformToWantlistEntry = (entry: DiscogsWantlistEntry): WantlistEntryTyp
         thumbCoverUrl: entry.basic_information.thumb,
         fullCoverUrl: entry.basic_information.cover_image,
         formats: entry.basic_information.formats.map(transformToMusicEntryFormat),
+        mainFormat: transformToMusicEntryFormat(entry.basic_information.formats[0]),
         mainFormatName: entry.basic_information.formats[0].name,
         labels: entry.basic_information.labels.map(transformToMusicLabel),
         mainLabelName: entry.basic_information.labels[0].name,

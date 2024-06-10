@@ -10,6 +10,7 @@ export type WantlistEntryType = {
     thumbCoverUrl: string;
     fullCoverUrl: string;
     formats: MusicEntryFormat[],
+    mainFormat: MusicEntryFormat,
     mainFormatName: MusicEntryFormat["name"];
     labels: MusicLabelShort[];
     mainLabelName: MusicLabelShort["name"];

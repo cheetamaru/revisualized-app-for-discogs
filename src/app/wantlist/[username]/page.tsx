@@ -9,6 +9,8 @@ import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
 import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
+import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
+import { SortOrder } from "@/shared/types/requestParams/SortOrder";
 
 type Props = {
     params: { username: string }; 
@@ -20,18 +22,35 @@ type Props = {
         layout?: string;
     }
 }
+
+const sortOrderOptions = ["asc", "desc"]
+
+const parseSortOrder = (payload?: string, defaultValue: SortOrder = "desc"): SortOrder => {
+    if (!payload || !sortOrderOptions.includes(payload)) {
+        return defaultValue
+    }
+
+    return payload as SortOrder;
+}
   
 const WantlistPage = async ({params, searchParams}: Props) => {
     const currentPage = Number(searchParams?.page) || 1;
     const perPage = Number(searchParams?.per_page) || 20;
     const sort = searchParams?.sort || "rating";
-    const sort_order = searchParams?.sort_order || "desc";
+    const sortOrder = parseSortOrder(searchParams?.sort_order);
     const layout = searchParams?.layout || "tiles";
 
     const { username } = params;
 
     const user = await userApiAdapter.getUserProfile(username);
-    const wantlist = await getWantlist(username, { page: currentPage, per_page: perPage, sort, sort_order })
+    const wantlist = await wantlistApiAdapter.getWantlist(
+        username,
+        {
+            page: currentPage,
+            perPage: perPage,
+            sort,
+            sortOrder
+        })
 
     const isTiles = layout === "tiles";
     const isTableFull = layout === "table_full";
@@ -63,21 +82,21 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                         {isTiles && 
                                             <Flex justify="center" className={style.container}>
                                                 <div className={style.items_container} style={{width: '100%'}}>
-                                                    {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
+                                                    {wantlist?.entries?.map(el => <WantlistEntry key={el.resourceId} entry={el} />)}
                                                 </div>
                                             </Flex>
                                         }
                                         {
                                             isTableFull &&
                                             <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <CollectionTableFull data={wantlist?.wants} />
+                                                <CollectionTableFull data={wantlist?.entries} />
                                             </Flex>
                                                 
                                         }
                                         {
                                             isTableMin &&
                                             <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <CollectionTableMin data={wantlist?.wants} />
+                                                <CollectionTableMin data={wantlist?.entries} />
                                             </Flex>
                                         }
                                     </>,
@@ -106,7 +125,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                         } */}
                         
                     </Content>
-                    <CollectionPagination totalPages={wantlist?.pagination.items}
+                    <CollectionPagination totalPages={wantlist?.pagination.itemsTotal}
                         style={{textAlign: 'center', paddingBottom: 15}}
                     />
                 </Layout>

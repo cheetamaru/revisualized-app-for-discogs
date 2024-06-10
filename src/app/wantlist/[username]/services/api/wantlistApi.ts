@@ -13,7 +13,7 @@ const getCachedWantlist = unstable_cache(
     async (username: string, params?: DiscogsWantlistParams): Promise<DiscogsWantlistResponse> => {
         const wantlist = await apiAdapter.getWantlist(username, params);
 
-        return wantlist
+        return wantlist as DiscogsWantlistResponse;
     },
     [getterCacheKey],
     {

@@ -1,17 +1,17 @@
 "use client"
 
-import { DiscogsWantlistEntry } from "@/shared/types/discogs/wantlist/DiscogsWantlistEntry"
+import { WantlistEntryType } from "@/app/wantlist/[username]/types/WantlistEntryType";
 import { Table } from "antd"
 import Paragraph from "antd/es/typography/Paragraph";
 
 type Props = {
-    data: DiscogsWantlistEntry[]
+    data: WantlistEntryType[]
 }
 
 const columns = [
     {
         key: "image",
-        dataIndex: ["basic_information", "thumb"],
+        dataIndex: "thumbCoverUrl",
         title: "Cover",
         width: "60px",
         render: (src: string) => {
@@ -22,10 +22,10 @@ const columns = [
     },
     {
         key: "info",
-        dataIndex: "basic_information",
+        // dataIndex: "basic_information",
         title: "Title — Artist",
         width: "auto",
-        render: (info: DiscogsWantlistEntry["basic_information"]) => {
+        render: (info: WantlistEntryType) => {
             return <>
                 <Paragraph
                     copyable
@@ -35,7 +35,7 @@ const columns = [
                         }
                     }
                 >
-                    {info.title} — {info.artists[0].name}
+                    {info.title} — {info.mainArtistName}
                 </Paragraph>
             </>
         }
@@ -45,7 +45,7 @@ const columns = [
         width: "60px",
         title: "Year",
         align: "center",
-        dataIndex: ["basic_information", "year"],
+        dataIndex: "year",
         render: (year: string) => <>{year || '-'}</>
     },
     Table.EXPAND_COLUMN,

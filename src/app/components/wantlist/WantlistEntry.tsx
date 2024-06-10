@@ -6,22 +6,26 @@ import React from 'react'
 import WantlistEntryCover from './WantlistEntryCover'
 import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
+import { WantlistEntryType } from '@/app/wantlist/[username]/types/WantlistEntryType'
 
 type Props = {
-    entry: DiscogsWantlistEntry
+    entry: WantlistEntryType
 }
 
 const WantlistEntry = ({entry}: Props) => {
 
-  const basicInfo = entry.basic_information
+  const {
+    resourceId,
+    title,
+    rating,
+    mainArtistName,
+    mainFormatName,
+    mainFormat,
+    fullCoverUrl,
+    year,
+  } = entry;
 
-  const enrtyTitle = basicInfo.title;
-  const entryArtist = basicInfo.artists[0].name
-  const infoForCopy = `${enrtyTitle} — ${entryArtist}`
-  const format = basicInfo.formats[0].name
-  const qunatity = basicInfo.formats[0].qty
-  const descriptions = basicInfo.formats[0].descriptions
-  const mainLabel = basicInfo.labels[0].name
+  const infoForCopy = `${title} — ${mainArtistName}`
 
   const cardWidth = 210
 
@@ -32,11 +36,9 @@ const WantlistEntry = ({entry}: Props) => {
           cover={
             <WantlistEntryCover
               width={cardWidth}
-              format={format}
-              src={basicInfo.cover_image}
-              title={enrtyTitle}
-              qunatity={qunatity}
-              descriptions={descriptions}
+              format={mainFormat}
+              src={fullCoverUrl}
+              title={title}
             />
           }
           styles={{body: {padding: 10}}}
@@ -45,38 +47,27 @@ const WantlistEntry = ({entry}: Props) => {
             <div>
               <Flex justify="space-between">
                 <div style={{width: '70%'}}>
-                <Text title={entryArtist} ellipsis>
-                    {entryArtist}
+                <Text title={mainArtistName} ellipsis>
+                    {mainArtistName}
                   </Text>
                 </div>
-                { Boolean(basicInfo.year) && <div><Text type="secondary" italic>{basicInfo.year}</Text></div>}
+                { Boolean(year) && <div><Text type="secondary" italic>{year}</Text></div>}
               </Flex>
               <Title level={5} copyable={{
                 text: infoForCopy,
                 tooltips: ['', `Copied: ${infoForCopy}`]
-              }} ellipsis title={enrtyTitle}
+              }} ellipsis title={title}
               style={{
                 marginBottom: 0,
                 overflow: "hidden"
               }}
-              >{enrtyTitle}</Title>
-
-              {/* <div>
-                <Text strong>Year: </Text> 
-                <Text ellipsis>{basicInfo.year}</Text>
-              </div> */}
-              {/* <div>
-                <Text ellipsis title={mainLabel}>
-                  <Text strong>Main Label: </Text>
-                  {mainLabel}
-                </Text>
-              </div> */}
+              >{title}</Title>
             </div>
             <Divider style={{margin: "6px 0"}} />
             <Flex justify="space-between" align="center">
-              <div>Rating: {entry.rating}</div>
+              <div>Rating: {rating}</div>
               <DiscogsLinkButton
-                href={getEntrySrc(basicInfo.id)}
+                href={getEntrySrc(resourceId)}
                 label="More"
               />
             </Flex>

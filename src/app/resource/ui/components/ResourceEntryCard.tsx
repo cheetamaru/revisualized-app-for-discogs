@@ -2,17 +2,22 @@ import { Card, Divider, Flex } from 'antd'
 import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import React from 'react'
-import WantlistEntryCover from './WantlistEntryCover'
 import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
-import { WantlistEntryType } from '@/app/wantlist/[username]/types/WantlistEntryType'
+import WantlistEntryCover from '@/app/components/wantlist/WantlistEntryCover'
+import { ResourceEntryType } from '../../types/ResourceEntryType'
 
-type Props = {
-    entry: WantlistEntryType
+type Props<T> = {
+    entry: T
 }
 
-const WantlistEntry = ({entry}: Props) => {
+const getCardInfoForCopy = <T extends ResourceEntryType>(entry: T): string => {
+    const { title, mainArtistName } = entry;
 
+    return `${title} — ${mainArtistName}`
+}
+
+const ResourceEntryCard = <T extends ResourceEntryType,>({entry}: Props<T>) => {
   const {
     resourceId,
     title,
@@ -23,9 +28,9 @@ const WantlistEntry = ({entry}: Props) => {
     year,
   } = entry;
 
-  const infoForCopy = `${title} — ${mainArtistName}`
+  const infoForCopy = getCardInfoForCopy(entry);
 
-  const cardWidth = 210
+  const coverHeight = 210;
 
   return (
     <div>
@@ -33,7 +38,7 @@ const WantlistEntry = ({entry}: Props) => {
           bordered={false}
           cover={
             <WantlistEntryCover
-              width={cardWidth}
+              width={coverHeight}
               format={mainFormat}
               src={fullCoverUrl}
               title={title}
@@ -75,4 +80,4 @@ const WantlistEntry = ({entry}: Props) => {
   )
 }
 
-export default WantlistEntry
+export default ResourceEntryCard;

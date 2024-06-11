@@ -1,16 +1,15 @@
-import WantlistEntry from "@/app/components/wantlist/WantlistEntry";
 import { Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
 import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
-import { getWantlist } from "@/utils/requests/getWantlist";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
 import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import { SortOrder } from "@/shared/types/requestParams/SortOrder";
+import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 
 type Props = {
     params: { username: string }; 
@@ -82,7 +81,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                         {isTiles && 
                                             <Flex justify="center" className={style.container}>
                                                 <div className={style.items_container} style={{width: '100%'}}>
-                                                    {wantlist?.entries?.map(el => <WantlistEntry key={el.resourceId} entry={el} />)}
+                                                    {wantlist?.entries?.map(el => <ResourceEntryCard key={el.resourceId} entry={el} />)}
                                                 </div>
                                             </Flex>
                                         }
@@ -108,28 +107,12 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                 // }
                             ]}
                         />
-                        {/* <div>
-                            <UserInfo user={user}/>
-                            <Button>Show in Marketplace</Button>
-                        </div> */}
 
-
-                        {/* <CollectionControls />
-                        {isTiles && <Flex justify="center" className={style.container}>
-                            <div className={style.items_container} style={{width: '100%'}}>
-                                {wantlist?.wants?.map(el => <WantlistEntry key={el.id} entry={el} />)}
-                            </div>
-                        </Flex>}
-                        {
-                            isTable && <CollectionTable data={wantlist?.wants} withImages={isTableFull} />
-                        } */}
-                        
                     </Content>
                     <CollectionPagination totalPages={wantlist?.pagination.itemsTotal}
                         style={{textAlign: 'center', paddingBottom: 15}}
                     />
                 </Layout>
-
             </Layout>
         </>
     )

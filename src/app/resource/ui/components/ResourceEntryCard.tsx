@@ -6,18 +6,25 @@ import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
 import WantlistEntryCover from '@/app/components/wantlist/WantlistEntryCover'
 import { ResourceEntryType } from '../../types/ResourceEntryType'
+import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
+import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEntryCardTitleStyle } from './style/resourceEntryCardStyles'
+import style from "./style/resourceEntryCard.module.css"
 
 type Props<T> = {
-    entry: T
+    entry: T,
+    coverImageHeight?: number;
 }
 
-const getCardInfoForCopy = <T extends ResourceEntryType>(entry: T): string => {
-    const { title, mainArtistName } = entry;
+const {
+  getCardInfoForCopy,
+  getCopyMessage,
+  defaultImageHeight,
+} = ResourceEntryCardDomain;
 
-    return `${title} — ${mainArtistName}`
-}
-
-const ResourceEntryCard = <T extends ResourceEntryType,>({entry}: Props<T>) => {
+const ResourceEntryCard = <T extends ResourceEntryType,>({
+  entry,
+  coverImageHeight = defaultImageHeight,
+}: Props<T>) => {
   const {
     resourceId,
     title,
@@ -30,53 +37,54 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({entry}: Props<T>) => {
 
   const infoForCopy = getCardInfoForCopy(entry);
 
-  const coverHeight = 210;
-
   return (
-    <div>
-      <Card
-          bordered={false}
-          cover={
-            <WantlistEntryCover
-              width={coverHeight}
-              format={mainFormat}
-              src={fullCoverUrl}
-              title={title}
-            />
-          }
-          styles={{body: {padding: 10}}}
-        >
-          <Flex vertical justify="space-between">
-            <div>
-              <Flex justify="space-between">
-                <div style={{width: '70%'}}>
+    <Card
+        bordered={false}
+        styles={{body: resourceEntryCardBodyStyle}}
+        cover={
+          <WantlistEntryCover
+            width={coverImageHeight}
+            format={mainFormat}
+            src={fullCoverUrl}
+            title={title}
+          />
+        }
+      >
+        <Flex vertical justify="space-between">
+          <div>
+            <Flex justify="space-between">
+              <div className={style.artist_name}>
                 <Text title={mainArtistName} ellipsis>
-                    {mainArtistName}
-                  </Text>
-                </div>
-                { Boolean(year) && <div><Text type="secondary" italic>{year}</Text></div>}
-              </Flex>
-              <Title level={5} copyable={{
-                text: infoForCopy,
-                tooltips: ['', `Copied: ${infoForCopy}`]
-              }} ellipsis title={title}
-              style={{
-                marginBottom: 0,
-                overflow: "hidden"
-              }}
-              >{title}</Title>
-            </div>
-            <Divider style={{margin: "6px 0"}} />
-            <Flex justify="space-between" align="center">
-              <div>Rating: {rating}</div>
-              <DiscogsLinkButton
-                href={getEntrySrc(resourceId)}
-                label="More"
-              />
+                  {mainArtistName}
+                </Text>
+              </div>
+              { Boolean(year) && <div><Text type="secondary" italic>{year}</Text></div>}
             </Flex>
+            <Title
+              level={5}
+              copyable={{
+                text: infoForCopy,
+                tooltips: ['', getCopyMessage(infoForCopy)]
+              }}
+              ellipsis
+              title={title}
+              style={resourceEntryCardTitleStyle}
+            >
+              {title}
+            </Title>
+          </div>
+
+          <Divider style={resourceEntryCardDividereStyle} />
+          
+          <Flex justify="space-between" align="center">
+            <div>Rating: {rating}</div>
+            <DiscogsLinkButton
+              href={getEntrySrc(resourceId)}
+              label="More"
+            />
           </Flex>
-      </Card>
-    </div>
+        </Flex>
+    </Card>
   )
 }
 

@@ -4,11 +4,11 @@ import Text from 'antd/es/typography/Text'
 import React from 'react'
 import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
-import WantlistEntryCover from '@/app/components/wantlist/WantlistEntryCover'
 import { ResourceEntryType } from '../../types/ResourceEntryType'
 import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
 import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEntryCardTitleStyle } from './style/resourceEntryCardStyles'
 import style from "./style/resourceEntryCard.module.css"
+import ResourceEntryCardCover from './ResourceEntryCardCover'
 
 type Props<T> = {
     entry: T,
@@ -42,8 +42,8 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({
         bordered={false}
         styles={{body: resourceEntryCardBodyStyle}}
         cover={
-          <WantlistEntryCover
-            width={coverImageHeight}
+          <ResourceEntryCardCover
+            coverImageHeight={coverImageHeight}
             format={mainFormat}
             src={fullCoverUrl}
             title={title}

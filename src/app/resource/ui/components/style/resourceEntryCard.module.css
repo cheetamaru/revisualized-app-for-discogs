@@ -1,3 +1,30 @@
 .artist_name {
     width: 70%;
 }
+
+.cover_container {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.cover_format {
+    grid-column: 1 / 10;
+    grid-row: 1
+}
+
+.cover {
+    position: absolute;
+    right: 0;
+}
+
+.cover_quantity {
+    position: absolute;
+    left: 8px;
+}
+
+.cover_desc {
+    padding-top: 3px;
+    padding-left: 8px;
+    grid-row: 1;
+    grid-column: 1 / 10;
+}

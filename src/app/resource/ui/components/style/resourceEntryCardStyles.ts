@@ -10,3 +10,18 @@ export const resourceEntryCardTitleStyle: React.CSSProperties = {
 export const resourceEntryCardDividereStyle: React.CSSProperties = {
     margin: "6px 0"
 }
+
+const coverImageStyle: React.CSSProperties = {
+    borderRadius: 0,
+    borderTopRightRadius: 8,
+}
+
+const coverImagePlaceholderStyle: React.CSSProperties = {
+    ...coverImageStyle,
+    opacity: 0.9,
+}
+
+export const resourceEntryCardStyle = {
+    coverImageStyle,
+    coverImagePlaceholderStyle,
+}

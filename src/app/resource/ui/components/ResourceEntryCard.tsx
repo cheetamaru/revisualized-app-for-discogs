@@ -8,7 +8,7 @@ import { ResourceEntryType } from '../../types/ResourceEntryType'
 import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
 import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEntryCardTitleStyle } from './style/resourceEntryCardStyles'
 import style from "./style/resourceEntryCard.module.css"
-import ResourceEntryCardCover from './ResourceEntryCardCover'
+import ResourceEntryCardCover from './ResourceEntryCardCover/ResourceEntryCardCover'
 
 type Props<T> = {
     entry: T,

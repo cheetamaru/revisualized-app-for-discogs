@@ -1,8 +1,9 @@
 import Image from "next/image";
-import style from "./style/resourceEntryCard.module.css"
+import style from "@/app/resource/ui/components/style/resourceEntryCard.module.css"
 import Text from 'antd/es/typography/Text'
 import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
-import { ResourceFormatImageDomain } from "../../domain/ResourceFormatImageDomain";
+import { ResourceFormatImageDomain } from "../../../domain/ResourceFormatImageDomain";
+import ResourceEntryCardCoverImage from "./ResourceEntryCardCoverImage";
 
 type Props = {
     src: string;
@@ -70,28 +71,12 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
            
             }
 
-            { src
-                ?
-                <Image width={coverSize} height={coverSize} alt={title} src={src}
-                    key={src + allowedDescription}
-                    style={{
-                        borderRadius: 0,
-                        borderTopRightRadius: "8px"
-                    }}
-                    placeholder="blur"
-                    blurDataURL="/image_placeholder.jpg"
-                    className={style.cover}
-                />
-                :
-                <Image src="/image_placeholder.jpg" width={coverSize} height={coverSize} alt="no image" 
-                    style={{
-                        opacity: 0.9,
-                        borderRadius: 0,
-                        borderTopRightRadius: "8px"
-                    }}
-                    className={style.cover}
-                />
-             }
+            <ResourceEntryCardCoverImage
+                src={src}
+                coverSize={coverSize}
+                title={title}
+                description={allowedDescription}
+            />
         </div> 
     </>
   )

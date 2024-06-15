@@ -17,6 +17,8 @@ const getCachedUserProfile = unstable_cache(
     }
 )
 
-export default {
+const userApi = {
     getCachedUserProfile,
 }
+
+export default userApi;

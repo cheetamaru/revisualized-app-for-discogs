@@ -10,6 +10,8 @@ const getUserProfile = (username: string): Promise<UserProfile> => {
         .then(transformToUserProfile)
 };
 
-export default {
+const userApiAdapter = {
     getUserProfile,
 };
+
+export default userApiAdapter;

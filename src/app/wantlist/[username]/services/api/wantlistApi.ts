@@ -21,6 +21,8 @@ const getCachedWantlist = unstable_cache(
     }
 )
 
-export default {
+const wantlistApi = {
     getCachedWantlist,
 }
+
+export default wantlistApi;

@@ -18,6 +18,8 @@ const getWantlist = async (username: string, params: GetWantlistParams): Promise
     }
 };
 
-export default {
+const wantlistApiAdapter = {
     getWantlist,
-};
+}
+
+export default wantlistApiAdapter;

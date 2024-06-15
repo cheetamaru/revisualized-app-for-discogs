@@ -21,7 +21,17 @@ const coverImagePlaceholderStyle: React.CSSProperties = {
     opacity: 0.9,
 }
 
+const coverFormatTextInfoStyle: React.CSSProperties = {
+    writingMode: "vertical-lr",
+    textOrientation: "upright",
+    wordWrap: "break-word",
+    overflowWrap: "break-word",
+    textAlign: "center",
+    paddingLeft: 6,
+}
+
 export const resourceEntryCardStyle = {
     coverImageStyle,
     coverImagePlaceholderStyle,
+    coverFormatTextInfoStyle,
 }

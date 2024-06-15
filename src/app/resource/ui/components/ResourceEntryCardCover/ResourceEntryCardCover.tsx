@@ -1,9 +1,9 @@
-import Image from "next/image";
 import style from "@/app/resource/ui/components/style/resourceEntryCard.module.css"
 import Text from 'antd/es/typography/Text'
 import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
 import { ResourceFormatImageDomain } from "../../../domain/ResourceFormatImageDomain";
 import ResourceEntryCardCoverImage from "./ResourceEntryCardCoverImage";
+import ResourceEntryCardFormatImage from "./ResourceEntryCardFormatImage";
 
 type Props = {
     src: string;
@@ -48,28 +48,11 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
             { isDescriptionShown && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
             { isQuantityShown && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{quantity}</Text></div>}
 
-            {
-                formatImg
-                    ?
-                        <Image height={coverSize} width={coverSize} src={formatImg} alt="format" className={style.cover_format} />
-                    :
-                        <div
-                            style={{
-                                height: coverSize,
-                                width: coverSize,
-                                writingMode: "vertical-lr",
-                                textOrientation: "upright",
-                                wordWrap: "break-word",
-                                overflowWrap: "break-word",
-                                textAlign: "center",
-                                paddingLeft: 6,
-                            }}
-                            className={style.cover_format}
-                        >
-                            {formatName}
-                        </div>
-           
-            }
+            <ResourceEntryCardFormatImage
+                formatName={formatName}
+                formatImg={formatImg}
+                coverSize={coverSize}
+            />
 
             <ResourceEntryCardCoverImage
                 src={src}

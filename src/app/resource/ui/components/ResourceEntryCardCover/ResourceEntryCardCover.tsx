@@ -14,6 +14,24 @@ type Props = {
 
 const { getFormatImageSrc } = ResourceFormatImageDomain;
 
+const getDescription = (isShown: boolean, description?: string) => {
+    return isShown && 
+        <div className={style.cover_desc}>
+            <strong>
+                {description}
+            </strong>
+        </div>
+}
+
+const getQuantity = (isShown: boolean, coverSize: number, quantity?: number,) => {
+    return isShown && 
+        <div className={style.cover_quantity} style={{top: coverSize - 24}}>
+            <Text italic strong>
+                x{quantity}
+            </Text>
+        </div>
+}
+
 const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) => {
     const { name: formatName, quantity, descriptions } = format;
 
@@ -45,8 +63,8 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
             } 
             className={style.cover_container}
         >
-            { isDescriptionShown && <div className={style.cover_desc}><strong>{allowedDescription}</strong></div>}
-            { isQuantityShown && <div className={style.cover_quantity} style={{top: coverSize - 24}}><Text italic strong>x{quantity}</Text></div>}
+            { getDescription(isDescriptionShown, allowedDescription)}
+            { getQuantity(isQuantityShown, coverSize, quantity) }
 
             <ResourceEntryCardFormatImage
                 formatName={formatName}

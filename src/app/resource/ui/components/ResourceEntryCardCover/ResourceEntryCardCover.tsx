@@ -4,6 +4,7 @@ import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
 import { ResourceFormatImageDomain } from "../../../domain/ResourceFormatImageDomain";
 import ResourceEntryCardCoverImage from "./ResourceEntryCardCoverImage";
 import ResourceEntryCardFormatImage from "./ResourceEntryCardFormatImage";
+import { ResourceEntryCardCoverDomain } from "@/app/resource/domain/ResourceEntryCardCoverDomain";
 
 type Props = {
     src: string;
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const { getFormatImageSrc } = ResourceFormatImageDomain;
+const { getCoverGridOptions, getAllowedDescription } = ResourceEntryCardCoverDomain;
 
 const getDescription = (isShown: boolean, description?: string) => {
     return isShown && 
@@ -35,30 +37,23 @@ const getQuantity = (isShown: boolean, coverSize: number, quantity?: number,) =>
 const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) => {
     const { name: formatName, quantity, descriptions } = format;
 
-    const columns = 10;
-    const coverParts = 7;
-    const onePart = Math.ceil(coverImageHeight/columns)
-
-    const coverSize = Math.ceil(coverImageHeight/columns * coverParts)
-    const coverGridColumn = `${columns - coverParts + 1} / ${columns}`
-
+    const { onePart, coverSize } = getCoverGridOptions(coverImageHeight)
     const formatImg = getFormatImageSrc(formatName);
-
-    const allowedDescription = descriptions[0]?.length <= 3 ? descriptions[0] : undefined
+    const allowedDescription = getAllowedDescription(descriptions);
 
     const isDescriptionShown = Boolean(formatImg) || formatName === "File"
     const isQuantityShown = Boolean(formatImg && quantity > 1)
 
-  return (
+    return (
     <>
         <div 
             style={
                 {
                     height: coverSize,
+                    gridTemplateColumns: `repeat(9, ${onePart}px)`,
                     backgroundColor: "#dedede",
                     borderRadius: "8px 8px 0 0",
                     display: "grid",
-                    gridTemplateColumns: `repeat(9, ${onePart}px)`
                 }
             } 
             className={style.cover_container}
@@ -80,7 +75,7 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
             />
         </div> 
     </>
-  )
+    )
 }
 
-export default ResourceEntryCardCover
+export default ResourceEntryCardCover;

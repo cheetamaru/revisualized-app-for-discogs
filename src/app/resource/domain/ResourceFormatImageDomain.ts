@@ -17,6 +17,11 @@ const getFormatImageSrc = (format: string): string | undefined => {
     return;
 }
 
+const isFileFormat = (formatName: string) => {
+    return formatName === "File"
+}
+
 export const ResourceFormatImageDomain = {
     getFormatImageSrc,
+    isFileFormat,
 }

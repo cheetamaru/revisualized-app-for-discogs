@@ -13,7 +13,7 @@ type Props = {
     title: string;
 }
 
-const { getFormatImageSrc } = ResourceFormatImageDomain;
+const { getFormatImageSrc, isFileFormat } = ResourceFormatImageDomain;
 const { getCoverGridOptions, getAllowedDescription } = ResourceEntryCardCoverDomain;
 
 const getDescription = (isShown: boolean, description?: string) => {
@@ -41,7 +41,7 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
     const formatImg = getFormatImageSrc(formatName);
     const allowedDescription = getAllowedDescription(descriptions);
 
-    const isDescriptionShown = Boolean(formatImg) || formatName === "File"
+    const isDescriptionShown = Boolean(formatImg) || isFileFormat(formatName)
     const isQuantityShown = Boolean(formatImg && quantity > 1)
 
     return (

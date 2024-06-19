@@ -1,7 +1,7 @@
 import { Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
-import CollectionPageHeader from "@/app/components/wantlist/CollectionPageHeader";
+import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
 import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
@@ -61,7 +61,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
         <>
             <Layout style={{minHeight: "100vh"}}>
                 <Header style={{display: "flex", justifyContent: "center"}}>
-                    <CollectionPageHeader user={user}/>
+                    <ResourcePageHeader user={user}/>
                 </Header>
                 
                 <Layout style={{ width: "100%", alignSelf: 'center'}}>

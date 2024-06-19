@@ -1,0 +1,9 @@
+.header_input {
+    width: 400px;
+}
+
+@media only screen and (max-width: 900px) {
+    .header_input {
+        width: 300px;
+    }
+}

@@ -2,7 +2,7 @@ import { Flex, Layout, Tabs } from "antd";
 import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
-import CollectionPagination from "@/app/components/wantlist/CollectionPagination";
+import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
 import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
@@ -109,7 +109,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                         />
 
                     </Content>
-                    <CollectionPagination totalPages={wantlist?.pagination.itemsTotal}
+                    <ResourcePagePagination totalPages={wantlist?.pagination.itemsTotal}
                         style={{textAlign: 'center', paddingBottom: 15}}
                     />
                 </Layout>

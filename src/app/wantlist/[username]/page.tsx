@@ -5,7 +5,7 @@ import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHea
 import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
-import CollectionTableMin from "@/app/components/wantlist/CollectionTableMin";
+import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import { SortOrder } from "@/shared/types/requestParams/SortOrder";
@@ -95,7 +95,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                         {
                                             isTableMin &&
                                             <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <CollectionTableMin data={wantlist?.entries} />
+                                                <ResourceTableMin data={wantlist?.entries} />
                                             </Flex>
                                         }
                                     </>,

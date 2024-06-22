@@ -1,18 +1,21 @@
 "use client"
 import { WantlistEntryType } from '@/app/wantlist/[username]/types/WantlistEntryType';
-import { Table, TableColumnsType } from 'antd'
+import { Table } from 'antd'
 import Paragraph from "antd/es/typography/Paragraph";
 import { ResourceTableMinColumns } from '../../domain/ResourceTableMinColumns';
+import { resourceTableStyles } from './style/resourceTableStyles';
 
 type Props = {
     data: WantlistEntryType[]
 }
 
-const renderFormat = (info: WantlistEntryType) => {
-    return <>
-        <span>{info.mainFormatName}</span>
-    </>
-}
+const {
+    generalStyle
+} = resourceTableStyles;
+
+const {
+    getColumns,
+} = ResourceTableMinColumns;
 
 const renderInfo = (info: WantlistEntryType) => {
     return <>
@@ -31,12 +34,7 @@ const renderInfo = (info: WantlistEntryType) => {
 
 const renderYear = (year: string) => <>{year || '-'}</>
 
-const {
-    getColumns,
-} = ResourceTableMinColumns;
-
 const columns = getColumns({
-    renderFormat,
     renderInfo,
     renderYear
 })
@@ -50,9 +48,7 @@ const ResourceTableMin = ({data}: Props) => {
         tableLayout="fixed"
         size="small"
         rowKey="id"
-        style={{
-            maxWidth: 700
-        }}
+        style={generalStyle}
     />
   )
 }

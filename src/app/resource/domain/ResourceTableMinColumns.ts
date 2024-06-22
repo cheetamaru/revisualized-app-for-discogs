@@ -1,15 +1,15 @@
-import { WantlistEntryType } from "@/app/wantlist/[username]/types/WantlistEntryType"
 import { TableColumnsType } from "antd"
-import Table, { ColumnType } from "antd/es/table"
+import Table from "antd/es/table"
+import { ResourceEntryType } from "../types/ResourceEntryType";
+import { ResourceColumnRenderType } from "../types/ResourceColumnRenderType";
+import renderResourceFormat from "../ui/components/ResourceTableCellRenders/renderResourceFormat";
 
-type GetColumnsType = {
-    renderFormat: ColumnType<WantlistEntryType>["render"];
-    renderInfo: ColumnType<WantlistEntryType>["render"];
-    renderYear: ColumnType<WantlistEntryType>["render"];
+type GetColumnsType<T extends ResourceEntryType = ResourceEntryType> = {
+    renderInfo: ResourceColumnRenderType<T>;
+    renderYear: ResourceColumnRenderType<T>;
 }
 
 const getColumns = ({
-    renderFormat,
     renderInfo,
     renderYear
 }: GetColumnsType): TableColumnsType => {
@@ -19,7 +19,7 @@ const getColumns = ({
             width: "74px",
             title: "Format",
             align: "center",
-            render: renderFormat,
+            render: renderResourceFormat,
         },
         {
             key: "info",

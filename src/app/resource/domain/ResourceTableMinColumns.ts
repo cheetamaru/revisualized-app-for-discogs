@@ -1,18 +1,10 @@
 import { TableColumnsType } from "antd"
 import Table from "antd/es/table"
-import { ResourceEntryType } from "../types/ResourceEntryType";
-import { ResourceColumnRenderType } from "../types/ResourceColumnRenderType";
 import renderResourceFormat from "../ui/components/ResourceTableCellRenders/renderResourceFormat";
+import renderResourceInfo from "../ui/components/ResourceTableCellRenders/renderResourceInfo";
+import renderResourceYear from "../ui/components/ResourceTableCellRenders/renderResourceYear";
 
-type GetColumnsType<T extends ResourceEntryType = ResourceEntryType> = {
-    renderInfo: ResourceColumnRenderType<T>;
-    renderYear: ResourceColumnRenderType<T>;
-}
-
-const getColumns = ({
-    renderInfo,
-    renderYear
-}: GetColumnsType): TableColumnsType => {
+const getColumns = (): TableColumnsType => {
     return [
         {
             key: "format",
@@ -24,7 +16,7 @@ const getColumns = ({
         {
             key: "info",
             title: "Title — Artist",
-            render: renderInfo
+            render: renderResourceInfo,
         },
         {
             key: "year",
@@ -32,7 +24,7 @@ const getColumns = ({
             width: "60px",
             align: "center",
             dataIndex: "year",
-            render: renderYear,
+            render: renderResourceYear,
         },
         Table.EXPAND_COLUMN,
     ]

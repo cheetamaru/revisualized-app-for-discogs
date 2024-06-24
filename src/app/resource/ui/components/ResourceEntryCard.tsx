@@ -9,6 +9,7 @@ import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
 import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEntryCardTitleStyle } from './style/resourceEntryCardStyles'
 import style from "./style/resourceEntryCard.module.css"
 import ResourceEntryCardCover from './ResourceEntryCardCover/ResourceEntryCardCover'
+import { ResourceDomain } from '../../domain/ResourceDomain'
 
 type Props<T> = {
     entry: T,
@@ -16,10 +17,13 @@ type Props<T> = {
 }
 
 const {
-  getCardInfoForCopy,
-  getCopyMessage,
   defaultImageHeight,
 } = ResourceEntryCardDomain;
+
+const {
+  getInfoForCopy,
+  getCopyMessage,
+} = ResourceDomain;
 
 const ResourceEntryCard = <T extends ResourceEntryType,>({
   entry,
@@ -35,7 +39,7 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({
     year,
   } = entry;
 
-  const infoForCopy = getCardInfoForCopy(entry);
+  const infoForCopy = getInfoForCopy(entry);
 
   return (
     <Card

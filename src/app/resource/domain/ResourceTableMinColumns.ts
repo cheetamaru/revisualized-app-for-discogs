@@ -1,7 +1,7 @@
 import { TableColumnsType } from "antd"
 import Table from "antd/es/table"
 import renderResourceFormat from "../ui/components/ResourceTableCellRenders/renderResourceFormat";
-import renderResourceInfo from "../ui/components/ResourceTableCellRenders/renderResourceInfo";
+import RenderResourceInfo from "../ui/components/ResourceTableCellRenders/RenderResourceInfo";
 import renderResourceYear from "../ui/components/ResourceTableCellRenders/renderResourceYear";
 
 const getColumns = (): TableColumnsType => {
@@ -16,7 +16,7 @@ const getColumns = (): TableColumnsType => {
         {
             key: "info",
             title: "Title — Artist",
-            render: renderResourceInfo,
+            render: RenderResourceInfo,
         },
         {
             key: "year",

@@ -11,7 +11,7 @@ const {
     getCopyMessage,
   } = ResourceDomain;
 
-const renderResourceInfo: ResourceColumnRenderType = (_, info) => {
+const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
     const infoForCopy = getInfoForCopy(info);
     const router = useRouter();
 
@@ -40,4 +40,4 @@ const renderResourceInfo: ResourceColumnRenderType = (_, info) => {
     </>
 }
 
-export default renderResourceInfo;
+export default RenderResourceInfo;

@@ -4,12 +4,12 @@ import { Header, Content } from "antd/es/layout/layout";
 import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
 import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
 import CollectionControls from "@/app/components/wantlist/CollectionControls";
-import CollectionTableFull from "@/app/components/wantlist/CollectionTableFull";
 import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import { SortOrder } from "@/shared/types/requestParams/SortOrder";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
+import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 
 type Props = {
     params: { username: string }; 
@@ -88,7 +88,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                         {
                                             isTableFull &&
                                             <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <CollectionTableFull data={wantlist?.entries} />
+                                                <ResourceTableFull data={wantlist?.entries} />
                                             </Flex>
                                                 
                                         }

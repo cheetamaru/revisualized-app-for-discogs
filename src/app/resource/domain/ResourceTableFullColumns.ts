@@ -1,17 +1,17 @@
 import { TableColumnsType } from "antd"
 import Table from "antd/es/table"
-import RenderResourceFormat from "../ui/components/ResourceTableCellRenders/RenderResourceFormat";
 import RenderResourceInfo from "../ui/components/ResourceTableCellRenders/RenderResourceInfo";
 import RenderResourceYear from "../ui/components/ResourceTableCellRenders/RenderResourceYear";
+import RenderResourceCover from "../ui/components/ResourceTableCellRenders/RenderResourceCover";
 
 const getColumns = (): TableColumnsType => {
     return [
         {
-            key: "format",
-            width: "74px",
-            title: "Format",
-            align: "center",
-            render: RenderResourceFormat,
+            key: "image",
+            dataIndex: "thumbCoverUrl",
+            title: "Cover",
+            width: "60px",
+            render: RenderResourceCover,
         },
         {
             key: "info",
@@ -30,6 +30,6 @@ const getColumns = (): TableColumnsType => {
     ]
 }
 
-export const ResourceTableMinColumns = {
+export const ResourceTableFullColumns = {
     getColumns,
 }

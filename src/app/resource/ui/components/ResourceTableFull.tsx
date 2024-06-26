@@ -1,8 +1,8 @@
 "use client"
 import { Table } from 'antd'
-import { ResourceTableMinColumns } from '../../domain/ResourceTableMinColumns';
 import { resourceTableStyles } from './style/resourceTableStyles';
 import { ResourceEntryType } from '../../types/ResourceEntryType';
+import { ResourceTableFullColumns } from '../../domain/ResourceTableFullColumns';
 
 type Props = {
     data: ResourceEntryType[]
@@ -14,11 +14,11 @@ const {
 
 const {
     getColumns,
-} = ResourceTableMinColumns;
+} = ResourceTableFullColumns;
 
 const columns = getColumns()
 
-const ResourceTableMin = ({data}: Props) => {
+const ResourceTableFull = ({data}: Props) => {
   return (
     <Table
         dataSource={data}
@@ -32,4 +32,4 @@ const ResourceTableMin = ({data}: Props) => {
   )
 }
 
-export default ResourceTableMin;
+export default ResourceTableFull;

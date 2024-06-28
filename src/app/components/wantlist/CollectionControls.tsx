@@ -2,6 +2,7 @@
 import { Button, Flex, Select, Space, Tooltip, notification } from "antd";
 import { AppstoreOutlined, BarsOutlined, CopyOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import CopyButton from "@/shared/ui/components/buttons/CopyButton";
 
 const sortVariants = {
     rating_desc: "rating_desc",
@@ -135,16 +136,7 @@ const CollectionControls = () => {
                 </Space>
             </div>
             <div>
-                <Button
-                    ghost
-                    type="dashed"
-                    style={{
-                        color: "gray",
-                        borderColor: "lightgray",
-                    }}
-                    icon={<CopyOutlined />}
-                    onClick={handleCopy}
-                />
+                <CopyButton onClick={handleCopy} />
             </div>
         </Flex>
     </>

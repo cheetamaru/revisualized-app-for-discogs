@@ -1,8 +1,10 @@
 "use client"
-import { Button, Flex, Select, Space, Tooltip, notification } from "antd";
-import { AppstoreOutlined, BarsOutlined, CopyOutlined, FallOutlined, MenuOutlined, RiseOutlined } from "@ant-design/icons";
+import { Flex, Select, Space, notification } from "antd";
+import { FallOutlined, RiseOutlined } from "@ant-design/icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CopyButton from "@/shared/ui/components/buttons/CopyButton";
+import ResourcePageLayoutChoice from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageLayoutChoice";
+import { ResourcePageLayout, validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 
 const sortVariants = {
     rating_desc: "rating_desc",
@@ -39,7 +41,7 @@ const CollectionControls = () => {
 
     const sort = searchParams.get('sort') || "rating";
     const sort_order = searchParams.get('sort_order') || "desc";
-    const layout = searchParams.get('layout') || "tiles";
+    const layout = validateResourcePageLayout(searchParams.get('layout') || "");
 
     const sortValue = sort + "_" + sort_order;
 
@@ -50,7 +52,7 @@ const CollectionControls = () => {
        }
     }
 
-    const changeLayout = (layoutName: string) => {
+    const changeLayout = (layoutName: ResourcePageLayout) => {
         const params = new URLSearchParams(searchParams);
 
         params.set('layout', layoutName);
@@ -99,41 +101,10 @@ const CollectionControls = () => {
                 </Space>
             </div>
             <div>
-                <Space size={2}>
-                    <Tooltip title="Tiles layout">
-                        <Button
-                            icon={<AppstoreOutlined />}
-                            type="text"
-                            size="small"
-                            style={{
-                                background: layout == "tiles" ? "lightgray" : undefined
-                            }}
-                            onClick={() => changeLayout("tiles")}
-                        />
-                    </Tooltip>
-                    <Tooltip title="Table with image layout">
-                        <Button
-                            icon={<BarsOutlined style={{fontSize: 16}} />}
-                            type="text"
-                            size="small"
-                            style={{
-                                background: layout == "table_full" ? "lightgray" : undefined
-                            }}
-                            onClick={() => changeLayout("table_full")}
-                        />
-                    </Tooltip>
-                    <Tooltip title="Table without image layout">
-                        <Button
-                            icon={<MenuOutlined />}
-                            type="text"
-                            size="small"
-                            style={{
-                                background: layout == "table_min" ? "lightgray" : undefined
-                            }}
-                            onClick={() => changeLayout("table_min")}
-                        />
-                    </Tooltip>
-                </Space>
+                <ResourcePageLayoutChoice 
+                    layout={layout}
+                    onChangeLayout={changeLayout}
+                />
             </div>
             <div>
                 <CopyButton onClick={handleCopy} />

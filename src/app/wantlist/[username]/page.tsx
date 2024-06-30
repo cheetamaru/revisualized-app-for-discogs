@@ -3,7 +3,6 @@ import style from "./page.module.css"
 import { Header, Content } from "antd/es/layout/layout";
 import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
 import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
-import CollectionControls from "@/app/components/wantlist/CollectionControls";
 import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
@@ -12,6 +11,7 @@ import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
+import ResourcePageControls from "@/app/resourcePage/ui/components/ResourcePageControls";
 
 type Props = {
     params: { username: string }; 
@@ -77,7 +77,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                                     label: `Wantlist — ${user.wantlistTotal} items`,
                                     key: "wantlist",
                                     children: <>
-                                        <CollectionControls />
+                                        <ResourcePageControls />
                                         {isTiles && 
                                             <Flex justify="center" className={style.container}>
                                                 <div className={style.items_container} style={{width: '100%'}}>

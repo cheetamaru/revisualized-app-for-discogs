@@ -7,7 +7,7 @@ import ResourcePageSortSelect from "@/app/resourcePage/ui/components/ResourcePag
 import { ResourcePageSort, validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import ResourcePageCopyButton from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageCopyButton";
 
-const CollectionControls = () => {
+const ResourcePageControls = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
@@ -59,4 +59,4 @@ const CollectionControls = () => {
   )
 }
 
-export default CollectionControls
+export default ResourcePageControls;

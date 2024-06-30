@@ -1,34 +1,34 @@
 "use client"
 import { Flex } from "antd";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ResourcePageLayoutChoice from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageLayoutChoice";
 import { ResourcePageLayout, validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 import ResourcePageSortSelect from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageSortSelect";
 import { ResourcePageSort, validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import ResourcePageCopyButton from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageCopyButton";
+import { ResourcePageQueryParam } from "../../domain/ResourcePageQueryParam";
+import { useResourcePageQueryParams } from "../../hooks/useResourcePageQueryParams";
 
 const ResourcePageControls = () => {
-    const pathname = usePathname();
     const searchParams = useSearchParams();
-    const { replace } = useRouter();
+    
+    const sort = validateResourcePageSort(searchParams.get(ResourcePageQueryParam.sort));
+    const layout = validateResourcePageLayout(searchParams.get(ResourcePageQueryParam.layout));
 
-    const sort = validateResourcePageSort(searchParams.get('sort'));
-    const layout = validateResourcePageLayout(searchParams.get('layout'));
+    const { setParams } = useResourcePageQueryParams()
 
     const changeLayoutParams = (layoutName: ResourcePageLayout) => {
-        const params = new URLSearchParams(searchParams);
-
-        params.set('layout', layoutName);
-  
-        replace(`${pathname}?${params.toString()}`);
+        setParams({
+            param: ResourcePageQueryParam.layout,
+            valueToSet: layoutName
+        })
     }
 
     const changeSortParams = (sortVal: ResourcePageSort) => {
-      const params = new URLSearchParams(searchParams);
-
-      params.set('sort', sortVal);
-
-      replace(`${pathname}?${params.toString()}`);
+        setParams({
+            param: ResourcePageQueryParam.sort,
+            valueToSet: sortVal
+        })
     };
 
   return (

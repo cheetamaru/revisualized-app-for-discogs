@@ -12,6 +12,7 @@ import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 import ResourcePageControls from "@/app/resourcePage/ui/components/ResourcePageControls";
+import { ResourcePageQueryParam } from "@/app/resourcePage/domain/ResourcePageQueryParam";
 
 type Props = {
     params: { username: string }; 
@@ -19,26 +20,16 @@ type Props = {
         page?: string;
         per_page?: string;
         sort?: string;
-        sort_order?: string;
         layout?: string;
     }
-}
-
-const sortOrderOptions = ["asc", "desc"]
-
-const parseSortOrder = (payload?: string, defaultValue: SortOrder = "desc"): SortOrder => {
-    if (!payload || !sortOrderOptions.includes(payload)) {
-        return defaultValue
-    }
-
-    return payload as SortOrder;
 }
   
 const WantlistPage = async ({params, searchParams}: Props) => {
     const currentPage = Number(searchParams?.page) || 1;
     const perPage = Number(searchParams?.per_page) || 20;
-    const sort = validateResourcePageSort(searchParams?.sort);
-    const layout = validateResourcePageLayout(searchParams?.layout);
+
+    const sort = validateResourcePageSort(searchParams?.[ResourcePageQueryParam.sort]);
+    const layout = validateResourcePageLayout(searchParams?.[ResourcePageQueryParam.layout]);
 
     const { username } = params;
 

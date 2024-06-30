@@ -4,14 +4,15 @@ import { useResourcePageQueryParams } from './useResourcePageQueryParams';
 import { ResourcePageQueryParam } from '../domain/ResourcePageQueryParam';
 
 const {
-    defaultValues,
+    validateCurrentPage,
+    validatePerPage,
 } = ResourcePagePaginationDomain;
 
 export const useResourcePagePaginationNavigation = () => {
     const searchParams = useSearchParams();
 
-    const currentPage = Number(searchParams.get('page')) || defaultValues.currentPage; // TODO: move to a service
-    const pageSize = Number(searchParams.get('per_page')) || defaultValues.pageSize;
+    const currentPage = validateCurrentPage(searchParams.get(ResourcePageQueryParam.page))
+    const pageSize = validatePerPage(searchParams.get(ResourcePageQueryParam.perPage));
 
     const { setParams } = useResourcePageQueryParams()
     

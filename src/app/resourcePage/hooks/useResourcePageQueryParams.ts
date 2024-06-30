@@ -1,5 +1,4 @@
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { ResourcePageQueryParam } from "../domain/ResourcePageQueryParam";
 import { MaybeArray } from "@/shared/types/general/MaybeArray";
 import { toArray } from "@/shared/utils/normalizers/toArray";

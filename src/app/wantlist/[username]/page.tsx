@@ -6,13 +6,18 @@ import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePag
 import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
-import { SortOrder } from "@/shared/types/requestParams/SortOrder";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 import ResourcePageControls from "@/app/resourcePage/ui/components/ResourcePageControls";
 import { ResourcePageQueryParam } from "@/app/resourcePage/domain/ResourcePageQueryParam";
+import { ResourcePagePaginationDomain } from "@/app/resourcePage/domain/ResourcePagePaginationDomain";
+
+const {
+    validateCurrentPage,
+    validatePerPage,
+} = ResourcePagePaginationDomain;
 
 type Props = {
     params: { username: string }; 
@@ -25,8 +30,8 @@ type Props = {
 }
   
 const WantlistPage = async ({params, searchParams}: Props) => {
-    const currentPage = Number(searchParams?.page) || 1;
-    const perPage = Number(searchParams?.per_page) || 20;
+    const currentPage = validateCurrentPage(searchParams?.[ResourcePageQueryParam.page]);
+    const perPage = validatePerPage(searchParams?.[ResourcePageQueryParam.perPage]);
 
     const sort = validateResourcePageSort(searchParams?.[ResourcePageQueryParam.sort]);
     const layout = validateResourcePageLayout(searchParams?.[ResourcePageQueryParam.layout]);

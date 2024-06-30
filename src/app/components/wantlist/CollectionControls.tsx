@@ -5,6 +5,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CopyButton from "@/shared/ui/components/buttons/CopyButton";
 import ResourcePageLayoutChoice from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageLayoutChoice";
 import { ResourcePageLayout, validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
+import ResourcePageSortSelect from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageSortSelect";
+import { ResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 
 const sortVariants = {
     rating_desc: "rating_desc",
@@ -43,7 +45,7 @@ const CollectionControls = () => {
     const sort_order = searchParams.get('sort_order') || "desc";
     const layout = validateResourcePageLayout(searchParams.get('layout') || "");
 
-    const sortValue = sort + "_" + sort_order;
+    const sortValue = sort + "_" + sort_order as ResourcePageSort;
 
     const handleSelect = (val: string) => {
        if (val) {
@@ -87,18 +89,10 @@ const CollectionControls = () => {
         {contextHolder}
         <Flex justify="center" align="baseline" gap={25} style={{paddingTop: 10}}>
             <div>
-                <Space>
-                    <span>Sort: </span>
-                    <Select
-                        style={{
-                            width: 130,
-                        }}
-                        options={sortOptions}
-                        placeholder="Select sorting"
-                        value={sortValue}
-                        onChange={handleSelect}
-                    />
-                </Space>
+                <ResourcePageSortSelect
+                    sortValue={sortValue}
+                    onChange={handleSelect}
+                />
             </div>
             <div>
                 <ResourcePageLayoutChoice 

@@ -54,6 +54,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Research what is the deal with currency
 - [ ] Labels additional info demonstration
 - [ ] Add i18n
+- [ ] Fix styles of table links
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

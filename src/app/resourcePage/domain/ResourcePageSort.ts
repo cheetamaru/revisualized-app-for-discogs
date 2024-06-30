@@ -1,5 +1,5 @@
 import { UrlSearchParamGetResult } from "@/shared/types/infrastructure/UrlSearchParamGetResult";
-import { validateItem } from "@/shared/utils/type/validateItem";
+import { validateItem } from "@/shared/utils/validateItem";
 
 export const ResourcePageSort = {
     ratingDesc: "rating_desc",

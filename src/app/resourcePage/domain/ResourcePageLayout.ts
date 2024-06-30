@@ -1,3 +1,4 @@
+import { UrlSearchParamGetResult } from "@/shared/types/infrastructure/UrlSearchParamGetResult";
 import { validateItem } from "@/shared/utils/type/validateItem";
 
 export const ResourcePageLayout = {
@@ -10,7 +11,7 @@ export type ResourcePageLayout = typeof ResourcePageLayout[keyof typeof Resource
 
 export const defaultResourcePageLayout = ResourcePageLayout.tiles;
 
-export const validateResourcePageLayout = (val: string): ResourcePageLayout => {
+export const validateResourcePageLayout = (val: UrlSearchParamGetResult): ResourcePageLayout => {
     return validateItem({
         itemCollection: ResourcePageLayout,
         valueToValidate: val,

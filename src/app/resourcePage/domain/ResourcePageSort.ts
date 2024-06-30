@@ -1,3 +1,4 @@
+import { UrlSearchParamGetResult } from "@/shared/types/infrastructure/UrlSearchParamGetResult";
 import { validateItem } from "@/shared/utils/type/validateItem";
 
 export const ResourcePageSort = {
@@ -10,7 +11,7 @@ export type ResourcePageSort = typeof ResourcePageSort[keyof typeof ResourcePage
 
 export const defaultResourcePageSort = ResourcePageSort.ratingDesc;
 
-export const validateResourcePageSort = (val: string): ResourcePageSort => {
+export const validateResourcePageSort = (val: UrlSearchParamGetResult): ResourcePageSort => {
     return validateItem({
         valueToValidate: val,
         itemCollection: ResourcePageSort,

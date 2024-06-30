@@ -15,8 +15,8 @@ const CollectionControls = () => {
     const searchParams = useSearchParams();
     const { replace } = useRouter();
 
-    const sort = validateResourcePageSort(searchParams.get('sort') || "");
-    const layout = validateResourcePageLayout(searchParams.get('layout') || "");
+    const sort = validateResourcePageSort(searchParams.get('sort'));
+    const layout = validateResourcePageLayout(searchParams.get('layout'));
 
     const handleSelect = (sortVal: ResourcePageSort) => {
         createPageURL(sortVal)

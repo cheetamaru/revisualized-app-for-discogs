@@ -11,6 +11,7 @@ import { SortOrder } from "@/shared/types/requestParams/SortOrder";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
+import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 
 type Props = {
     params: { username: string }; 
@@ -36,8 +37,8 @@ const parseSortOrder = (payload?: string, defaultValue: SortOrder = "desc"): Sor
 const WantlistPage = async ({params, searchParams}: Props) => {
     const currentPage = Number(searchParams?.page) || 1;
     const perPage = Number(searchParams?.per_page) || 20;
-    const sort = validateResourcePageSort(searchParams?.sort || "");
-    const layout = searchParams?.layout || "tiles";
+    const sort = validateResourcePageSort(searchParams?.sort);
+    const layout = validateResourcePageLayout(searchParams?.layout);
 
     const { username } = params;
 

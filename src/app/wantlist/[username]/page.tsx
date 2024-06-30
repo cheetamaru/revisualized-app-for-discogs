@@ -10,6 +10,7 @@ import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import { SortOrder } from "@/shared/types/requestParams/SortOrder";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
+import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 
 type Props = {
     params: { username: string }; 
@@ -35,8 +36,7 @@ const parseSortOrder = (payload?: string, defaultValue: SortOrder = "desc"): Sor
 const WantlistPage = async ({params, searchParams}: Props) => {
     const currentPage = Number(searchParams?.page) || 1;
     const perPage = Number(searchParams?.per_page) || 20;
-    const sort = searchParams?.sort || "rating";
-    const sortOrder = parseSortOrder(searchParams?.sort_order);
+    const sort = validateResourcePageSort(searchParams?.sort || "");
     const layout = searchParams?.layout || "tiles";
 
     const { username } = params;
@@ -48,7 +48,6 @@ const WantlistPage = async ({params, searchParams}: Props) => {
             page: currentPage,
             perPage: perPage,
             sort,
-            sortOrder
         })
 
     const isTiles = layout === "tiles";

@@ -1,8 +1,7 @@
-import { SortOrder } from "@/shared/types/requestParams/SortOrder";
+import { ResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 
 export type GetWantlistParams = {
     page?: number;
     perPage?: number;
-    sort?: string;
-    sortOrder?: SortOrder;
+    sort?: ResourcePageSort;
 }

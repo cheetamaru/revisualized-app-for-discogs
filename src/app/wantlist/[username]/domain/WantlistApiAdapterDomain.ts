@@ -3,6 +3,7 @@ import { GetWantlistParams } from "../types/GetWantlistParams"
 import { DiscogsWantlistEntry } from "@/shared/types/discogs/wantlist/DiscogsWantlistEntry"
 import { WantlistEntryType } from "../types/WantlistEntryType"
 import { MusicInfoApiAdapterDomain } from "@/shared/domain/musicInfo/MusicInfoApiAdapterDomain";
+import { resourcePageSortAdapter } from "@/app/resourcePage/adapters/resourcePageSortAdapter";
 
 const {
     transformToMusicArtist,
@@ -10,12 +11,16 @@ const {
     transformToMusicEntryFormat,
 } = MusicInfoApiAdapterDomain;
 
+const { getApiSort } = resourcePageSortAdapter;
+
 const transformGetterParamsToApi = (params: GetWantlistParams): DiscogsWantlistParams => {
+    const { sort, sort_order } = getApiSort(params.sort)
+
     return {
         page: params.page,
         per_page: params.perPage,
-        sort: params.sort,
-        sort_order: params.sortOrder
+        sort,
+        sort_order,
     }
 }
 

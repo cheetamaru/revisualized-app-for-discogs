@@ -34,6 +34,22 @@ const getQuantity = (isShown: boolean, coverSize: number, quantity?: number,) =>
         </div>
 }
 
+const getContainerStyle = ({
+    onePart,
+    coverSize
+}: {
+    onePart: number;
+    coverSize: number;
+}): React.CSSProperties => {
+    return {
+        height: coverSize,
+        gridTemplateColumns: `repeat(9, ${onePart}px)`,
+        backgroundColor: "#dedede",
+        borderRadius: "8px 8px 0 0",
+        display: "grid",
+    }
+}
+
 const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) => {
     const { name: formatName, quantity, descriptions } = format;
 
@@ -47,15 +63,7 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
     return (
     <>
         <div 
-            style={
-                {
-                    height: coverSize,
-                    gridTemplateColumns: `repeat(9, ${onePart}px)`,
-                    backgroundColor: "#dedede",
-                    borderRadius: "8px 8px 0 0",
-                    display: "grid",
-                }
-            } 
+            style={getContainerStyle({ onePart, coverSize })} 
             className={style.cover_container}
         >
             { getDescription(isDescriptionShown, allowedDescription)}

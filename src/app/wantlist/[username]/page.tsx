@@ -38,7 +38,6 @@ const WantlistPage = async ({params, searchParams}: Props) => {
 
     const { username } = params;
 
-    const user = await userApiAdapter.getUserProfile(username);
     const wantlist = await wantlistApiAdapter.getWantlist(
         username,
         {
@@ -51,65 +50,31 @@ const WantlistPage = async ({params, searchParams}: Props) => {
     const isTableFull = layout === "table_full";
     const isTableMin = layout === "table_min"
 
-    const isTable = isTableFull || isTableMin;
-
     return (
         <>
-            <Layout style={{minHeight: "100vh"}}>
-                <Header style={{display: "flex", justifyContent: "center"}}>
-                    <ResourcePageHeader user={user}/>
-                </Header>
-                
-                <Layout style={{ width: "100%", alignSelf: 'center'}}>
-                    <Content>
-                        <Tabs
-                            centered
-                            size="small"
-                            tabBarStyle={{
-                                marginBottom: 2
-                            }}
-                            items={[
-                                {
-                                    label: `Wantlist — ${user.wantlistTotal} items`,
-                                    key: "wantlist",
-                                    children: <>
-                                        <ResourcePageControls />
-                                        {isTiles && 
-                                            <Flex justify="center" className={style.container}>
-                                                <div className={style.items_container} style={{width: '100%'}}>
-                                                    {wantlist?.entries?.map(el => <ResourceEntryCard key={el.resourceId} entry={el} />)}
-                                                </div>
-                                            </Flex>
-                                        }
-                                        {
-                                            isTableFull &&
-                                            <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <ResourceTableFull data={wantlist?.entries} />
-                                            </Flex>
-                                                
-                                        }
-                                        {
-                                            isTableMin &&
-                                            <Flex justify="center" style={{padding: '15px 10px'}}>
-                                                <ResourceTableMin data={wantlist?.entries} />
-                                            </Flex>
-                                        }
-                                    </>,
-                                },
-                                // {
-                                //     label: `Collection — ${user.num_collection} items`,
-                                //     key: "collection",
-                                //     children: "Empty"
-                                // }
-                            ]}
-                        />
-
-                    </Content>
-                    <ResourcePagePagination totalPages={wantlist?.pagination.itemsTotal}
-                        style={{textAlign: 'center', paddingBottom: 15}}
-                    />
-                </Layout>
-            </Layout>
+            {isTiles && 
+                <Flex justify="center" className={style.container}>
+                    <div className={style.items_container} style={{width: '100%'}}>
+                        {wantlist?.entries?.map(el => <ResourceEntryCard key={el.resourceId} entry={el} />)}
+                    </div>
+                </Flex>
+            }
+            {
+                isTableFull &&
+                <Flex justify="center" style={{padding: '15px 10px'}}>
+                    <ResourceTableFull data={wantlist?.entries} />
+                </Flex>
+                    
+            }
+            {
+                isTableMin &&
+                <Flex justify="center" style={{padding: '15px 10px'}}>
+                    <ResourceTableMin data={wantlist?.entries} />
+                </Flex>
+            }
+            <ResourcePagePagination totalPages={wantlist?.pagination.itemsTotal}
+                style={{textAlign: 'center', paddingBottom: 15}}
+            />        
         </>
     )
 }

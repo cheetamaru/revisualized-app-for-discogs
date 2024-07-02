@@ -1,7 +1,8 @@
 import ResourcePageControls from "@/app/resourcePage/ui/components/ResourcePageControls";
 import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
+import ResourcePageTabs from "@/app/resourcePage/ui/components/ResourcePageTabs";
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
-import { Layout, Tabs } from "antd";
+import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 
 type Props = Readonly<{
@@ -22,27 +23,28 @@ export default async function LayoutWantlist({ children, params }: Props) {
             </Header>
             <Layout style={{ width: "100%", alignSelf: 'center'}}>
                 <Content>
-                    <Tabs
-                        centered
-                        size="small"
-                        tabBarStyle={{
-                            marginBottom: 2
-                        }}
-                        items={[
-                            {
-                                label: `Wantlist — ${user.wantlistTotal} items`,
-                                key: "wantlist",
-                                children: <>
-                                    <ResourcePageControls />
-                                    {children}
-                                </>,
-                            },
-                            // {
-                            //     label: `Collection — ${user.num_collection} items`,
-                            //     key: "collection",
-                            //     children: "Empty"
-                            // }
-                        ]}
+                    <ResourcePageTabs
+                        username={username}
+                        items={
+                            [
+                                {
+                                    label: `Wantlist — ${user.wantlistTotal} items`,
+                                    key: "wantlist",
+                                    children: <>
+                                        <ResourcePageControls />
+                                        {children}
+                                    </>,
+                                },
+                                // {
+                                //     label: `Collection — ${user.collectionTotal} items`,
+                                //     key: "collection",
+                                //     children: <>
+                                //         <ResourcePageControls />
+                                //         {children}
+                                //     </>,
+                                // }
+                            ]
+                        }
                     />
                 </Content>
             </Layout>

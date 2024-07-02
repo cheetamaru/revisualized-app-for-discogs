@@ -1,16 +1,12 @@
-import { Flex, Layout, Tabs } from "antd";
+import { Flex } from "antd";
 import style from "./page.module.css"
-import { Header, Content } from "antd/es/layout/layout";
-import ResourcePageHeader from "@/app/resourcePage/ui/components/ResourcePageHeader";
 import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
 import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
-import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
 import ResourceTableFull from "@/app/resource/ui/components/ResourceTableFull";
 import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
-import ResourcePageControls from "@/app/resourcePage/ui/components/ResourcePageControls";
 import { ResourcePageQueryParam } from "@/app/resourcePage/domain/ResourcePageQueryParam";
 import { ResourcePagePaginationDomain } from "@/app/resourcePage/domain/ResourcePagePaginationDomain";
 
@@ -72,7 +68,8 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                     <ResourceTableMin data={wantlist?.entries} />
                 </Flex>
             }
-            <ResourcePagePagination totalPages={wantlist?.pagination.itemsTotal}
+            <ResourcePagePagination
+                totalPages={wantlist?.pagination.itemsTotal}
                 style={{textAlign: 'center', paddingBottom: 15}}
             />        
         </>

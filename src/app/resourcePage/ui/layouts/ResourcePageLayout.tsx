@@ -4,32 +4,47 @@ import ResourcePageTabs from "@/app/resourcePage/ui/components/ResourcePageTabs"
 import userApiAdapter from "@/app/user/adapters/userApiAdapter";
 import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import { ResourcePageTabKey } from "../../domain/ResourcePageTabKey";
+import { resourcePagePayloutStyle } from "./style/resourcePageLayoutStyle";
+import { ResourcePageTabsDomain } from "../../domain/ResourcePageTabsDomain";
 
 type Props = Readonly<{
     params: { username: string }; 
     children: React.ReactNode;
   }>
 
-export default async function LayoutWantlist({ children, params }: Props) {
+const {
+    mainLayoutStyle,
+    headerStyle,
+    containerLayoutStyle,
+} = resourcePagePayloutStyle;
+
+const {
+    getWantlistLabel,
+} = ResourcePageTabsDomain;
+
+export default async function ResourcePageLayout({ children, params }: Props) {
     const { username } = params;
 
     const user = await userApiAdapter.getUserProfile(username);
 
+    const wantlistTabLabel = getWantlistLabel(user.wantlistTotal);
+
     return (
       <>
-        <Layout style={{minHeight: "100vh"}}>
-            <Header style={{display: "flex", justifyContent: "center"}}>
+        <Layout style={mainLayoutStyle}>
+            <Header style={headerStyle}>
                 <ResourcePageHeader user={user}/>
             </Header>
-            <Layout style={{ width: "100%", alignSelf: 'center'}}>
+            <Layout style={containerLayoutStyle}>
                 <Content>
                     <ResourcePageTabs
                         username={username}
                         items={
                             [
                                 {
-                                    label: `Wantlist — ${user.wantlistTotal} items`,
-                                    key: "wantlist",
+                                    label: wantlistTabLabel,
+                                    key: ResourcePageTabKey.wantlist,
                                     children: <>
                                         <ResourcePageControls />
                                         {children}

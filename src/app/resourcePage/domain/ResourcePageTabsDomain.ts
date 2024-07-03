@@ -12,6 +12,9 @@ const getRouteByKey = (activeKey: string, username: string) => {
     return `/${route}/${username}`
 }
 
+const getWantlistLabel = (total: number) => `Wantlist — ${total} items`;
+
 export const ResourcePageTabsDomain = {
     getRouteByKey,
+    getWantlistLabel,
 };

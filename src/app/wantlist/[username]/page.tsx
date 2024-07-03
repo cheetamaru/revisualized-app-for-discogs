@@ -9,6 +9,7 @@ import { validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePage
 import { validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 import { ResourcePageQueryParam } from "@/app/resourcePage/domain/ResourcePageQueryParam";
 import { ResourcePagePaginationDomain } from "@/app/resourcePage/domain/ResourcePagePaginationDomain";
+import ResourcePageLayout from "@/app/resourcePage/ui/layouts/ResourcePageLayout";
 
 const {
     validateCurrentPage,
@@ -47,7 +48,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
     const isTableMin = layout === "table_min"
 
     return (
-        <>
+        <ResourcePageLayout params={params}>
             {isTiles && 
                 <Flex justify="center" className={style.container}>
                     <div className={style.items_container} style={{width: '100%'}}>
@@ -71,8 +72,8 @@ const WantlistPage = async ({params, searchParams}: Props) => {
             <ResourcePagePagination
                 totalPages={wantlist?.pagination.itemsTotal}
                 style={{textAlign: 'center', paddingBottom: 15}}
-            />        
-        </>
+            />    
+        </ResourcePageLayout>
     )
 }
 

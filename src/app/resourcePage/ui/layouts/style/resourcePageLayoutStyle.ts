@@ -12,8 +12,14 @@ const containerLayoutStyle: React.CSSProperties = {
     alignSelf: 'center'
 }
 
+const paginationStyle: React.CSSProperties = {
+    textAlign: 'center',
+    paddingBottom: 15
+}
+
 export const resourcePagePayloutStyle = {
     mainLayoutStyle,
     headerStyle,
     containerLayoutStyle,
+    paginationStyle,
 }

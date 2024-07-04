@@ -1,6 +1,5 @@
 import { Flex } from "antd";
 import style from "./page.module.css"
-import ResourcePagePagination from "@/app/resourcePage/ui/components/ResourcePagePagination";
 import ResourceTableMin from "@/app/resource/ui/components/ResourceTableMin";
 import wantlistApiAdapter from "./adapters/wantlistApiAdapter";
 import ResourceEntryCard from "@/app/resource/ui/components/ResourceEntryCard";
@@ -48,8 +47,12 @@ const WantlistPage = async ({params, searchParams}: Props) => {
     const isTableMin = layout === "table_min"
 
     return (
-        <ResourcePageLayout params={params}>
-            {isTiles && 
+        <ResourcePageLayout
+            params={params}
+            totalItems={wantlist?.pagination.itemsTotal}
+        >
+            {
+                isTiles && 
                 <Flex justify="center" className={style.container}>
                     <div className={style.items_container} style={{width: '100%'}}>
                         {wantlist?.entries?.map(el => <ResourceEntryCard key={el.resourceId} entry={el} />)}
@@ -69,10 +72,6 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                     <ResourceTableMin data={wantlist?.entries} />
                 </Flex>
             }
-            <ResourcePagePagination
-                totalPages={wantlist?.pagination.itemsTotal}
-                style={{textAlign: 'center', paddingBottom: 15}}
-            />    
         </ResourcePageLayout>
     )
 }

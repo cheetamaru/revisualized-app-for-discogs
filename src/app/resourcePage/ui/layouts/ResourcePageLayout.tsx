@@ -7,23 +7,26 @@ import { Content, Header } from "antd/es/layout/layout";
 import { ResourcePageTabKey } from "../../domain/ResourcePageTabKey";
 import { resourcePagePayloutStyle } from "./style/resourcePageLayoutStyle";
 import { ResourcePageTabsDomain } from "../../domain/ResourcePageTabsDomain";
+import ResourcePagePagination from "../components/ResourcePagePagination";
 
 type Props = Readonly<{
     params: { username: string }; 
     children: React.ReactNode;
+    totalItems: number;
   }>
 
 const {
     mainLayoutStyle,
     headerStyle,
     containerLayoutStyle,
+    paginationStyle,
 } = resourcePagePayloutStyle;
 
 const {
     getWantlistLabel,
 } = ResourcePageTabsDomain;
 
-export default async function ResourcePageLayout({ children, params }: Props) {
+export default async function ResourcePageLayout({ children, params, totalItems }: Props) {
     const { username } = params;
 
     const user = await userApiAdapter.getUserProfile(username);
@@ -62,6 +65,10 @@ export default async function ResourcePageLayout({ children, params }: Props) {
                         }
                     />
                 </Content>
+                <ResourcePagePagination
+                    totalPages={totalItems}
+                    style={paginationStyle}
+                />
             </Layout>
         </Layout>
       </>

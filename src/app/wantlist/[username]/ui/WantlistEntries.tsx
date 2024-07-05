@@ -19,7 +19,7 @@ const WantlistEntries = ({
   const renderLayoutComponent = layoutComponentMapper.get(layout)
 
   if (!renderLayoutComponent) {
-    return <>Wrong Layout!</>
+    return WantlistEntriesTiles({ entries })
   }
 
   return renderLayoutComponent({ entries })

@@ -1,21 +1,15 @@
 "use client"
 import { Flex } from "antd";
-import { useSearchParams } from "next/navigation";
 import ResourcePageLayoutChoice from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageLayoutChoice";
-import { ResourcePageLayout, validateResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
+import { ResourcePageLayout } from "@/app/resourcePage/domain/ResourcePageLayout";
 import ResourcePageSortSelect from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageSortSelect";
-import { ResourcePageSort, validateResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
+import { ResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import ResourcePageCopyButton from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageCopyButton";
 import { ResourcePageQueryParam } from "../../domain/ResourcePageQueryParam";
 import { useResourcePageQueryParams } from "../../hooks/useResourcePageQueryParams";
 
 const ResourcePageControls = () => {
-    const searchParams = useSearchParams();
-    
-    const sort = validateResourcePageSort(searchParams.get(ResourcePageQueryParam.sort));
-    const layout = validateResourcePageLayout(searchParams.get(ResourcePageQueryParam.layout));
-
-    const { setParams } = useResourcePageQueryParams()
+    const { setParams, sort, layout } = useResourcePageQueryParams()
 
     const changeLayoutParams = (layoutName: ResourcePageLayout) => {
         setParams({

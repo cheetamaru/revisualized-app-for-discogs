@@ -19,7 +19,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] In wantlist some info that describes type of vinyl etc
 - [ ] Create issue about wantlist images
 - [ ] Create issue about rating in wantlist
-- [ ] Sort options on List Page
+- [x] Sort options on List Page
 - [x] Different list layouts
 - [x] List pagination, different per_page options
 - [ ] Color coded genres and styles, maybe background of cards
@@ -37,11 +37,11 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Make a user card by click on the avatar
 - [x] Try to make width of a lone grid adjustable
 - [ ] Change cover size if its not a square (in cassettes)
-- [ ] Apply ddd principle to the project
+- [x] Apply ddd principle to the project
 - [ ] Stylize error page
 - [ ] Make better table with image design
 - [ ] Make better table without image design
-- [ ] Create responsive table design
+- [x] Create responsive table design
 - [ ] Create a color palette
 - [x] Create copy button
 - [ ] Make a tour of copy button after 3rd visit to the site

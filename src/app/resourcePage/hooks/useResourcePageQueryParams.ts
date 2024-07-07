@@ -41,8 +41,6 @@ export const useResourcePageQueryParams = () => {
         replace(`${pathname}?${params.toString()}`);
       };
 
-    
-
     return {
         currentPage,
         pageSize,

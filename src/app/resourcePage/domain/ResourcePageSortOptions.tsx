@@ -3,13 +3,23 @@ import { ResourcePageSort } from "./ResourcePageSort";
 import { Space } from "antd";
 import { FallOutlined, RiseOutlined } from "@ant-design/icons";
 
+const DescLabel = (label: string) => {
+    return <Space><span>{label}</span><FallOutlined /></Space>
+}
+
+const AscLabel = (label: string) => {
+    return <Space><span>{label}</span><RiseOutlined /></Space>
+}
+
+const ratingLabel = "Rating";
+
 export const ResourcePageSortOptions: SelectOption[] = [
     {
         value: ResourcePageSort.ratingDesc,
-        label: <Space><span>Rating</span><FallOutlined /></Space>
+        label: DescLabel(ratingLabel),
     },
     {
         value: ResourcePageSort.ratingAsc,
-        label: <Space><span>Rating</span><RiseOutlined /></Space>
+        label: AscLabel(ratingLabel),
     }
 ];

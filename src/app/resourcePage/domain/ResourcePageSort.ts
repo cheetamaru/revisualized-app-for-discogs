@@ -6,7 +6,6 @@ export const ResourcePageSort = {
     ratingAsc: "rating_asc"
 } as const;
 
-
 export type ResourcePageSort = typeof ResourcePageSort[keyof typeof ResourcePageSort];
 
 export const defaultResourcePageSort = ResourcePageSort.ratingDesc;

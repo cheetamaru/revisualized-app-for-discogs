@@ -2,9 +2,15 @@ import { ResourceColumnRenderType } from '@/app/resource/types/ResourceColumnRen
 import Image from 'next/image';
 import React from 'react'
 
-const RenderResourceCover: ResourceColumnRenderType = (src: string) => {
+const RenderResourceCover: ResourceColumnRenderType = (_, info) => {
+  const size = 50;
+
   return (
-    <Image src={src} alt="lol" height={50} width={50}/>
+    <Image
+      src={info.thumbCoverUrl}
+      alt={info.title}
+      height={size}
+      width={size}/>
   )
 }
 

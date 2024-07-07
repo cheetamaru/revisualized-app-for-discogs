@@ -2,8 +2,10 @@ import { ResourceColumnRenderType } from '@/app/resource/types/ResourceColumnRen
 import React from 'react'
 
 const RenderResourceYear: ResourceColumnRenderType = (year: string, info) => {
+  const yearFallback = "-"
+
   return (
-    <span>{year || '-'}</span>
+    <span>{year || yearFallback}</span>
   )
 }
 

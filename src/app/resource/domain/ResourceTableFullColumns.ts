@@ -8,7 +8,6 @@ const getColumns = (): TableColumnsType => {
     return [
         {
             key: "image",
-            dataIndex: "thumbCoverUrl",
             title: "Cover",
             width: "60px",
             render: RenderResourceCover,

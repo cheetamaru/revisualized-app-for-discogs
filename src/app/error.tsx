@@ -20,10 +20,6 @@ export default function Error({
   var n = str.lastIndexOf('/');
   var result = str.substring(n + 1);
 
-  const routePathResolver = (username: string) => {
-    return `/wantlist/${username}`
-  }
-
   return (
     <div className={style.error_page}>
       <Flex justify='center' align='center' vertical style={{height: '100vh'}}>

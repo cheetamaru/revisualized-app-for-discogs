@@ -1,4 +1,10 @@
 export const getEntrySrc = (id: string | number) => {
-    return "https://www.discogs.com/release/" + id
+    const hostname = process.env.DISCOGS_HOSTNAME
+
+    if (!hostname) {
+        throw new Error("DISCOGS_HOSTNAME is not provided")
+    }
+
+    return `https://${hostname}/release/${id}`;
   }
   

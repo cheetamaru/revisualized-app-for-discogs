@@ -1,5 +1,7 @@
 import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
 
+const defaultAspectRatio = 1;
+
 const getCoverGridOptions = (coverImageHeight: number) => {
     const columns = 10;
     const coverParts = 7;
@@ -18,6 +20,7 @@ const getAllowedDescription = (descriptions: MusicEntryFormat["descriptions"]): 
 }
 
 export const ResourceEntryCardCoverDomain = {
+    defaultAspectRatio,
     getCoverGridOptions,
     getAllowedDescription,
 }

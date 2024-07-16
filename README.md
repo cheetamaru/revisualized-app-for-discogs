@@ -3,6 +3,8 @@ discogs.com wrapper for outer users with revisualized ui
 
 It is my pet-project dedicated to enhancing the visual appeal and user experience of a cool site [discogs.com](https://www.discogs.com/). I try to provide a modern, stylish overlay that transforms current design into more visually appealing and user-friendly interface, without altering the original content and functionality.
 
+My main stack is Vue. I am developing this pet project to deepen my knowledge of React and Next.js.
+
 Domain of the revisualization is __only__ other users' collections and wantlists. Not inner collections and all remaining functionality. Basically it is just a cool gallery of the music collection you have that is easy to show to your friends.
 
 ## Goals:
@@ -36,7 +38,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Make better card design
 - [ ] Make a user card by click on the avatar
 - [x] Try to make width of a lone grid adjustable
-- [ ] Change cover size if its not a square (in cassettes)
+- [x] Change cover size if its not a square (in cassettes)
 - [x] Apply ddd principle to the project
 - [ ] Stylize error page
 - [ ] Make better table with image design

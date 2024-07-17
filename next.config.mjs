@@ -12,7 +12,7 @@ const nextConfig = {
           },
           {
             protocol: "https",
-            hostname: process.env.DISCOGS_HOSTNAME
+            hostname: process.env.NEXT_PUBLIC_DISCOGS_HOSTNAME
           }
         ]
     }

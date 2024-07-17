@@ -1,0 +1,10 @@
+/* for specificty :( */
+.info.info { 
+    color: #1677ff;
+    cursor: pointer;
+    margin-bottom: 0px;
+}
+
+.info:hover {
+    color: #69b1ff;
+}

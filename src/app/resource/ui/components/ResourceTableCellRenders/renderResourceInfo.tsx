@@ -5,6 +5,7 @@ import Paragraph from 'antd/es/typography/Paragraph'
 import { ResourceDomain } from '@/app/resource/domain/ResourceDomain';
 import { useRouter } from 'next/navigation';
 import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
+import style from "../style/resourceTable.module.css"
 
 const {
     getInfoForCopy,
@@ -28,11 +29,7 @@ const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
             ellipsis={{
                 rows: 2
             }}
-            style={{
-                marginBottom: 0,
-                cursor: "pointer",
-                color: '#1677ff'
-            }}
+            className={style.info}
             onClick={handleClick}
         >
             {info.title} — {info.mainArtistName}

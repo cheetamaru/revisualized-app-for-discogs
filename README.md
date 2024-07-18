@@ -57,6 +57,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Labels additional info demonstration
 - [ ] Add i18n
 - [ ] Fix styles of table links
+- [ ] Add tests
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

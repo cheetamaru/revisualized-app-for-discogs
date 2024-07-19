@@ -2,7 +2,6 @@ import { Card, Divider, Flex } from 'antd'
 import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import React from 'react'
-import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
 import { ResourceEntryType } from '../../types/ResourceEntryType'
 import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
@@ -10,6 +9,7 @@ import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEnt
 import style from "./style/resourceEntryCard.module.css"
 import ResourceEntryCardCover from './ResourceEntryCardCover/ResourceEntryCardCover'
 import { ResourceDomain } from '../../domain/ResourceDomain'
+import { DiscogsLisnksDomain } from '@/shared/domain/discogsLinks/DiscogsLinksDomain'
 
 type Props<T> = {
     entry: T,
@@ -19,6 +19,10 @@ type Props<T> = {
 const {
   defaultImageHeight,
 } = ResourceEntryCardDomain;
+
+const {
+  getEntrySrc,
+} = DiscogsLisnksDomain;
 
 const {
   getInfoForCopy,

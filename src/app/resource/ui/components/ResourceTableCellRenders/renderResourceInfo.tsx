@@ -4,13 +4,17 @@ import { ResourceColumnRenderType } from '@/app/resource/types/ResourceColumnRen
 import Paragraph from 'antd/es/typography/Paragraph'
 import { ResourceDomain } from '@/app/resource/domain/ResourceDomain';
 import { useRouter } from 'next/navigation';
-import { getEntrySrc } from '@/shared/utils/discogsLinks/getEntrySrc'
 import style from "../style/resourceTable.module.css"
+import { DiscogsLisnksDomain } from '@/shared/domain/discogsLinks/DiscogsLinksDomain';
 
 const {
     getInfoForCopy,
     getCopyMessage,
   } = ResourceDomain;
+
+const {
+    getEntrySrc,
+} = DiscogsLisnksDomain;
 
 const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
     const infoForCopy = getInfoForCopy(info);

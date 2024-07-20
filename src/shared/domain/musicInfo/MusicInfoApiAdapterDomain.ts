@@ -4,6 +4,7 @@ import { DiscogsLabelShort } from "@/shared/types/discogs/label/DiscogsLabelShor
 import { MusicArtistShort } from "@/shared/types/musicInfo/MusicArtistShort"
 import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat"
 import { MusicLabelShort } from "@/shared/types/musicInfo/MusicLabelShort"
+import { normalizeString } from "@/shared/utils/normalizers/normalizeString"
 
 const transformToMusicLabel = (label: DiscogsLabelShort): MusicLabelShort => {
     return {
@@ -27,7 +28,7 @@ const transformToMusicEntryFormat = (format: DiscogsEntryFormat): MusicEntryForm
         name: format.name,
         quantity: format.qty,
         descriptions: format.descriptions,
-        additionalText: format.text || "",
+        additionalText: normalizeString(format.text),
     }
 }
 

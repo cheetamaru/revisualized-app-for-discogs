@@ -58,6 +58,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Add i18n
 - [ ] Fix styles of table links
 - [ ] Add tests
+- [ ] Add empty cards message
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

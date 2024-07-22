@@ -12,6 +12,10 @@ const nextConfig = {
           },
           {
             protocol: "https",
+            hostname: process.env.DISCOGS_GRAVATAR_DEFAULT_HOSTNAME,
+          },
+          {
+            protocol: "https",
             hostname: process.env.NEXT_PUBLIC_DISCOGS_HOSTNAME
           }
         ]

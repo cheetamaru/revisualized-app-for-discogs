@@ -6,6 +6,7 @@ import { ResourceDomain } from '@/app/resource/domain/ResourceDomain';
 import { useRouter } from 'next/navigation';
 import style from "../style/resourceTable.module.css"
 import { DiscogsLisnksDomain } from '@/shared/domain/discogsLinks/DiscogsLinksDomain';
+import { ResourceEntryType } from '@/app/resource/types/ResourceEntryType';
 
 const {
     getInfoForCopy,
@@ -16,6 +17,10 @@ const {
     getEntrySrc,
 } = DiscogsLisnksDomain;
 
+const getTableInfo = (info: ResourceEntryType) => {
+    return `${info.title} — ${info.mainArtistName}`
+}
+
 const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
     const infoForCopy = getInfoForCopy(info);
     const router = useRouter();
@@ -23,7 +28,8 @@ const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
     const handleClick = () => {
         router.push(getEntrySrc(info.resourceId));
     }
-    
+
+
     return <>
         <Paragraph
             copyable={{
@@ -36,7 +42,7 @@ const RenderResourceInfo: ResourceColumnRenderType = (_, info) => {
             className={style.info}
             onClick={handleClick}
         >
-            {info.title} — {info.mainArtistName}
+            {getTableInfo(info)}
         </Paragraph>
     </>
 }

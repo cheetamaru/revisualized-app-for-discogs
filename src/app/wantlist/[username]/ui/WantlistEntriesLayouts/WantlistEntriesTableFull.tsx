@@ -8,7 +8,6 @@ const {
     tableContainerStyle,
   } = wantlistEntriesStyle;
 
-
 const WantlistEntriesTableFull = ({entries}: WantlistEntriesLayoutProps) => {
   return (
     <Flex

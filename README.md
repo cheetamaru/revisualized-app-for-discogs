@@ -1,4 +1,4 @@
-# discogs-revisualized
+# revisualized-app-for-discogs
 discogs.com wrapper for outer users with revisualized ui
 
 It is my pet-project dedicated to enhancing the visual appeal and user experience of a cool site [discogs.com](https://www.discogs.com/). I try to provide a modern, stylish overlay that transforms current design into more visually appealing and user-friendly interface, without altering the original content and functionality.
@@ -48,7 +48,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] Create copy button
 - [ ] Make a tour of copy button after 3rd visit to the site
 - [ ] Dicogs copyrights
-- [ ] Next Image in table images
+- [x] Next Image in table images
 - [ ] Format pictures in table images
 - [ ] Save layout settings when searching another person
 - [ ] Add a favicon
@@ -56,9 +56,9 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Research what is the deal with currency
 - [ ] Labels additional info demonstration
 - [ ] Add i18n
-- [ ] Fix styles of table links
+- [x] Fix styles of table links
 - [ ] Add tests
-- [ ] Add empty cards message
+- [x] Add empty cards message
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

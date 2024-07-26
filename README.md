@@ -49,7 +49,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Make a tour of copy button after 3rd visit to the site
 - [ ] Dicogs copyrights
 - [x] Next Image in table images
-- [ ] Format pictures in table images
+- [x] Format pictures in table images
 - [ ] Save layout settings when searching another person
 - [ ] Add a favicon
 - [ ] Research if it's possible to not create an apiClient on each request

@@ -14,7 +14,7 @@ export default function Home() {
       <Flex style={boxStyle} justify="center" align="center">
         <div>
           <div style={{display: 'flex', justifyContent: "center"}}>
-            <Title style={{color: "white"}}>Discogs Revitalized</Title>
+            <Title style={{color: "white"}}>Revisualized App<br />for Discogs</Title>
           </div>
           
           <div className={style.username_input}>

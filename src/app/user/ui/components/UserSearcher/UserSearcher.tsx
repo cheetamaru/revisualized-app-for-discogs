@@ -1,5 +1,5 @@
 "use client"
-import { Input, InputRef, Space } from "antd";
+import { ConfigProvider, Input, InputRef, Space } from "antd";
 import { ChangeEvent, useRef, useState } from "react";
 import { inputStyle, spaceStyle } from "../style/userSearcherStyles";
 import UserSearcherResetButton from "./UserSearcherResetButton";
@@ -45,31 +45,39 @@ const UserSearcher = ({
   
     return (
         <Space.Compact style={spaceStyle}>
-          <Input
-            ref={inputRef}
-            value={username}
-            onChange={handleInput}
-            onPressEnter={handleRedirect}
-            style={inputStyle}
-            placeholder="Enter username"
-            autoComplete="on"
-            name="username-input"
-            suffix={
-              <>
-                {
-                  isResetButtonShowed &&
-                    <UserSearcherResetButton
-                      onClick={handleReset}
-                    />
-                }
-              </>
-              
+          <ConfigProvider
+            theme={{
+              token: {
+                colorTextPlaceholder: "rgba(255, 255, 255, 0.5)"
+              },
+            }}
+          >
+            <Input
+              ref={inputRef}
+              value={username}
+              onChange={handleInput}
+              onPressEnter={handleRedirect}
+              style={inputStyle}
+              placeholder="Discogs Username"
+              autoComplete="on"
+              name="username-input"
+              suffix={
+                <>
+                  {
+                    isResetButtonShowed &&
+                      <UserSearcherResetButton
+                        onClick={handleReset}
+                      />
+                  }
+                </>
+                
+              }
+            />
+            {
+              buttonRender?.(canBeReset, handleRedirect) ??
+                <UserSearcherSearchButton onClick={handleRedirect} />
             }
-          />
-          {
-            buttonRender?.(canBeReset, handleRedirect) ??
-              <UserSearcherSearchButton onClick={handleRedirect} />
-          }
+          </ConfigProvider>
         </Space.Compact>
     )
   }

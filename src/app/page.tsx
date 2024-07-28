@@ -8,20 +8,25 @@ const boxStyle: React.CSSProperties = {
   height: '100vh',
 };
 
+const titleContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  justifyContent: "center"
+}
+
+const titleStyle: React.CSSProperties = {
+  color: "white",
+  textAlign: "center",
+  fontSize: 44
+}
+
 export default function Home() {
   return (
     <main>
       <Flex style={boxStyle} justify="center" align="center">
         <div>
-          <div style={{display: 'flex', justifyContent: "center"}}>
+          <div style={titleContainerStyle}>
             <Title
-              style={
-                {
-                  color: "white",
-                  textAlign: "center",
-                  fontSize: 44
-                }
-              }
+              style={titleStyle}
             >
               Revisualized App<br />for Discogs
             </Title>

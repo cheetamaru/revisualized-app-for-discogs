@@ -1,6 +1,6 @@
 'use client'
  
-import style from "./error.module.css"
+import style from "./main/style/error.module.css"
 import { Flex } from 'antd'
 import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'

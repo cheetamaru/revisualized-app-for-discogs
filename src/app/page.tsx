@@ -1,5 +1,5 @@
 import { Flex } from "antd";
-import style from "./page.module.css"
+import style from "./main/style/page.module.css"
 import Title from "antd/es/typography/Title";
 import RoutedUserSearcher from "@/app/user/ui/components/UserSearcher/RoutedUserSearcher";
 import { pageStyles } from "./main/style/pageStyles";

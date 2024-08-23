@@ -10,7 +10,11 @@ const ResourcePageCopyButton = () => {
     const searchParams = useSearchParams();
 
     const handleCopy = () => {
-        const toCopy = pathname + "?" + searchParams
+        const {
+            origin
+          } = window.location
+
+        const toCopy = origin + pathname + "?" + searchParams
 
         navigator.clipboard.writeText(toCopy);
 

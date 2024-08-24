@@ -1,8 +1,8 @@
 import { TableColumnsType } from "antd"
 import Table from "antd/es/table"
-import RenderResourceFormat from "../ui/components/ResourceTableCellRenders/RenderResourceFormat";
-import RenderResourceInfo from "../ui/components/ResourceTableCellRenders/RenderResourceInfo";
-import RenderResourceYear from "../ui/components/ResourceTableCellRenders/RenderResourceYear";
+import RenderResourceFormat from "../ui/components/ResourceTableCellRenders/renderResourceFormat";
+import RenderResourceInfo from "../ui/components/ResourceTableCellRenders/renderResourceInfo";
+import RenderResourceYear from "../ui/components/ResourceTableCellRenders/renderResourceYear";
 
 const getColumns = (): TableColumnsType => {
     return [

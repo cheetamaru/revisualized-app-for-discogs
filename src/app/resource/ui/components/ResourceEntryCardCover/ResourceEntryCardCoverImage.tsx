@@ -14,6 +14,12 @@ type Props = {
 const { coverImagePlaceholderStyle, coverImageStyle } = resourceEntryCardStyle;
 
 const ResourceEntryCardCoverImage = ({ src, coverSize, title, description }: Props) => {
+    const {
+        internalWidth,
+        internalHeight,
+        handleLoad,
+    } = useResourceEntryCardCover(coverSize)
+
     if (!src) {
         return (
             <Image
@@ -26,12 +32,6 @@ const ResourceEntryCardCoverImage = ({ src, coverSize, title, description }: Pro
             />
         )
     }
-
-    const {
-        internalWidth,
-        internalHeight,
-        handleLoad,
-    } = useResourceEntryCardCover(coverSize)
     
     return (
         <Image

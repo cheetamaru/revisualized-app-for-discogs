@@ -3,8 +3,9 @@ import Table from "antd/es/table"
 import RenderResourceInfo from "../ui/components/ResourceTableCellRenders/renderResourceInfo";
 import RenderResourceYear from "../ui/components/ResourceTableCellRenders/renderResourceYear";
 import RenderResourceCover from "../ui/components/ResourceTableCellRenders/RenderResourceCover";
+import { ResourceEntryType } from "../types/ResourceEntryType";
 
-const getColumns = (): TableColumnsType => {
+const getColumns = (): TableColumnsType<ResourceEntryType> => {
     return [
         {
             key: "image",

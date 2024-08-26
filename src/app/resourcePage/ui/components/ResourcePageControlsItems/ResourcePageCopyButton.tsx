@@ -4,6 +4,18 @@ import { notification } from 'antd';
 import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react'
 
+const getTextForCopy = ({
+    origin,
+    pathname,
+    searchParams
+}: {
+    origin: string;
+    pathname: string;
+    searchParams: string;
+}) => {
+    return origin + pathname + "?" + searchParams
+}
+
 const ResourcePageCopyButton = () => {
     const [api, contextHolder] = notification.useNotification();
     const pathname = usePathname();
@@ -14,7 +26,11 @@ const ResourcePageCopyButton = () => {
             origin
           } = window.location
 
-        const toCopy = origin + pathname + "?" + searchParams
+        const toCopy = getTextForCopy({
+            origin,
+            pathname,
+            searchParams: searchParams.toString()
+        })
 
         navigator.clipboard.writeText(toCopy);
 

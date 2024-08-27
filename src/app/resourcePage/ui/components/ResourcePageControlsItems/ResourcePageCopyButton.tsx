@@ -13,6 +13,10 @@ const getTextForCopy = ({
     pathname: string;
     searchParams: string;
 }) => {
+    if (!searchParams) {
+        return origin + pathname
+    }
+
     return origin + pathname + "?" + searchParams
 }
 

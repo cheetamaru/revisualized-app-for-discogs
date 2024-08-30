@@ -13,7 +13,7 @@ const containerLayoutStyle: React.CSSProperties = {
 }
 
 const paginationStyle: React.CSSProperties = {
-    textAlign: 'center',
+    justifyContent: 'center',
     paddingBottom: 15
 }
 

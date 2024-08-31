@@ -1,24 +1,11 @@
 "use client"
+import { ResourcePageCopyDomain } from '@/app/resourcePage/domain/ResourcePageCopyDomain';
 import CopyButton from '@/shared/ui/components/buttons/CopyButton';
 import { notification } from 'antd';
 import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react'
 
-const getTextForCopy = ({
-    origin,
-    pathname,
-    searchParams
-}: {
-    origin: string;
-    pathname: string;
-    searchParams: string;
-}) => {
-    if (!searchParams) {
-        return origin + pathname
-    }
-
-    return origin + pathname + "?" + searchParams
-}
+const { getTextForCopy } = ResourcePageCopyDomain;
 
 const ResourcePageCopyButton = () => {
     const [api, contextHolder] = notification.useNotification();

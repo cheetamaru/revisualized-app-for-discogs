@@ -1,12 +1,14 @@
+type GetTextForCopyParams = {
+    origin: string;
+    pathname: string;
+    searchParams: string;
+}
+
 const getTextForCopy = ({
     origin,
     pathname,
     searchParams
-}: {
-    origin: string;
-    pathname: string;
-    searchParams: string;
-}) => {
+}: GetTextForCopyParams): string => {
     if (!searchParams) {
         return origin + pathname
     }

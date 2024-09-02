@@ -13,12 +13,8 @@ const ResourcePageCopyButton = () => {
     const searchParams = useSearchParams();
 
     const handleCopy = () => {
-        const {
-            origin
-          } = window.location
-
         const toCopy = getTextForCopy({
-            origin,
+            origin: window.location.origin,
             pathname,
             searchParams: searchParams.toString()
         })

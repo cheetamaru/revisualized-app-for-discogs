@@ -1,3 +1,5 @@
+# source: https://medium.com/@bidyutnayak10/containerizing-next-js-app-with-docker-lightweight-image-6a53f8c61f15
+
 FROM node:18-alpine AS base
 
 FROM base AS deps

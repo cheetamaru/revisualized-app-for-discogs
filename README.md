@@ -8,15 +8,15 @@ My main stack is Vue. I am developing this pet project to deepen my knowledge of
 Domain of the revisualization is __only__ other users' collections and wantlists. Not inner collections and all remaining functionality. Basically it is just a cool gallery of the music collection you have that is easy to show to your friends.
 
 ## Goals:
-- [ ] Create new visuals for wantlist
+- [x] Create new visuals for wantlist
 - [ ] Create new visuals for collection
-- [ ] Provide responsive layout
+- [x] Provide responsive layout
 - [ ] Create some service with link shortenings that can store your layout settings before sending it to your friends
 
 ## TODO:
 - [ ] Error handling when there is no permission to view wantlist/collection (example: abc)
 - [x] Error handling when there is no such user
-- [ ] Error handling when rate limit is exceeded
+- [ ] Error handling when rate limit is exceeded (?)
 - [ ] Generate background profile banner by username (?)
 - [x] In wantlist some info that describes type of vinyl etc
 - [ ] Create issue about wantlist images
@@ -26,9 +26,9 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] List pagination, different per_page options
 - [ ] Color coded genres and styles, maybe background of cards
 - [ ] Card reverse side
-- [x] Fallback image on card
+- [x] Fallback image on a card
 - [ ] Dark/Light Theme
-- [ ] Something interesting on home page
+- [ ] Something interesting on the home page
 - [x] In username input create a reset suffix
 - [ ] Cover Image error fallback
 - [x] Format image fallback

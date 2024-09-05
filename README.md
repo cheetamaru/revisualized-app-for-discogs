@@ -59,10 +59,9 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] Fix styles of table links
 - [ ] Add tests
 - [x] Add empty cards message
+- [ ] Add format image distinction for colored vinyl/cassetes
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason
 - [ ] Fix error display in the Server Components on prod
 - [ ] loading.tsx doesn't trigger when wantlist's page is changed https://github.com/vercel/next.js/issues/53543
-
-

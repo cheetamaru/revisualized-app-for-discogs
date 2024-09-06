@@ -8,6 +8,12 @@ import { CloseCircleFilled } from '@ant-design/icons'
 import { usePathname } from 'next/navigation'
 import RoutedUserSearcher from '@/app/user/ui/components/UserSearcher/RoutedUserSearcher'
  
+const getUsername = (pathname: string) => {
+  const str = pathname;
+  const indexOfSeparator = str.lastIndexOf('/');
+  return str.substring(indexOfSeparator + 1);
+}
+
 export default function Error({
   error,
 }: {
@@ -16,9 +22,7 @@ export default function Error({
 }) {
   const pathname = usePathname();
 
-  var str = pathname;
-  var n = str.lastIndexOf('/');
-  var result = str.substring(n + 1);
+  const initialValue = getUsername(pathname);
 
   return (
     <div className={style.error_page}>
@@ -30,7 +34,7 @@ export default function Error({
         </div>
         <div className={style.username_input}>
           <RoutedUserSearcher
-            initialValue={result}
+            initialValue={initialValue}
             routerPathBeforeUsername="/wantlist/"
           />
         </div>

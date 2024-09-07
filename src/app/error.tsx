@@ -14,6 +14,25 @@ const getUsername = (pathname: string) => {
   return str.substring(indexOfSeparator + 1);
 }
 
+const containerStyle: React.CSSProperties = {
+  height: '100vh'
+}
+
+const iconStyle: React.CSSProperties = {
+  color: "#ff5555",
+  fontSize: 50,
+  paddingBottom: 20
+}
+
+const titleStyle: React.CSSProperties = {
+  color: "white",
+  maxWidth: 340
+}
+
+const textStyle: React.CSSProperties = {
+  color: "white"
+}
+
 export default function Error({
   error,
 }: {
@@ -26,11 +45,11 @@ export default function Error({
 
   return (
     <div className={style.error_page}>
-      <Flex justify='center' align='center' vertical style={{height: '100vh'}}>
-      <CloseCircleFilled style={{color: "#ff5555", fontSize: 50, paddingBottom: 20}} />
-      <Title level={3} style={{color: "white", maxWidth: 340}}>{error.message}</Title>
+      <Flex justify='center' align='center' vertical style={containerStyle}>
+        <CloseCircleFilled style={iconStyle} />
+        <Title level={3} style={titleStyle}>{error.message}</Title>
         <div>
-          <Text style={{color: "white"}}>You can try again with a different search</Text>
+          <Text style={textStyle}>You can try again with a different search</Text>
         </div>
         <div className={style.username_input}>
           <RoutedUserSearcher

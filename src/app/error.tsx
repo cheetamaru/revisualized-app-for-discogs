@@ -7,6 +7,7 @@ import Text from 'antd/es/typography/Text'
 import { CloseCircleFilled } from '@ant-design/icons'
 import { usePathname } from 'next/navigation'
 import RoutedUserSearcher from '@/app/user/ui/components/UserSearcher/RoutedUserSearcher'
+import { globalErrorStyle } from "@/shared/ui/components/styles/globalErrorStyle"
  
 const getUsername = (pathname: string) => {
   const str = pathname;
@@ -14,24 +15,12 @@ const getUsername = (pathname: string) => {
   return str.substring(indexOfSeparator + 1);
 }
 
-const containerStyle: React.CSSProperties = {
-  height: '100vh'
-}
-
-const iconStyle: React.CSSProperties = {
-  color: "#ff5555",
-  fontSize: 50,
-  paddingBottom: 20
-}
-
-const titleStyle: React.CSSProperties = {
-  color: "white",
-  maxWidth: 340
-}
-
-const textStyle: React.CSSProperties = {
-  color: "white"
-}
+const {
+  containerStyle,
+  iconStyle,
+  titleStyle,
+  textStyle
+} = globalErrorStyle;
 
 export default function Error({
   error,

@@ -8,12 +8,11 @@ import { CloseCircleFilled } from '@ant-design/icons'
 import { usePathname } from 'next/navigation'
 import RoutedUserSearcher from '@/app/user/ui/components/UserSearcher/RoutedUserSearcher'
 import { globalErrorStyle } from "@/shared/ui/components/styles/globalErrorStyle"
+import { ErrorPathnameDomain } from "@/shared/domain/error/ErrorPathnameDomain"
  
-const getUsername = (pathname: string) => {
-  const str = pathname;
-  const indexOfSeparator = str.lastIndexOf('/');
-  return str.substring(indexOfSeparator + 1);
-}
+const {
+  getUsernameFromPathname,
+} = ErrorPathnameDomain;
 
 const {
   containerStyle,
@@ -30,7 +29,7 @@ export default function Error({
 }) {
   const pathname = usePathname();
 
-  const initialValue = getUsername(pathname);
+  const initialValue = getUsernameFromPathname(pathname);
 
   return (
     <div className={style.error_page}>

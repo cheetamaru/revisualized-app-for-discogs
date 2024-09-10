@@ -21,12 +21,14 @@ const {
   textStyle
 } = globalErrorStyle;
 
-export default function Error({
-  error,
-}: {
+type ErrorProps = {
   error: Error & { digest?: string }
   reset: () => void,
-}) {
+}
+
+export default function Error({
+  error,
+}: ErrorProps) {
   const pathname = usePathname();
 
   const initialValue = getUsernameFromPathname(pathname);

@@ -7,7 +7,7 @@ import Text from 'antd/es/typography/Text'
 import { CloseCircleFilled } from '@ant-design/icons'
 import { usePathname } from 'next/navigation'
 import RoutedUserSearcher from '@/app/user/ui/components/UserSearcher/RoutedUserSearcher'
-import { globalErrorStyle } from "@/shared/ui/components/styles/globalErrorStyle"
+import { globalErrorStyle } from "@/app/main/style/globalErrorStyle"
 import { ErrorPathnameDomain } from "@/shared/domain/error/ErrorPathnameDomain"
  
 const {

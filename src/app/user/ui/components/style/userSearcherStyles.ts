@@ -18,8 +18,11 @@ export const buttonStyle: React.CSSProperties = {
   transition: "all 0.2s",
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
-  width: 150,
+  width: 110,
   height: 32,
+  alignSelf: "flex-end",
+  display: "flex",
+  alignItems: "center",
 }
 
 export const resetButtonStyle: React.CSSProperties = {

@@ -11,7 +11,7 @@ type Props = {
 const defaultStyles: React.CSSProperties = {
   alignSelf: "flex-end",
   display: "flex",
-  alignItems: "baseline"
+  alignItems: "center"
 }
 
 const DiscogsLinkButton = ({
@@ -26,7 +26,7 @@ const DiscogsLinkButton = ({
         type={type}
         href={href} 
         target="_blank"
-        icon={<DiscogsLogo size={14} />}
+        icon={<DiscogsLogo size={16} />}
         style={style}
         iconPosition="end"
     >

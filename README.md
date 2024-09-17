@@ -15,7 +15,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 
 ## TODO:
 - [ ] Error handling when there is no permission to view wantlist/collection (example: abc)
-- [x] Error handling when there is no such user
+- [ ] Error handling when there is no such user
 - [ ] Error handling when rate limit is exceeded (?)
 - [ ] Generate background profile banner by username (?)
 - [x] In wantlist some info that describes type of vinyl etc
@@ -51,7 +51,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] Next Image in table images
 - [x] Format pictures in table images
 - [ ] Save layout settings when searching another person
-- [ ] Add a favicon
+- [x] Add a favicon
 - [ ] Research if it's possible to not create an apiClient on each request
 - [ ] Research what is the deal with currency
 - [ ] Labels additional info demonstration
@@ -60,6 +60,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [ ] Add tests
 - [x] Add empty cards message
 - [ ] Add format image distinction for colored vinyl/cassetes
+- [ ] Add help to the main page
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

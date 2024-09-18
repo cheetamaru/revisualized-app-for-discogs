@@ -22,8 +22,9 @@ const {
 } = globalErrorStyle;
 
 type ErrorProps = {
-  error: Error & { digest?: string }
-  reset: () => void,
+  error: any
+  // error: Error & { digest?: string }
+  // reset: () => void,
 }
 
 export default function Error({

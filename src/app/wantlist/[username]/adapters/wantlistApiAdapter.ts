@@ -7,7 +7,7 @@ import { GetWantlistResponse } from "../types/GetWantlistResponse";
 const { transformGetterParamsToApi, transformToWantlistEntry } = WantlistApiAdapterDomain;
 const { transformPaginationInfoFromApi } = PaginationApiAdapterDomain;
 
-const getWantlist = async (username: string, params: GetWantlistParams): Promise<Partial<GetWantlistResponse> & {error?: number}> => {
+const getWantlist = async (username: string, params: GetWantlistParams): Promise<Partial<GetWantlistResponse> & {error?: string}> => {
     const normalizedParams = transformGetterParamsToApi(params);
 
     try {
@@ -21,7 +21,7 @@ const getWantlist = async (username: string, params: GetWantlistParams): Promise
         const error = e as { statusCode: number }
 
         return {
-            error: error.statusCode
+            error: "This is an error, " + error.statusCode 
         }
     }
 

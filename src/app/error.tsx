@@ -22,13 +22,13 @@ const {
 } = globalErrorStyle;
 
 type ErrorProps = {
-  error: any
+  message: string
   // error: Error & { digest?: string }
   // reset: () => void,
 }
 
 export default function Error({
-  error,
+  message,
 }: ErrorProps) {
   const pathname = usePathname();
 
@@ -38,7 +38,7 @@ export default function Error({
     <div className={style.error_page}>
       <Flex justify='center' align='center' vertical style={containerStyle}>
         <CloseCircleFilled style={iconStyle} />
-        <Title level={3} style={titleStyle}>{error.message}</Title>
+        <Title level={3} style={titleStyle}>{message}</Title>
         <div>
           <Text style={textStyle}>You can try again with a different search</Text>
         </div>

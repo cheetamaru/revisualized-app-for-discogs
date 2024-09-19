@@ -29,7 +29,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
         })
 
     if (wantlist.error) {
-        return <MyError error={{message: "My Error"}} />
+        return <MyError message={wantlist.error} />
     }
 
 

@@ -3,7 +3,7 @@ import ResourcePageLayout from "@/app/resourcePage/ui/layouts/ResourcePageLayout
 import WantlistEntries from "./ui/WantlistEntries";
 import { ResourcePageSearchParams } from "@/app/resourcePage/types/ResourcePageSearchParams";
 import { getResourcePageParams } from "@/app/resourcePage/utils/getResourcePageParams";
-import MyError from "@/app/error"
+import ErrorWithSearcher from "@/shared/ui/components/global/ErrorWithSearcher";
 
 type Props = {
     params: { username: string }; 
@@ -29,7 +29,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
         })
 
     if (wantlist.error) {
-        return <MyError message={wantlist.error} />
+        return <ErrorWithSearcher message={wantlist.error} />
     }
 
 

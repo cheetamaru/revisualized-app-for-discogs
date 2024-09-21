@@ -7,15 +7,24 @@ import { GetWantlistResponse } from "../types/GetWantlistResponse";
 const { transformGetterParamsToApi, transformToWantlistEntry } = WantlistApiAdapterDomain;
 const { transformPaginationInfoFromApi } = PaginationApiAdapterDomain;
 
-const getWantlist = async (username: string, params: GetWantlistParams): Promise<GetWantlistResponse> => {
+const getWantlist = async (username: string, params: GetWantlistParams): Promise<Partial<GetWantlistResponse> & {error?: string}> => {
     const normalizedParams = transformGetterParamsToApi(params);
 
-    const { pagination, wants } = await wantlistApi.getCachedWantlist(username, normalizedParams);
+    try {
+        const { pagination, wants } = await wantlistApi.getCachedWantlist(username, normalizedParams);
 
-    return {
-        pagination: transformPaginationInfoFromApi(pagination),
-        entries: wants.map(transformToWantlistEntry),
+        return {
+            pagination: transformPaginationInfoFromApi(pagination),
+            entries: wants.map(transformToWantlistEntry),
+        }
+    } catch (e) {
+        const error = e as { statusCode: number, message: string }
+
+        return {
+            error: error.message,
+        }
     }
+
 };
 
 const wantlistApiAdapter = {

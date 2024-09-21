@@ -18,10 +18,10 @@ const getWantlist = async (username: string, params: GetWantlistParams): Promise
             entries: wants.map(transformToWantlistEntry),
         }
     } catch (e) {
-        const error = e as { statusCode: number }
+        const error = e as { statusCode: number, message: string }
 
         return {
-            error: "This is an error, " + error.statusCode 
+            error: error.message,
         }
     }
 

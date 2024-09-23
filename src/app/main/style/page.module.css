@@ -232,3 +232,9 @@
 .username_input {
   width: 340px;
 }
+
+.help {
+  margin-top: 20px;
+  width: 340px;
+  position: absolute;
+}

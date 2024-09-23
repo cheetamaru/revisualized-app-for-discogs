@@ -1,8 +1,9 @@
-import { Collapse, CollapseProps, Flex } from "antd";
+import { Collapse, CollapseProps, ConfigProvider, Flex } from "antd";
 import style from "./main/style/page.module.css"
 import Title from "antd/es/typography/Title";
 import RoutedUserSearcher from "@/app/user/ui/components/UserSearcher/RoutedUserSearcher";
 import { pageStyles } from "./main/style/pageStyles";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 const {
   boxStyle,
@@ -11,14 +12,15 @@ const {
 } = pageStyles;
 
 export default function Home() {
-  const text = `The purpose of the site is to show other people you wantlist of music mediums.
-  To use this site you should have the username of a Discogs.com user with an open account`
+  const text = `The purpose of the site is to show other people your wantlist of music releases.
+  To use this site you should have the username of a Discogs.com user with an open account.`
 
   const items: CollapseProps['items'] = [
     {
       key: '1',
-      label: 'How to use this site?',
-      children: <p>{text}</p>,
+      label: <p><span style={{marginRight: 4}}><InfoCircleOutlined /></span> How to use this site?</ p>,
+      children: <p> {text}</p>,
+      showArrow: false,
     },
   ];
 
@@ -37,8 +39,26 @@ export default function Home() {
           <div className={style.username_input}>
             <RoutedUserSearcher routerPathBeforeUsername="/wantlist/" />
           </div>
-          <div>
-            <Collapse items={items} ghost />
+          <div className={style.help}>
+          <ConfigProvider
+            theme={{
+              components: {
+                Collapse: {
+                  contentPadding: "0",
+                }
+              },
+              token: {
+                colorText: "rgba(255, 255, 255, 0.5)",
+                padding: 0,
+              },
+            }}
+          >
+            <Collapse
+              items={items}
+              ghost
+            />
+          </ConfigProvider>
+            
           </div>
         </div>
       </Flex>

@@ -5,7 +5,7 @@ import React from 'react'
 const MainPageHelp = () => {
     const getHelpText = () => <p>
       The site is designed for sharing your music releases wantlist with others.
-      To get started, you'll need the username of a <a href='https://www.discogs.com' target='_blank'>Discogs.com</a> user whose account is publicly accessible.
+      To get started, you&apos;ll need the username of a <a href='https://www.discogs.com' target='_blank'>Discogs.com</a> user whose account is publicly accessible.
     </p>
 
     const items: CollapseProps['items'] = [

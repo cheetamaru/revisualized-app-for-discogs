@@ -3,14 +3,16 @@ import { Collapse, CollapseProps, ConfigProvider } from 'antd'
 import React from 'react'
 
 const MainPageHelp = () => {
-    const text = `The purpose of the site is to show other people your wantlist of music releases.
-    To use this site you should have the username of a Discogs.com user with an open account.`
-  
+    const getHelpText = () => <p>
+      The site is designed for sharing your music releases wantlist with others.
+      To get started, you'll need the username of a <a href='https://www.discogs.com' target='_blank'>Discogs.com</a> user whose account is publicly accessible.
+    </p>
+
     const items: CollapseProps['items'] = [
       {
         key: '1',
         label: <p><span style={{marginRight: 4}}><InfoCircleOutlined /></span> How to use this site?</ p>,
-        children: <p> {text}</p>,
+        children: getHelpText(),
         showArrow: false,
       },
     ];

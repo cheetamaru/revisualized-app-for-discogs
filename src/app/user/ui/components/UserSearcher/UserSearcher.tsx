@@ -20,6 +20,7 @@ const UserSearcher = ({
 }: UserSearcherProps) => {
     const inputRef = useRef<InputRef>(null);
     const [username, setUsername] = useState(initialValue);
+    const [isLoading, setLoading] = useState(false)
 
     const canBeReset = username !== initialValue
     const isResetButtonShowed = isResetable && canBeReset
@@ -33,6 +34,7 @@ const UserSearcher = ({
         return
       }
   
+      setLoading(true);
       onSearch(username);
     }
   
@@ -75,7 +77,10 @@ const UserSearcher = ({
             />
             {
               buttonRender?.(canBeReset, handleRedirect) ??
-                <UserSearcherSearchButton onClick={handleRedirect} />
+                <UserSearcherSearchButton
+                  onClick={handleRedirect}
+                  loading={isLoading}
+                />
             }
           </ConfigProvider>
         </Space.Compact>

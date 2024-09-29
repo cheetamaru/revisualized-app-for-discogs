@@ -10,7 +10,7 @@ type Props = Pick<UserSearcherProps, "initialValue" | "onSearch"> & {
 const getButtonNode = (userUrl: Props["userUrl"]) => {
   const hasUrl = Boolean(userUrl);
 
-  const buttonRender: UserSearcherProps["buttonRender"] = (canBeReset, handleRedirect) => {
+  const buttonRender: UserSearcherProps["buttonRender"] = (canBeReset, handleRedirect, isLoading) => {
       const isDiscogsLinkShowed = !canBeReset && hasUrl;
       
       return (
@@ -18,6 +18,7 @@ const getButtonNode = (userUrl: Props["userUrl"]) => {
               isLinkShowed={isDiscogsLinkShowed}
               onSearchClick={handleRedirect}
               userUrl={userUrl}
+              isLoading={isLoading}
           />
       )
   }

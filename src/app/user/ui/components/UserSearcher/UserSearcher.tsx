@@ -9,7 +9,7 @@ export type UserSearcherProps = {
   initialValue?: string;
   isResetable?: boolean;
   onSearch: (username: string) => void;
-  buttonRender?: (canBeReset: boolean, handleRedirect: () => void) => React.ReactNode;
+  buttonRender?: (canBeReset: boolean, handleRedirect: () => void, isLoading: boolean) => React.ReactNode;
 }
 
 const UserSearcher = ({
@@ -44,6 +44,16 @@ const UserSearcher = ({
         inputRef.current?.blur()
       })
     }
+
+    const getButton = () => {
+      const externalButton = buttonRender?.(canBeReset, handleRedirect, isLoading)
+
+      return externalButton ??
+        <UserSearcherSearchButton
+          onClick={handleRedirect}
+          loading={isLoading}
+        />
+    }
   
     return (
         <Space.Compact style={spaceStyle}>
@@ -76,11 +86,7 @@ const UserSearcher = ({
               }
             />
             {
-              buttonRender?.(canBeReset, handleRedirect) ??
-                <UserSearcherSearchButton
-                  onClick={handleRedirect}
-                  loading={isLoading}
-                />
+              getButton()
             }
           </ConfigProvider>
         </Space.Compact>

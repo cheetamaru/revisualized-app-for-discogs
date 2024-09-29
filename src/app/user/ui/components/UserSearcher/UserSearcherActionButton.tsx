@@ -7,17 +7,20 @@ type Props = {
     isLinkShowed: boolean;
     userUrl?: string;
     onSearchClick: () => void;
+    isLoading: boolean;
 }
 
 const UserSearcherActionButton = ({
     isLinkShowed,
     userUrl,
     onSearchClick,
+    isLoading,
 }: Props) => {
     if (!isLinkShowed) {
         return (
             <UserSearcherSearchButton
                 onClick={onSearchClick}
+                loading={isLoading}
             />
         )
     }

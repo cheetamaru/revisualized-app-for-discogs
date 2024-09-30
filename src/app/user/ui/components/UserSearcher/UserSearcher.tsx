@@ -9,7 +9,7 @@ export type UserSearcherProps = {
   initialValue?: string;
   isResetable?: boolean;
   onSearch: (username: string) => void;
-  buttonRender?: (canBeReset: boolean, handleRedirect: () => void) => React.ReactNode;
+  buttonRender?: (canBeReset: boolean, handleRedirect: () => void, isLoading: boolean) => React.ReactNode;
 }
 
 const UserSearcher = ({
@@ -20,6 +20,7 @@ const UserSearcher = ({
 }: UserSearcherProps) => {
     const inputRef = useRef<InputRef>(null);
     const [username, setUsername] = useState(initialValue);
+    const [isLoading, setLoading] = useState(false)
 
     const canBeReset = username !== initialValue
     const isResetButtonShowed = isResetable && canBeReset
@@ -33,6 +34,7 @@ const UserSearcher = ({
         return
       }
   
+      setLoading(true);
       onSearch(username);
     }
   
@@ -41,6 +43,16 @@ const UserSearcher = ({
       setTimeout(() => {
         inputRef.current?.blur()
       })
+    }
+
+    const getButton = () => {
+      const externalButton = buttonRender?.(canBeReset, handleRedirect, isLoading)
+
+      return externalButton ??
+        <UserSearcherSearchButton
+          onClick={handleRedirect}
+          loading={isLoading}
+        />
     }
   
     return (
@@ -74,8 +86,7 @@ const UserSearcher = ({
               }
             />
             {
-              buttonRender?.(canBeReset, handleRedirect) ??
-                <UserSearcherSearchButton onClick={handleRedirect} />
+              getButton()
             }
           </ConfigProvider>
         </Space.Compact>

@@ -5,14 +5,16 @@ import { SearchOutlined } from '@ant-design/icons';
 
 type Props = {
     onClick: () => void;
+    loading?: boolean;
 }
 
-const UserSearcherSearchButton = ({ onClick }: Props) => {
+const UserSearcherSearchButton = ({ onClick, loading }: Props) => {
   return (
     <Button
         onClick={onClick}
         style={buttonStyle}
         icon={<SearchOutlined />}
+        loading={loading}
         iconPosition="end"
     >
         <strong>

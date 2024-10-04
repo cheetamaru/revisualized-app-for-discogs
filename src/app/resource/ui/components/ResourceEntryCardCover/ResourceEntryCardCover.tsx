@@ -16,7 +16,7 @@ type Props = {
 }
 
 const { getFormatImageSrc, isFileFormat } = ResourceFormatImageDomain;
-const { getCoverGridOptions, getAllowedDescription } = ResourceEntryCardCoverDomain;
+const { getCoverGridOptions, getAllowedDescription, getContainerStyle } = ResourceEntryCardCoverDomain;
 
 const getDescription = (isShown: boolean, description?: string) => {
     return isShown && 
@@ -34,22 +34,6 @@ const getQuantity = (isShown: boolean, coverSize: number, quantity?: number,) =>
                 x{quantity}
             </Text>
         </div>
-}
-
-const getContainerStyle = ({
-    onePart,
-    coverSize
-}: {
-    onePart: number;
-    coverSize: number;
-}): React.CSSProperties => {
-    return {
-        height: coverSize,
-        gridTemplateColumns: `repeat(9, ${onePart}px)`,
-        backgroundColor: "#dedede",
-        borderRadius: "8px 8px 0 0",
-        display: "grid",
-    }
 }
 
 const ResourceEntryCardCover = ({src, coverImageHeight, title, format, loading}: Props) => {

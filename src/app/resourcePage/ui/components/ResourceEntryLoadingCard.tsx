@@ -1,6 +1,6 @@
 import { Card } from 'antd'
 import React from 'react'
-import style from "./style/resourceEntryCard.module.css"
+import style from "@/app/resource/ui/components/style/resourceEntryCard.module.css"
 import SkeletonImage from 'antd/es/skeleton/Image'
 import { resourceEntryCardBodyStyle } from '@/app/resource/ui/components/style/resourceEntryCardStyles'
 import { ResourceEntryCardCoverDomain } from '@/app/resource/domain/ResourceEntryCardCoverDomain'

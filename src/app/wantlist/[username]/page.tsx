@@ -8,6 +8,12 @@ type Props = {
     params: { username: string }; 
     searchParams?: ResourcePageSearchParams;
 }
+
+const getSuspenseKey = (
+    ...args: string[]
+) => {
+    return args.join("|")
+}
   
 const WantlistPage = async ({params, searchParams}: Props) => {
     const {
@@ -17,8 +23,12 @@ const WantlistPage = async ({params, searchParams}: Props) => {
         layout, 
     } = getResourcePageParams(searchParams)
 
-    const suspenseKey = currentPage.toString() + perPage.toString() + sort.toString() + layout.toString()
-
+    const suspenseKey = getSuspenseKey(
+        currentPage.toString(),
+        perPage.toString(),
+        sort.toString(),
+        layout.toString()
+    )
 
     return (
         <Suspense

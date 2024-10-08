@@ -3,6 +3,7 @@ import { getResourcePageParams } from "@/app/resourcePage/utils/getResourcePageP
 import { Suspense } from "react";
 import WantlistPageWrapper from "./ui/WantlistPageWrapper";
 import ResourcePageLayout from "@/app/resourcePage/ui/layouts/ResourcePageLayout";
+import WantlistEntries from "./ui/WantlistEntries";
 
 type Props = {
     params: { username: string }; 
@@ -38,7 +39,7 @@ const WantlistPage = async ({params, searchParams}: Props) => {
                     params={params}
                     totalItems={0}
                 >
-                    Loading
+                    <WantlistEntries layout={layout} isLoading={true} entries={[]} />
                 </ResourcePageLayout>
             }
         >

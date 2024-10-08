@@ -60,7 +60,7 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({
             loading={loading}
           />
         }
-        loading={true}
+        loading={loading}
       >
         <Flex vertical justify="space-between">
           <div>

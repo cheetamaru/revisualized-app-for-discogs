@@ -8,7 +8,7 @@ const { cardContainerStyle } = wantlistEntriesStyle;
 
 const ResourcePageCardsLoading = () => {
 
-    const arrayOfEmpty =  Array(8).fill(null).map((_, index) => index)
+    const arrayOfEmpty =  Array(10).fill(null).map((_, index) => index)
 
   return (
     <Flex

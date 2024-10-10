@@ -4,6 +4,7 @@ import { Empty, Flex } from 'antd'
 import style from "../style/wantlistEntries.module.css"
 import { wantlistEntriesStyle } from '../style/wantlistEntriesStyle';
 import ResourceEntryCard from '@/app/resource/ui/components/ResourceEntryCard';
+import ResourcePageCardsLoading from '@/app/resourcePage/ui/components/ResourcePageCardsLoading';
 
 const {
   cardContainerStyle,
@@ -21,7 +22,11 @@ const getEmptyCards = () => {
   </>
 }
 
-const WantlistEntriesTiles = ({entries}: WantlistEntriesLayoutProps) => {
+const WantlistEntriesTiles = ({entries, isLoading}: WantlistEntriesLayoutProps) => {
+  if (isLoading) {
+    return <ResourcePageCardsLoading />
+  }
+
   if (!entries || !entries.length) {
     return getEmptyCards()
   }

@@ -15,14 +15,15 @@ const layoutComponentMapper = new Map([
 const WantlistEntries = ({
   layout,
   entries,
+  isLoading,
 }: WantlistEntriesProps) => {
   const renderLayoutComponent = layoutComponentMapper.get(layout)
 
   if (!renderLayoutComponent) {
-    return WantlistEntriesTiles({ entries })
+    return WantlistEntriesTiles({ entries, isLoading })
   }
 
-  return renderLayoutComponent({ entries })
+  return renderLayoutComponent({ entries, isLoading })
 }
 
 export default WantlistEntries;

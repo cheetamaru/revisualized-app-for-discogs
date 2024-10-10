@@ -8,13 +8,13 @@ const {
     tableContainerStyle,
   } = wantlistEntriesStyle;
 
-const WantlistEntriesTableFull = ({entries}: WantlistEntriesLayoutProps) => {
+const WantlistEntriesTableFull = ({entries, isLoading}: WantlistEntriesLayoutProps) => {
   return (
     <Flex
         justify="center"
         style={tableContainerStyle}
       >
-        <ResourceTableFull data={entries} />
+        <ResourceTableFull data={entries} loading={isLoading} />
     </Flex>
   )
 }

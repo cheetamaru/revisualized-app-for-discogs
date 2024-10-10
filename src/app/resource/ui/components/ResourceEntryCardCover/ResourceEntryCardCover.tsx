@@ -5,16 +5,18 @@ import { ResourceFormatImageDomain } from "../../../domain/ResourceFormatImageDo
 import ResourceEntryCardCoverImage from "./ResourceEntryCardCoverImage";
 import ResourceEntryCardFormatImage from "./ResourceEntryCardFormatImage";
 import { ResourceEntryCardCoverDomain } from "@/app/resource/domain/ResourceEntryCardCoverDomain";
+import SkeletonImage from "antd/es/skeleton/Image";
 
 type Props = {
     src: string;
     coverImageHeight: number;
     format: MusicEntryFormat;
     title: string;
+    loading?: boolean;
 }
 
 const { getFormatImageSrc, isFileFormat } = ResourceFormatImageDomain;
-const { getCoverGridOptions, getAllowedDescription } = ResourceEntryCardCoverDomain;
+const { getCoverGridOptions, getAllowedDescription, getContainerStyle } = ResourceEntryCardCoverDomain;
 
 const getDescription = (isShown: boolean, description?: string) => {
     return isShown && 
@@ -34,23 +36,7 @@ const getQuantity = (isShown: boolean, coverSize: number, quantity?: number,) =>
         </div>
 }
 
-const getContainerStyle = ({
-    onePart,
-    coverSize
-}: {
-    onePart: number;
-    coverSize: number;
-}): React.CSSProperties => {
-    return {
-        height: coverSize,
-        gridTemplateColumns: `repeat(9, ${onePart}px)`,
-        backgroundColor: "#dedede",
-        borderRadius: "8px 8px 0 0",
-        display: "grid",
-    }
-}
-
-const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) => {
+const ResourceEntryCardCover = ({src, coverImageHeight, title, format, loading}: Props) => {
     const { name: formatName, quantity, descriptions } = format;
 
     const { onePart, coverSize } = getCoverGridOptions(coverImageHeight)
@@ -59,6 +45,15 @@ const ResourceEntryCardCover = ({src, coverImageHeight, title, format}: Props) =
 
     const isDescriptionShown = Boolean(formatImg) || isFileFormat(formatName)
     const isQuantityShown = Boolean(formatImg && quantity > 1)
+
+    if (loading) {
+        return <div 
+            style={getContainerStyle({ onePart, coverSize })} 
+            className={style.cover_container}
+        >
+            <SkeletonImage active />
+        </div>
+    }
 
     return (
     <>

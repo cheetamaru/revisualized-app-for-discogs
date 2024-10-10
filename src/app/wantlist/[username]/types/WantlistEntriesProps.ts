@@ -3,9 +3,11 @@ import { WantlistEntryType } from "./WantlistEntryType";
 
 export type WantlistEntriesProps = {
     layout: ResourcePageLayout;
-    entries: WantlistEntryType[]
+    entries: WantlistEntryType[];
+    isLoading?: boolean;
 }
 
 export type WantlistEntriesLayoutProps = {
-    entries: WantlistEntriesProps["entries"]
+    entries: WantlistEntriesProps["entries"];
+    isLoading: WantlistEntriesProps["isLoading"];
 }

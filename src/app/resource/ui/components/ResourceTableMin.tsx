@@ -5,7 +5,8 @@ import { resourceTableStyles } from './style/resourceTableStyles';
 import { ResourceEntryType } from '../../types/ResourceEntryType';
 
 type Props = {
-    data: ResourceEntryType[]
+    data: ResourceEntryType[];
+    loading?: boolean;
 }
 
 const {
@@ -18,7 +19,7 @@ const {
 
 const columns = getColumns()
 
-const ResourceTableMin = ({data}: Props) => {
+const ResourceTableMin = ({data, loading}: Props) => {
   return (
     <Table
         dataSource={data}
@@ -28,6 +29,7 @@ const ResourceTableMin = ({data}: Props) => {
         size="small"
         rowKey="id"
         style={generalStyle}
+        loading={loading}
     />
   )
 }

@@ -19,13 +19,15 @@ const getAllowedDescription = (descriptions: MusicEntryFormat["descriptions"]): 
     return descriptions[0]?.length <= 3 ? descriptions[0] : undefined
 }
 
+type GetContainerStyle = {
+    onePart: number;
+    coverSize: number;
+}
+
 const getContainerStyle = ({
     onePart,
     coverSize
-}: {
-    onePart: number;
-    coverSize: number;
-}): React.CSSProperties => {
+}: GetContainerStyle): React.CSSProperties => {
     return {
         height: coverSize,
         gridTemplateColumns: `repeat(9, ${onePart}px)`,

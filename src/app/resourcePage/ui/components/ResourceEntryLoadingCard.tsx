@@ -5,20 +5,26 @@ import SkeletonImage from 'antd/es/skeleton/Image'
 import { resourceEntryCardBodyStyle } from '@/app/resource/ui/components/style/resourceEntryCardStyles'
 import { ResourceEntryCardCoverDomain } from '@/app/resource/domain/ResourceEntryCardCoverDomain'
 
-const { getContainerStyle } = ResourceEntryCardCoverDomain;
+const { getContainerStyle, getCoverGridOptions } = ResourceEntryCardCoverDomain;
 
-const ResourceEntryLoadingCard = () => {
+type Props = {
+  coverImageHeight: number;
+}
+
+const ResourceEntryLoadingCard = ({ coverImageHeight }: Props) => {
+  const { onePart, coverSize } = getCoverGridOptions(coverImageHeight)
+
   return (
     <Card
         bordered={false}
         styles={{body: resourceEntryCardBodyStyle}}
         cover={
           <div 
-            style={getContainerStyle({ onePart: 21, coverSize: 147 })} 
-            className={style.cover_container}
-        >
-            <SkeletonImage active />
-        </div>
+              style={getContainerStyle({ onePart, coverSize })} 
+              className={style.cover_container}
+          >
+              <SkeletonImage active />
+          </div>
         }
         loading={true}
       />

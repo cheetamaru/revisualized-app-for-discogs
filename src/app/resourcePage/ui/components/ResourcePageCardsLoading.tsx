@@ -9,14 +9,15 @@ const { cardContainerStyle } = wantlistEntriesStyle;
 const { defaultImageHeight } = ResourceEntryCardDomain;
 
 type Props = {
-    coverImageHeight? : number;
+    coverImageHeight?: number;
+    amountOfCards?: number;
 }
 
-const ResourcePageCardsLoading = ({ coverImageHeight = defaultImageHeight }: Props) => {
+const ResourcePageCardsLoading = ({ coverImageHeight = defaultImageHeight, amountOfCards = 10 }: Props) => {
 
-    const arrayOfEmpty =  Array(10).fill(null).map((_, index) => index)
+    const arrayOfEmpty =  Array(amountOfCards).fill(null).map((_, index) => index)
 
-  return (
+    return (
     <Flex
         justify="center"
         className={style.container}
@@ -30,7 +31,7 @@ const ResourcePageCardsLoading = ({ coverImageHeight = defaultImageHeight }: Pro
             }
         </div>
     </Flex>
-  )
+    )
 }
 
 export default ResourcePageCardsLoading

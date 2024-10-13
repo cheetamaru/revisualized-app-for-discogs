@@ -20,10 +20,19 @@ const ResourceEntryLoadingCard = ({ coverImageHeight }: Props) => {
         styles={{body: resourceEntryCardBodyStyle}}
         cover={
           <div 
-              style={getContainerStyle({ onePart, coverSize })} 
+              style={{height: coverSize}} 
               className={style.cover_container}
           >
-              <SkeletonImage active />
+              <SkeletonImage
+                active
+                rootClassName="loading-card__skeleton-image"
+                style={
+                  {
+                    width: "100%",
+                    height: "100%"
+                  }
+                }
+              />
           </div>
         }
         loading={true}

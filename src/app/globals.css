@@ -35,3 +35,8 @@ a {
 html {
   color-scheme: dark;
 }
+
+.loading-card__skeleton-image {
+  width: 100%;
+  height: 100%;
+}

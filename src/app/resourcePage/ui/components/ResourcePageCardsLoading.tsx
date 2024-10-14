@@ -6,14 +6,17 @@ import ResourceEntryLoadingCard from './ResourceEntryLoadingCard'
 import { ResourceEntryCardDomain } from '@/app/resource/domain/ResourceEntryCardDomain'
 
 const { cardContainerStyle } = wantlistEntriesStyle;
-const { defaultImageHeight } = ResourceEntryCardDomain;
+const { defaultImageHeight, defaultLoadingCardAmount } = ResourceEntryCardDomain;
 
 type Props = {
     coverImageHeight?: number;
     amountOfCards?: number;
 }
 
-const ResourcePageCardsLoading = ({ coverImageHeight = defaultImageHeight, amountOfCards = 10 }: Props) => {
+const ResourcePageCardsLoading = ({
+        coverImageHeight = defaultImageHeight,
+        amountOfCards = defaultLoadingCardAmount
+    }: Props) => {
 
     const arrayOfEmpty =  Array(amountOfCards).fill(null).map((_, index) => index)
 

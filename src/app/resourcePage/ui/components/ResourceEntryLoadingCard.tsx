@@ -12,7 +12,7 @@ type Props = {
 }
 
 const ResourceEntryLoadingCard = ({ coverImageHeight }: Props) => {
-  const { onePart, coverSize } = getCoverGridOptions(coverImageHeight)
+  const { coverSize } = getCoverGridOptions(coverImageHeight)
 
   return (
     <Card

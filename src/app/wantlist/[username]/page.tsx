@@ -2,8 +2,7 @@ import { ResourcePageSearchParams } from "@/app/resourcePage/types/ResourcePageS
 import { getResourcePageParams } from "@/app/resourcePage/utils/getResourcePageParams";
 import { Suspense } from "react";
 import WantlistPageWrapper from "./ui/WantlistPageWrapper";
-import ResourcePageLayout from "@/app/resourcePage/ui/layouts/ResourcePageLayout";
-import WantlistEntries from "./ui/WantlistEntries";
+import WantlistPageWrapperLoading from "./ui/WantlistPageWrapperLoading";
 
 type Props = {
     params: { username: string }; 
@@ -35,15 +34,16 @@ const WantlistPage = async ({params, searchParams}: Props) => {
         <Suspense
             key={suspenseKey}
             fallback={
-                <ResourcePageLayout
+                <WantlistPageWrapperLoading
                     params={params}
-                    totalItems={0}
-                >
-                    <WantlistEntries layout={layout} isLoading={true} entries={[]} />
-                </ResourcePageLayout>
+                    layout={layout}
+                />
             }
         >
-            <WantlistPageWrapper params={params} searchParams={searchParams} />
+            <WantlistPageWrapper
+                params={params}
+                searchParams={searchParams}
+            />
         </Suspense>
     )
 }

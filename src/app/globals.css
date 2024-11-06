@@ -37,6 +37,6 @@ html {
 }
 
 .loading-card__skeleton-image {
-  width: 100%;
+  width: 100% !important;
   height: 100%;
 }

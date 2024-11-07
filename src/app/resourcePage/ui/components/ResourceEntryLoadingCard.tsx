@@ -11,6 +11,11 @@ type Props = {
   coverImageHeight: number;
 }
 
+const skeletonImageStyles: React.CSSProperties = {
+  width: "100%",
+  height: "100%"
+}
+
 const ResourceEntryLoadingCard = ({ coverImageHeight }: Props) => {
   const { coverSize } = getCoverGridOptions(coverImageHeight)
 
@@ -26,12 +31,7 @@ const ResourceEntryLoadingCard = ({ coverImageHeight }: Props) => {
               <SkeletonImage
                 active
                 rootClassName="loading-card__skeleton-image"
-                style={
-                  {
-                    width: "100%",
-                    height: "100%"
-                  }
-                }
+                style={skeletonImageStyles}
               />
           </div>
         }

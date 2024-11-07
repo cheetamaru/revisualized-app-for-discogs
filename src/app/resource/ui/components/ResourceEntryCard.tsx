@@ -14,7 +14,6 @@ import { DiscogsLisnksDomain } from '@/shared/domain/discogsLinks/DiscogsLinksDo
 type Props<T> = {
     entry: T,
     coverImageHeight?: number;
-    loading?: boolean;
 }
 
 const {
@@ -33,7 +32,6 @@ const {
 const ResourceEntryCard = <T extends ResourceEntryType,>({
   entry,
   coverImageHeight = defaultImageHeight,
-  loading,
 }: Props<T>) => {
   const {
     resourceId,
@@ -57,10 +55,8 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({
             format={mainFormat}
             src={fullCoverUrl}
             title={title}
-            loading={loading}
           />
         }
-        loading={loading}
       >
         <Flex vertical justify="space-between">
           <div>

@@ -3,9 +3,11 @@ import { Table } from 'antd'
 import { resourceTableStyles } from './style/resourceTableStyles';
 import { ResourceEntryType } from '../../types/ResourceEntryType';
 import { ResourceTableFullColumns } from '../../domain/ResourceTableFullColumns';
+import { ResourceTableDomain } from '../../domain/ResourceTableDomain';
 
 type Props = {
-    data: ResourceEntryType[]
+    data: ResourceEntryType[];
+    loading?: boolean;
 }
 
 const {
@@ -18,7 +20,9 @@ const {
 
 const columns = getColumns()
 
-const ResourceTableFull = ({data}: Props) => {
+const { getTableEmptyText } = ResourceTableDomain;
+
+const ResourceTableFull = ({data, loading}: Props) => {
   return (
     <Table
         dataSource={data}
@@ -28,6 +32,8 @@ const ResourceTableFull = ({data}: Props) => {
         size="small"
         rowKey="id"
         style={generalStyle}
+        loading={loading}
+        locale={{ emptyText: getTableEmptyText(loading) }}
     />
   )
 }

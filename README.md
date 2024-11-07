@@ -61,6 +61,7 @@ Domain of the revisualization is __only__ other users' collections and wantlists
 - [x] Add empty cards message
 - [ ] Add format image distinction for colored vinyl/cassetes
 - [ ] Add help to the main page
+- [x] Add loading state for tables
 
 ## Bugs
 - [x] On error page on userinput change blur occurs for some reason

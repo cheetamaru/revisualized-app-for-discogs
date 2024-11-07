@@ -8,13 +8,13 @@ const {
     tableContainerStyle,
   } = wantlistEntriesStyle;
 
-const WantlistEntriesTableMin = ({entries}: WantlistEntriesLayoutProps) => {
+const WantlistEntriesTableMin = ({entries, isLoading}: WantlistEntriesLayoutProps) => {
   return (
     <Flex
         justify="center"
         style={tableContainerStyle}
       >
-          <ResourceTableMin data={entries} />
+          <ResourceTableMin data={entries} loading={isLoading} />
       </Flex>
   )
 }

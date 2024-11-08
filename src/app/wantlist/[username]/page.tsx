@@ -31,20 +31,20 @@ const WantlistPage = async ({params, searchParams}: Props) => {
     )
 
     return (
-        <Suspense
-            key={suspenseKey}
-            fallback={
-                <WantlistPageWrapperLoading
-                    params={params}
-                    layout={layout}
-                />
-            }
-        >
+        // <Suspense
+        //     key={suspenseKey}
+        //     fallback={
+        //         <WantlistPageWrapperLoading
+        //             params={params}
+        //             layout={layout}
+        //         />
+        //     }
+        // >
             <WantlistPageWrapper
                 params={params}
                 searchParams={searchParams}
             />
-        </Suspense>
+        // </Suspense>
     )
 }
 

@@ -1,47 +1,51 @@
 import { getResourcePageParams } from '@/app/resourcePage/utils/getResourcePageParams';
-import React from 'react'
-import wantlistApiAdapter from '../adapters/wantlistApiAdapter';
-import ErrorWithSearcher from '@/shared/ui/components/global/ErrorWithSearcher';
+import React, { Suspense } from 'react'
 import WantlistEntries from './WantlistEntries';
 import { ResourcePageSearchParams } from '@/app/resourcePage/types/ResourcePageSearchParams';
 import ResourcePageLayout from '@/app/resourcePage/ui/layouts/ResourcePageLayout';
+import WantlistEntriesWrapper from './WantlistEntriesWrapper';
 
 type Props = {
     params: { username: string }; 
     searchParams?: ResourcePageSearchParams;
 }
 
-const WantlistPageWrapper = async ({params, searchParams}: Props) => {
+const getSuspenseKey = (
+    ...args: string[]
+) => {
+    return args.join("|")
+}
+
+const WantlistPageWrapper = ({params, searchParams}: Props) => {
     const {
         currentPage,
         perPage,
         sort,
         layout, 
     } = getResourcePageParams(searchParams)
-
-    const { username } = params;
-
-    const wantlist = await wantlistApiAdapter.getWantlist(
-        username,
-        {
-            page: currentPage,
-            perPage: perPage,
-            sort,
-        })
-
-    if (wantlist.error) {
-        return <ErrorWithSearcher message={wantlist.error} />
-    }
+    
+    const suspenseKey = getSuspenseKey(
+        currentPage.toString(),
+        perPage.toString(),
+        sort.toString(),
+        layout.toString()
+    )
 
   return (
     <ResourcePageLayout
         params={params}
-        totalItems={wantlist?.pagination?.itemsTotal || 0}
     >
-            <WantlistEntries
-                layout={layout}
-                entries={wantlist.entries || []}
+        <Suspense
+            key={suspenseKey}
+            fallback={
+                <WantlistEntries layout={layout} isLoading={true} entries={[]} />
+            }
+        >
+            <WantlistEntriesWrapper
+                params={params}
+                searchParams={searchParams}
             />
+        </Suspense>
     </ResourcePageLayout>
   )
 }

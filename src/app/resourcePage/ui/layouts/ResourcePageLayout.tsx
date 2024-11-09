@@ -12,7 +12,6 @@ import ResourcePagePagination from "../components/ResourcePagePagination";
 type Props = Readonly<{
     params: { username: string }; 
     children: React.ReactNode;
-    totalItems: number;
   }>
 
 const {
@@ -26,7 +25,7 @@ const {
     getWantlistLabel,
 } = ResourcePageTabsDomain;
 
-export default async function ResourcePageLayout({ children, params, totalItems }: Props) {
+export default async function ResourcePageLayout({ children, params }: Props) {
     const { username } = params;
 
     const user = await userApiAdapter.getUserProfile(username);
@@ -66,7 +65,7 @@ export default async function ResourcePageLayout({ children, params, totalItems 
                     />
                 </Content>
                 <ResourcePagePagination
-                    totalPages={totalItems}
+                    totalPages={user.wantlistTotal}
                     style={paginationStyle}
                 />
             </Layout>

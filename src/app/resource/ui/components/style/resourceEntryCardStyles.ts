@@ -30,8 +30,22 @@ const coverFormatTextInfoStyle: React.CSSProperties = {
     paddingLeft: 6,
 }
 
+const computeCoverImageStyle = (internalWidth: number, coverSize: number): React.CSSProperties => {
+    if (internalWidth <= coverSize) {
+        return coverImageStyle
+    }
+
+    return {
+        ...coverImageStyle,
+        borderTopLeftRadius: 8,
+        width: "100%",
+        objectFit: "cover"
+    }
+}
+
 export const resourceEntryCardStyle = {
     coverImageStyle,
     coverImagePlaceholderStyle,
     coverFormatTextInfoStyle,
+    computeCoverImageStyle,
 }

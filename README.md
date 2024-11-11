@@ -1,5 +1,7 @@
 # revisualized-app-for-discogs
-discogs.com wrapper for outer users with revisualized ui
+Revisualized ui for discogs.com wantlist
+
+Link: [revisualized-app-for-discogs.vercel.app](https://revisualized-app-for-discogs.vercel.app/)
 
 It is my pet-project dedicated to enhancing the visual appeal and user experience of a cool site [discogs.com](https://www.discogs.com/). I try to provide a modern, stylish overlay that transforms current design into more visually appealing and user-friendly interface, without altering the original content and functionality.
 

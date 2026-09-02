@@ -1,9 +1,10 @@
 import { getResourcePageParams } from '@/app/resourcePage/utils/getResourcePageParams';
 import React, { Suspense } from 'react'
-import WantlistEntries from './WantlistEntries';
+import ResourceEntries from '@/app/resource/ui/components/ResourceEntries';
 import { ResourcePageSearchParams } from '@/app/resourcePage/types/ResourcePageSearchParams';
 import ResourcePageLayout from '@/app/resourcePage/ui/layouts/ResourcePageLayout';
 import WantlistEntriesWrapper from './WantlistEntriesWrapper';
+import { ResourcePageTabKey } from '@/app/resourcePage/domain/ResourcePageTabKey';
 
 type Props = {
     params: { username: string }; 
@@ -34,11 +35,12 @@ const WantlistPageWrapper = ({params, searchParams}: Props) => {
   return (
     <ResourcePageLayout
         params={params}
+        activeTabKey={ResourcePageTabKey.wantlist}
     >
         <Suspense
             key={suspenseKey}
             fallback={
-                <WantlistEntries layout={layout} isLoading={true} entries={[]} />
+                <ResourceEntries layout={layout} isLoading={true} entries={[]} />
             }
         >
             <WantlistEntriesWrapper

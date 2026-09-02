@@ -3,6 +3,7 @@ import { MusicArtistShort } from "@/shared/types/musicInfo/MusicArtistShort";
 import { MusicEntryFormat } from "@/shared/types/musicInfo/MusicEntryFormat";
 
 export type ResourceEntryType = {
+    resourceKey: string;
     resourceId: number;
     title: string;
     rating: number;

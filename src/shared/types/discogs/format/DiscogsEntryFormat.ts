@@ -1,5 +1,6 @@
-import { WantlistFormat } from "@lionralfs/discogs-client";
-
-export type DiscogsEntryFormat = WantlistFormat & {
+export type DiscogsEntryFormat = {
+    name: string;
+    qty: number | string;
+    descriptions: string[];
     text?: string;
 };

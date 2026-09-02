@@ -22,7 +22,14 @@ const getWantlistUrl = (user: UserProfile) => {
     return `https://${hostname}/wantlist?user=${user.username}`
 }
 
+const getCollectionUrl = (user: UserProfile) => {
+    const hostname = getHostname()
+
+    return `https://${hostname}/user/${encodeURIComponent(user.username)}/collection`
+}
+
 export const DiscogsLisnksDomain = {
     getEntrySrc,
     getWantlistUrl,
+    getCollectionUrl,
 }

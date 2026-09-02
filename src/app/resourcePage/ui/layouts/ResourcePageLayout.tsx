@@ -11,6 +11,7 @@ import ResourcePagePagination from "../components/ResourcePagePagination";
 
 type Props = Readonly<{
     params: { username: string }; 
+    activeTabKey: ResourcePageTabKey;
     children: React.ReactNode;
   }>
 
@@ -23,49 +24,55 @@ const {
 
 const {
     getWantlistLabel,
+    getCollectionLabel,
 } = ResourcePageTabsDomain;
 
-export default async function ResourcePageLayout({ children, params }: Props) {
+export default async function ResourcePageLayout({ children, params, activeTabKey }: Props) {
     const { username } = params;
 
     const user = await userApiAdapter.getUserProfile(username);
 
     const wantlistTabLabel = getWantlistLabel(user.wantlistTotal);
+    const collectionTabLabel = getCollectionLabel(user.collectionTotal);
+    const activeTotal = activeTabKey === ResourcePageTabKey.collection
+        ? user.collectionTotal
+        : user.wantlistTotal;
 
     return (
       <>
         <Layout style={mainLayoutStyle}>
             <Header style={headerStyle}>
-                <ResourcePageHeader user={user}/>
+                <ResourcePageHeader user={user} activeTabKey={activeTabKey}/>
             </Header>
             <Layout style={containerLayoutStyle}>
                 <Content>
                     <ResourcePageTabs
                         username={username}
+                        activeKey={activeTabKey}
                         items={
                             [
                                 {
-                                    label: wantlistTabLabel,
-                                    key: ResourcePageTabKey.wantlist,
-                                    children: <>
+                                    label: collectionTabLabel,
+                                    key: ResourcePageTabKey.collection,
+                                    children: activeTabKey === ResourcePageTabKey.collection ? <>
                                         <ResourcePageControls />
                                         {children}
-                                    </>,
+                                    </> : null,
                                 },
-                                // {
-                                //     label: `Collection — ${user.collectionTotal} items`,
-                                //     key: "collection",
-                                //     children: <>
-                                //         <ResourcePageControls />
-                                //         {children}
-                                //     </>,
-                                // }
+                                {
+                                    label: wantlistTabLabel,
+                                    key: ResourcePageTabKey.wantlist,
+                                    children: activeTabKey === ResourcePageTabKey.wantlist ? <>
+                                        <ResourcePageControls />
+                                        {children}
+                                    </> : null,
+                                }
                             ]
                         }
                     />
                 </Content>
                 <ResourcePagePagination
-                    totalPages={user.wantlistTotal}
+                    totalPages={activeTotal}
                     style={paginationStyle}
                 />
             </Layout>

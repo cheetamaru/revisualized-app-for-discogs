@@ -17,7 +17,7 @@ const MainPage = () => {
         <MainPageTitle />
 
         <div className={style.username_input}>
-            <RoutedUserSearcher routerPathBeforeUsername="/wantlist/" />
+            <RoutedUserSearcher routerPathBeforeUsername="/collection/" />
         </div>
 
         <div className={style.help}>

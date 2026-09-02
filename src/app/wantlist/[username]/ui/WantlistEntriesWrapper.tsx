@@ -2,7 +2,7 @@ import { getResourcePageParams } from '@/app/resourcePage/utils/getResourcePageP
 import React from 'react'
 import wantlistApiAdapter from '../adapters/wantlistApiAdapter';
 import ErrorWithSearcher from '@/shared/ui/components/global/ErrorWithSearcher';
-import WantlistEntries from './WantlistEntries';
+import ResourceEntries from '@/app/resource/ui/components/ResourceEntries';
 import { ResourcePageSearchParams } from '@/app/resourcePage/types/ResourcePageSearchParams';
 
 type Props = {
@@ -32,7 +32,7 @@ const WantlistEntriesWrapper = async ({params, searchParams}: Props) => {
     }
 
     return (
-        <WantlistEntries
+        <ResourceEntries
             layout={layout}
             entries={wantlist.entries || []}
         />

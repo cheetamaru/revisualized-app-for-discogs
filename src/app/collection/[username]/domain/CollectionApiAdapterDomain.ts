@@ -1,30 +1,29 @@
-import { DiscogsWantlistParams } from "@/shared/types/discogs/wantlist/DiscogsWantlistParams"
-import { GetWantlistParams } from "../types/GetWantlistParams"
-import { DiscogsWantlistEntry } from "@/shared/types/discogs/wantlist/DiscogsWantlistEntry"
-import { WantlistEntryType } from "../types/WantlistEntryType"
-import { MusicInfoApiAdapterDomain } from "@/shared/domain/musicInfo/MusicInfoApiAdapterDomain";
 import { resourcePageSortAdapter } from "@/app/resourcePage/adapters/resourcePageSortAdapter";
-
-const {
-    transformToMusicArtist,
-    transformToMusicLabel,
-    transformToMusicEntryFormat,
-} = MusicInfoApiAdapterDomain;
+import { MusicInfoApiAdapterDomain } from "@/shared/domain/musicInfo/MusicInfoApiAdapterDomain";
+import { DiscogsCollectionEntry } from "@/shared/types/discogs/collection/DiscogsCollectionEntry";
+import { DiscogsCollectionParams } from "@/shared/types/discogs/collection/DiscogsCollectionParams";
+import { CollectionEntryType } from "../types/CollectionEntryType";
+import { GetCollectionParams } from "../types/GetCollectionParams";
 
 const { getApiSort } = resourcePageSortAdapter;
+const {
+    transformToMusicArtist,
+    transformToMusicEntryFormat,
+    transformToMusicLabel,
+} = MusicInfoApiAdapterDomain;
 
-const transformGetterParamsToApi = (params: GetWantlistParams): DiscogsWantlistParams => {
-    const { sort, sort_order } = getApiSort(params.sort)
+const transformGetterParamsToApi = (params: GetCollectionParams): DiscogsCollectionParams => {
+    const { sort, sort_order } = getApiSort(params.sort);
 
     return {
         page: params.page,
         per_page: params.perPage,
         sort,
         sort_order,
-    }
-}
+    };
+};
 
-const transformToWantlistEntry = (entry: DiscogsWantlistEntry): WantlistEntryType => {
+const transformToCollectionEntry = (entry: DiscogsCollectionEntry): CollectionEntryType => {
     const info = entry.basic_information;
     const formats = info.formats || [];
     const labels = info.labels || [];
@@ -35,7 +34,7 @@ const transformToWantlistEntry = (entry: DiscogsWantlistEntry): WantlistEntryTyp
     const fallbackFormat = { name: "Unknown", qty: 1, descriptions: [] };
 
     return {
-        resourceKey: info.id.toString(),
+        resourceKey: `${info.id}-${entry.instance_id}`,
         resourceId: info.id,
         title: info.title,
         rating: entry.rating,
@@ -49,10 +48,10 @@ const transformToWantlistEntry = (entry: DiscogsWantlistEntry): WantlistEntryTyp
         mainLabelName: mainLabel?.name || "Unknown",
         artists: artists.map(transformToMusicArtist),
         mainArtistName: mainArtist?.name || "Unknown Artist",
-    }
-}
+    };
+};
 
-export const WantlistApiAdapterDomain = {
+export const CollectionApiAdapterDomain = {
     transformGetterParamsToApi,
-    transformToWantlistEntry
-}
+    transformToCollectionEntry,
+};

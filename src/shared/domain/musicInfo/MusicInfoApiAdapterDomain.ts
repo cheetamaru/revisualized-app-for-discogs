@@ -26,7 +26,7 @@ const transformToMusicArtist = (artist: DiscogsArtistShort): MusicArtistShort =>
 const transformToMusicEntryFormat = (format: DiscogsEntryFormat): MusicEntryFormat => {
     return {
         name: format.name,
-        quantity: format.qty,
+        quantity: Number(format.qty),
         descriptions: format.descriptions,
         additionalText: normalizeString(format.text),
     }

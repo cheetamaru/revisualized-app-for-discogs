@@ -30,7 +30,7 @@ const ResourceTableMin = ({data, loading}: Props) => {
         pagination={false}
         tableLayout="fixed"
         size="small"
-        rowKey="id"
+        rowKey="resourceKey"
         style={generalStyle}
         loading={loading}
         locale={{ emptyText: getTableEmptyText(loading) }}

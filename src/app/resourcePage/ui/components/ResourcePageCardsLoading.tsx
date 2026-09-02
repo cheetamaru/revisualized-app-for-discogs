@@ -1,11 +1,11 @@
 import { Flex } from 'antd'
 import React from 'react'
-import style from "@/app/wantlist/[username]/ui/style/wantlistEntries.module.css"
-import { wantlistEntriesStyle } from "@/app/wantlist/[username]/ui/style/wantlistEntriesStyle"
+import style from "@/app/resource/ui/components/style/resourceEntries.module.css"
+import { resourceEntriesStyle } from "@/app/resource/ui/components/style/resourceEntriesStyle"
 import ResourceEntryLoadingCard from './ResourceEntryLoadingCard'
 import { ResourceEntryCardDomain } from '@/app/resource/domain/ResourceEntryCardDomain'
 
-const { cardContainerStyle } = wantlistEntriesStyle;
+const { cardContainerStyle } = resourceEntriesStyle;
 const { defaultImageHeight, defaultLoadingCardAmount } = ResourceEntryCardDomain;
 
 type Props = {

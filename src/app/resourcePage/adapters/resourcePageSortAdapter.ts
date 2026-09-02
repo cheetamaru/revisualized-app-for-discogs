@@ -1,7 +1,7 @@
 import { SortOrder } from "@lionralfs/discogs-client"
 import { ResourcePageSort, defaultResourcePageSort } from "../domain/ResourcePageSort";
 
-type ApiSort = { sort: string, sort_order: SortOrder }
+type ApiSort = { sort: "rating", sort_order: SortOrder }
 
 const sortMapper: Record<ResourcePageSort, ApiSort> = {
     [ResourcePageSort.ratingDesc]: {

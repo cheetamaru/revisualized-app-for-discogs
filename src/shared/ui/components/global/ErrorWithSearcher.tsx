@@ -43,7 +43,7 @@ export default function ErrorWithSearcher({
         <div className={style.username_input}>
           <RoutedUserSearcher
             initialValue={initialValue}
-            routerPathBeforeUsername="/wantlist/"
+            routerPathBeforeUsername="/collection/"
           />
         </div>
       </Flex>

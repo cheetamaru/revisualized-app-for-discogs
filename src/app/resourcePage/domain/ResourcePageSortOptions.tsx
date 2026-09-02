@@ -1,25 +1,10 @@
-import { SelectOption } from "@/shared/types/components/SelectOption";
-import { ResourcePageSort } from "./ResourcePageSort";
-import { Space } from "antd";
-import { FallOutlined, RiseOutlined } from "@ant-design/icons";
+import type { SelectProps } from "antd";
+import { ResourcePageSortField } from "./ResourcePageSort";
 
-const DescLabel = (label: string) => {
-    return <Space><span>{label}</span><FallOutlined /></Space>
-}
-
-const AscLabel = (label: string) => {
-    return <Space><span>{label}</span><RiseOutlined /></Space>
-}
-
-const ratingLabel = "Rating";
-
-export const ResourcePageSortOptions: SelectOption[] = [
-    {
-        value: ResourcePageSort.ratingDesc,
-        label: DescLabel(ratingLabel),
-    },
-    {
-        value: ResourcePageSort.ratingAsc,
-        label: AscLabel(ratingLabel),
-    }
+export const ResourcePageSortOptions: SelectProps<ResourcePageSortField>["options"] = [
+    { value: ResourcePageSortField.artist, label: "Artist" },
+    { value: ResourcePageSortField.title, label: "Title" },
+    { value: ResourcePageSortField.rating, label: "Rating" },
+    { value: ResourcePageSortField.dateAdded, label: "Date added" },
+    { value: ResourcePageSortField.year, label: "Year" },
 ];

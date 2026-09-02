@@ -1,6 +1,14 @@
-import { ResourcePageSort } from '@/app/resourcePage/domain/ResourcePageSort'
+import {
+    createResourcePageSort,
+    getDefaultResourcePageSortOrder,
+    getResourcePageSortDetails,
+    getResourcePageSortOrderLabel,
+    ResourcePageSort,
+    ResourcePageSortField,
+} from '@/app/resourcePage/domain/ResourcePageSort'
 import { ResourcePageSortOptions } from '@/app/resourcePage/domain/ResourcePageSortOptions'
-import { Select, Space } from 'antd'
+import { Button, Select, Space, Tooltip } from 'antd'
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons'
 import React from 'react'
 
 type Props = {
@@ -12,16 +20,33 @@ const ResourcePageSortSelect = ({
     sortValue,
     onChange,
 }: Props) => {
+  const { field, order } = getResourcePageSortDetails(sortValue)
+  const orderLabel = getResourcePageSortOrderLabel(field, order)
+
+  const handleFieldChange = (newField: ResourcePageSortField) => {
+    onChange(createResourcePageSort(newField, getDefaultResourcePageSortOrder(newField)))
+  }
+
+  const toggleOrder = () => {
+    onChange(createResourcePageSort(field, order === "asc" ? "desc" : "asc"))
+  }
+
   return (
     <Space>
-        <span>Sort: </span>
+        <span>Sort:</span>
         <Select
             style={{ width: 130 }}
             options={ResourcePageSortOptions}
-            placeholder="Select sorting"
-            value={sortValue}
-            onChange={onChange}
+            value={field}
+            onChange={handleFieldChange}
         />
+        <Tooltip title={`${orderLabel} · Click to reverse`}>
+            <Button
+                aria-label={`Sort order: ${orderLabel}`}
+                icon={order === "asc" ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+                onClick={toggleOrder}
+            />
+        </Tooltip>
     </Space>
   )
 }

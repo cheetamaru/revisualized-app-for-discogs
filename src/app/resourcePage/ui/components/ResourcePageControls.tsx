@@ -7,6 +7,7 @@ import { ResourcePageSort } from "@/app/resourcePage/domain/ResourcePageSort";
 import ResourcePageCopyButton from "@/app/resourcePage/ui/components/ResourcePageControlsItems/ResourcePageCopyButton";
 import { ResourcePageQueryParam } from "../../domain/ResourcePageQueryParam";
 import { useResourcePageQueryParams } from "../../hooks/useResourcePageQueryParams";
+import style from "./style/resourcePageControls.module.css";
 
 const ResourcePageControls = () => {
     const { setParams, sort, layout } = useResourcePageQueryParams()
@@ -26,8 +27,8 @@ const ResourcePageControls = () => {
     };
 
   return (
-    <>
         <Flex
+            className={style.controls}
             justify="center"
             align="baseline"
             gap={25}
@@ -49,7 +50,6 @@ const ResourcePageControls = () => {
                 <ResourcePageCopyButton />
             </div>
         </Flex>
-    </>
   )
 }
 

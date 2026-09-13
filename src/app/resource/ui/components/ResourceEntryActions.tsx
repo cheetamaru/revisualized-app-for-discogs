@@ -1,20 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "antd";
 import { ExportOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { ResourceEntryType } from "../../types/ResourceEntryType";
-import ResourceEntryDetailsModal from "./ResourceEntryDetailsModal";
 import style from "./style/resourceEntryActions.module.css";
+import { useResourceEntryDetails } from "./ResourceEntryDetailsContext";
 
-export default function ResourceEntryActions({ entry, href }: { entry: ResourceEntryType; href: string }) {
-    const [open, setOpen] = useState(false);
+type Props = {
+    entry: ResourceEntryType;
+    href: string;
+};
 
-    return <>
+export default function ResourceEntryActions({ entry, href }: Props) {
+    const { openDetails } = useResourceEntryDetails();
+
+    return (
         <div className={style.actions}>
-            <Button type="text" icon={<InfoCircleOutlined />} onClick={() => setOpen(true)} aria-label={`Details for ${entry.title}`}>Details</Button>
+            <Button type="text" icon={<InfoCircleOutlined />} onClick={() => openDetails(entry)} aria-label={`Details for ${entry.title}`}>Details</Button>
             <Button type="text" href={href} target="_blank" rel="noopener noreferrer" icon={<ExportOutlined />} iconPosition="end" aria-label={`${entry.title} on Discogs (opens in a new tab)`}>Discogs</Button>
         </div>
-        <ResourceEntryDetailsModal key={entry.resourceId} entry={entry} href={href} open={open} onClose={() => setOpen(false)} />
-    </>;
+    );
 }

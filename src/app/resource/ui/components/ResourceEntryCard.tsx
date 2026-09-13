@@ -11,8 +11,8 @@ import ResourceEntryCardCover from './ResourceEntryCardCover/ResourceEntryCardCo
 import { ResourceDomain } from '../../domain/ResourceDomain'
 import { DiscogsLisnksDomain } from '@/shared/domain/discogsLinks/DiscogsLinksDomain'
 
-type Props<T> = {
-    entry: T,
+type Props = {
+    entry: ResourceEntryType,
     coverImageHeight?: number;
 }
 
@@ -29,10 +29,10 @@ const {
   getCopyMessage,
 } = ResourceDomain;
 
-const ResourceEntryCard = <T extends ResourceEntryType,>({
+const ResourceEntryCard = ({
   entry,
   coverImageHeight = defaultImageHeight,
-}: Props<T>) => {
+}: Props) => {
   const {
     resourceId,
     title,

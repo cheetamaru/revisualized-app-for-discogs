@@ -2,6 +2,7 @@
 import DiscogsLinkButton from "@/shared/ui/components/discogs/DiscogsLinkButton";
 import { buttonStyle } from "../style/userSearcherStyles";
 import UserSearcherSearchButton from "./UserSearcherSearchButton";
+import { ExportOutlined } from "@ant-design/icons";
 
 type Props = {
     isLinkShowed: boolean;
@@ -29,6 +30,7 @@ const UserSearcherActionButton = ({
         <DiscogsLinkButton
             type="default"
             href={userUrl}
+            icon={<ExportOutlined />}
             style={buttonStyle}
             label={
                 <strong>

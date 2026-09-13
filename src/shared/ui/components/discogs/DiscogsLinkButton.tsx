@@ -3,6 +3,7 @@ import DiscogsLogo from "./DiscogsLogo";
 
 type Props = {
   href?: string;
+  icon?: React.ReactNode;
   label: string | React.ReactNode;
   style?: React.CSSProperties;
   type?: GetProps<typeof Button>["type"];
@@ -16,6 +17,7 @@ const defaultStyles: React.CSSProperties = {
 
 const DiscogsLinkButton = ({
     href,
+    icon = <DiscogsLogo size={16} />,
     label,
     style = defaultStyles,
     type = "link"
@@ -26,7 +28,7 @@ const DiscogsLinkButton = ({
         type={type}
         href={href} 
         target="_blank"
-        icon={<DiscogsLogo size={16} />}
+        icon={icon}
         style={style}
         iconPosition="end"
     >

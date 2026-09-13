@@ -8,10 +8,15 @@ import { ResourcePageTabKey } from "../../domain/ResourcePageTabKey";
 import { resourcePagePayloutStyle } from "./style/resourcePageLayoutStyle";
 import { ResourcePageTabsDomain } from "../../domain/ResourcePageTabsDomain";
 import ResourcePagePagination from "../components/ResourcePagePagination";
+import ErrorWithSearcher from "@/shared/ui/components/global/ErrorWithSearcher";
+import { UserResourcesDomain } from "@/app/user/domain/UserResourcesDomain";
+import { redirect } from "next/navigation";
+import { ResourcePageSearchParams } from "../../types/ResourcePageSearchParams";
 
 type Props = Readonly<{
     params: { username: string }; 
     activeTabKey: ResourcePageTabKey;
+    searchParams?: ResourcePageSearchParams;
     children: React.ReactNode;
   }>
 
@@ -27,16 +32,53 @@ const {
     getCollectionLabel,
 } = ResourcePageTabsDomain;
 
-export default async function ResourcePageLayout({ children, params, activeTabKey }: Props) {
+const unavailableResourcesMessage = "This user's collection and wantlist are private or empty";
+
+export default async function ResourcePageLayout({ children, params, activeTabKey, searchParams }: Props) {
     const { username } = params;
 
-    const user = await userApiAdapter.getUserProfile(username);
+    const user = await userApiAdapter.getUserProfileForResources(username);
 
-    const wantlistTabLabel = getWantlistLabel(user.wantlistTotal);
-    const collectionTabLabel = getCollectionLabel(user.collectionTotal);
+    if (!UserResourcesDomain.hasAnyContent(user)) {
+        return <ErrorWithSearcher message={unavailableResourcesMessage} />;
+    }
+
+    const resolvedTabKey = UserResourcesDomain.getFallbackTabKey(user, activeTabKey);
+
+    if (resolvedTabKey && resolvedTabKey !== activeTabKey) {
+        const query = new URLSearchParams();
+        Object.entries(searchParams ?? {}).forEach(([key, value]) => {
+            if (value !== undefined) query.set(key, value);
+        });
+        redirect(ResourcePageTabsDomain.getRouteByKey(resolvedTabKey, username, query.toString()));
+    }
+
+    const hasCollectionAccess = UserResourcesDomain.hasCollectionAccess(user);
+    const hasWantlistAccess = UserResourcesDomain.hasWantlistAccess(user);
+    const wantlistTabLabel = getWantlistLabel(user.wantlistTotal ?? 0);
+    const collectionTabLabel = getCollectionLabel(user.collectionTotal ?? 0);
     const activeTotal = activeTabKey === ResourcePageTabKey.collection
-        ? user.collectionTotal
-        : user.wantlistTotal;
+        ? user.collectionTotal ?? 0
+        : user.wantlistTotal ?? 0;
+
+    const tabItems = [
+        hasCollectionAccess ? {
+            label: collectionTabLabel,
+            key: ResourcePageTabKey.collection,
+            children: activeTabKey === ResourcePageTabKey.collection ? <>
+                <ResourcePageControls />
+                {children}
+            </> : null,
+        } : null,
+        hasWantlistAccess ? {
+            label: wantlistTabLabel,
+            key: ResourcePageTabKey.wantlist,
+            children: activeTabKey === ResourcePageTabKey.wantlist ? <>
+                <ResourcePageControls />
+                {children}
+            </> : null,
+        } : null,
+    ].filter((item): item is NonNullable<typeof item> => item !== null);
 
     return (
       <>
@@ -49,26 +91,7 @@ export default async function ResourcePageLayout({ children, params, activeTabKe
                     <ResourcePageTabs
                         username={username}
                         activeKey={activeTabKey}
-                        items={
-                            [
-                                {
-                                    label: collectionTabLabel,
-                                    key: ResourcePageTabKey.collection,
-                                    children: activeTabKey === ResourcePageTabKey.collection ? <>
-                                        <ResourcePageControls />
-                                        {children}
-                                    </> : null,
-                                },
-                                {
-                                    label: wantlistTabLabel,
-                                    key: ResourcePageTabKey.wantlist,
-                                    children: activeTabKey === ResourcePageTabKey.wantlist ? <>
-                                        <ResourcePageControls />
-                                        {children}
-                                    </> : null,
-                                }
-                            ]
-                        }
+                        items={tabItems}
                     />
                 </Content>
                 <ResourcePagePagination

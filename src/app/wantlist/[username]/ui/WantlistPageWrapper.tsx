@@ -35,6 +35,7 @@ const WantlistPageWrapper = ({params, searchParams}: Props) => {
   return (
     <ResourcePageLayout
         params={params}
+        searchParams={searchParams}
         activeTabKey={ResourcePageTabKey.wantlist}
     >
         <Suspense

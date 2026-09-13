@@ -23,7 +23,7 @@ const CollectionPageWrapper = ({ params, searchParams }: Props) => {
     );
 
     return (
-        <ResourcePageLayout params={params} activeTabKey={ResourcePageTabKey.collection}>
+        <ResourcePageLayout params={params} searchParams={searchParams} activeTabKey={ResourcePageTabKey.collection}>
             <Suspense
                 key={suspenseKey}
                 fallback={<ResourceEntries layout={layout} isLoading entries={[]} />}

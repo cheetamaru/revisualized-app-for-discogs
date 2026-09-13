@@ -17,8 +17,11 @@ const getCachedUserProfile = unstable_cache(
     }
 )
 
+const getFreshUserProfile = (username: string): Promise<DiscogsProfile> => apiAdapter.getUserProfile(username)
+
 const userApi = {
     getCachedUserProfile,
+    getFreshUserProfile
 }
 
 export default userApi;

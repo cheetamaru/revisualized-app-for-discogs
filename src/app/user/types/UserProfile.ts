@@ -4,6 +4,6 @@ export type UserProfile = {
     username: string;
     avatarUrl: string;
     bannerUrl: string;
-    collectionTotal: number;
-    wantlistTotal: number;
+    collectionTotal?: number;
+    wantlistTotal?: number;
 }

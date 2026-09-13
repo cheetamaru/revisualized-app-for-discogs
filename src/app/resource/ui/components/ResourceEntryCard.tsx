@@ -2,7 +2,7 @@ import { Card, Divider, Flex } from 'antd'
 import Title from 'antd/es/typography/Title'
 import Text from 'antd/es/typography/Text'
 import React from 'react'
-import DiscogsLinkButton from '@/shared/ui/components/discogs/DiscogsLinkButton'
+import ResourceEntryActions from './ResourceEntryActions'
 import { ResourceEntryType } from '../../types/ResourceEntryType'
 import { ResourceEntryCardDomain } from '../../domain/ResourceEntryCardDomain'
 import { resourceEntryCardBodyStyle, resourceEntryCardDividereStyle, resourceEntryCardTitleStyle } from './style/resourceEntryCardStyles'
@@ -84,13 +84,7 @@ const ResourceEntryCard = <T extends ResourceEntryType,>({
 
           <Divider style={resourceEntryCardDividereStyle} />
           
-          <Flex justify="space-between" align="center">
-            <div>Rating: {rating}</div>
-            <DiscogsLinkButton
-              href={getEntrySrc(resourceId)}
-              label="More"
-            />
-          </Flex>
+          <ResourceEntryActions entry={entry} href={getEntrySrc(resourceId)} />
         </Flex>
     </Card>
   )

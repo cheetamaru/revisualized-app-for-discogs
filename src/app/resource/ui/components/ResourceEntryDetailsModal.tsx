@@ -5,7 +5,7 @@ import { Alert, Button, Image, Modal, Skeleton, Tag } from "antd";
 import { ExportOutlined as ArrowUpRightOutlined } from "@ant-design/icons";
 import type { GetReleaseResponse } from "@lionralfs/discogs-client";
 import { ResourceEntryType } from "../../types/ResourceEntryType";
-import style from "./style/resourceEntryActions.module.css";
+import style from "./style/resourceEntryDetailsModal.module.css";
 
 type Props = {
     entry: ResourceEntryType;

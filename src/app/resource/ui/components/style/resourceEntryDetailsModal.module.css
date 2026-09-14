@@ -1,3 +1,65 @@
+.modalRoot :global(.ant-modal) {
+    top: 24px;
+    padding-bottom: 24px;
+}
+
+.modalRoot :global(.ant-modal-content) {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 48px);
+}
+
+.modalRoot :global(.ant-modal-header),
+.modalRoot :global(.ant-modal-footer) {
+    flex: 0 0 auto;
+}
+
+.modalRoot :global(.ant-modal-body) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.scrollArea {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 6px;
+    overscroll-behavior: contain;
+    scrollbar-color: rgba(0, 0, 0, 0.35) transparent;
+    scrollbar-width: thin;
+}
+
+.scrollArea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    background-clip: padding-box;
+}
+
+.scrollFade {
+    position: sticky;
+    top: calc(100% - 44px);
+    z-index: 1;
+    height: 44px;
+    margin-bottom: -44px;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.96));
+    transition: opacity 160ms ease;
+}
+
+.scrollFadeVisible {
+    opacity: 1;
+}
+
 .content {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
@@ -41,9 +103,79 @@
 }
 
 @media (max-width: 520px) {
+    .modalRoot :global(.ant-modal-wrap) {
+        inset: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .modalRoot :global(.ant-modal) {
+        position: absolute;
+        inset: 0;
+        width: 100% !important;
+        max-width: none;
+        height: auto;
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    .modalRoot :global(.ant-modal-content) {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        height: auto;
+        max-height: none;
+        box-sizing: border-box;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .modalRoot :global(.ant-modal-header) {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 17px 60px 17px 18px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .modalRoot :global(.ant-modal-close) {
+        top: 7px;
+        right: 8px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .modalRoot :global(.ant-modal-body) {
+        min-height: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .scrollArea {
+        height: 100%;
+        box-sizing: border-box;
+        padding: 0 18px 8px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modalRoot :global(.ant-modal-footer) {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 10px 18px max(10px, env(safe-area-inset-bottom));
+        border-top: 1px solid #f0f0f0;
+        background: #fff;
+    }
+
+    .modalRoot :global(.ant-modal-footer .ant-btn) {
+        width: 100%;
+        min-height: 44px;
+    }
+
     .content {
         grid-template-columns: minmax(0, 1fr);
         gap: 16px;
+        margin: 18px 0 8px;
     }
 
     .content > :first-child {

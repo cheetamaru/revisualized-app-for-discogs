@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Button, Image, Modal, Skeleton, Tag } from "antd";
 import { ExportOutlined as ArrowUpRightOutlined } from "@ant-design/icons";
 import type { GetReleaseResponse } from "@lionralfs/discogs-client";
@@ -18,6 +18,30 @@ export default function ResourceEntryDetailsModal({ entry, href, open, onClose }
     const [release, setRelease] = useState<GetReleaseResponse>();
     const [error, setError] = useState(false);
     const [attempt, setAttempt] = useState(0);
+    const [showScrollFade, setShowScrollFade] = useState(false);
+    const scrollAreaRef = useRef<HTMLDivElement | null>(null);
+
+    const updateScrollFade = useCallback(() => {
+        const scrollArea = scrollAreaRef.current;
+        if (!scrollArea) return;
+
+        const hasMoreContent = scrollArea.scrollTop + scrollArea.clientHeight < scrollArea.scrollHeight - 2;
+        setShowScrollFade(hasMoreContent);
+    }, []);
+
+    useEffect(() => {
+        if (!open) return;
+
+        const bodyOverflow = document.body.style.overflow;
+        const documentOverflow = document.documentElement.style.overflow;
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = bodyOverflow;
+            document.documentElement.style.overflow = documentOverflow;
+        };
+    }, [open]);
 
     useEffect(() => {
         if (!open || release) return;
@@ -33,9 +57,39 @@ export default function ResourceEntryDetailsModal({ entry, href, open, onClose }
         return () => controller.abort();
     }, [open, entry.resourceId, release, attempt]);
 
+    useEffect(() => {
+        if (!open) return;
+
+        const scrollArea = scrollAreaRef.current;
+        if (!scrollArea) return;
+
+        const scrollContent = scrollArea.querySelector(`.${style.scrollContent}`);
+        const resizeObserver = new ResizeObserver(updateScrollFade);
+
+        resizeObserver.observe(scrollArea);
+        if (scrollContent) resizeObserver.observe(scrollContent);
+        scrollArea.addEventListener("scroll", updateScrollFade, { passive: true });
+        updateScrollFade();
+
+        return () => {
+            resizeObserver.disconnect();
+            scrollArea.removeEventListener("scroll", updateScrollFade);
+        };
+    }, [open, updateScrollFade]);
+
     return (
-        <Modal open={open} onCancel={onClose} title="Release details" width={760} footer={<Button href={href} target="_blank" rel="noopener noreferrer" icon={<ArrowUpRightOutlined />}>Open in Discogs</Button>}>
-            <div className={style.content}>
+        <Modal
+            rootClassName={style.modalRoot}
+            open={open}
+            onCancel={onClose}
+            title="Release details"
+            width={760}
+            footer={<Button href={href} target="_blank" rel="noopener noreferrer" icon={<ArrowUpRightOutlined />}>Open in Discogs</Button>}
+        >
+            <div ref={scrollAreaRef} className={style.scrollArea}>
+                <div className={`${style.scrollFade} ${showScrollFade ? style.scrollFadeVisible : ""}`} aria-hidden="true" />
+                <div className={style.scrollContent}>
+                <div className={style.content}>
                 <div><Image src={entry.fullCoverUrl || entry.thumbCoverUrl || "/image_placeholder.jpg"} fallback="/image_placeholder.jpg" alt={entry.title} width="100%" /></div>
                 <div className={style.info}>
                     <p className={style.artist}>{entry.artists.map(artist => artist.name).join(", ") || entry.mainArtistName}</p>
@@ -48,14 +102,16 @@ export default function ResourceEntryDetailsModal({ entry, href, open, onClose }
                     {(release?.labels || entry.labels).map((label, index) => <p key={index}>{label.name}{"catno" in label && label.catno ? ` · ${label.catno}` : ""}</p>)}
                     {release && <div>{[...(release.genres || []), ...(release.styles || [])].map((genre, index) => <Tag key={index}>{genre}</Tag>)}</div>}
                 </div>
-            </div>
-            {error ? <Alert type="warning" showIcon message="Could not load additional details" action={<Button onClick={() => setAttempt(value => value + 1)}>Retry</Button>} /> : !release ? <Skeleton active paragraph={{ rows: 4 }} /> : <div className={style.info}>
+                </div>
+                {error ? <Alert type="warning" showIcon message="Could not load additional details" action={<Button onClick={() => setAttempt(value => value + 1)}>Retry</Button>} /> : !release ? <Skeleton active paragraph={{ rows: 4 }} /> : <div className={style.info}>
                 {!!release.tracklist?.length && <><h3>Tracklist</h3>{release.tracklist.map((track, index) => <div className={style.track} key={index}><span>{track.position}</span><span>{track.title}</span><span>{track.duration}</span></div>)}</>}
                 {!!release.extraartists?.length && <><h3>Credits</h3>{release.extraartists.map((artist, index) => <p key={index}>{artist.name} · {artist.role}</p>)}</>}
                 {!!release.companies?.length && <><h3>Companies</h3>{release.companies.map((company, index) => <p key={index}>{company.entity_type_name}: {company.name}</p>)}</>}
                 {!!release.identifiers?.length && <><h3>Identifiers</h3>{release.identifiers.map((identifier, index) => <p key={index}>{identifier.type}: {identifier.value}</p>)}</>}
                 {!!release.notes && <><h3>Notes</h3><p className={style.notes}>{release.notes}</p></>}
-            </div>}
+                </div>}
+                </div>
+            </div>
         </Modal>
     );
 }
